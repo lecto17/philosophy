@@ -64,12 +64,12 @@ export default {
 
     .top{
         margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
     }    
 
     .graphInfo{
-        width: 49%;
         height: 350px;
-        float: left;
     }
 
     .graph{
@@ -77,9 +77,7 @@ export default {
     }
 
     .textInfo{
-        width: 49%;
         height: 350px;
-        float: right;
         text-align: center;        
     }
 
@@ -88,9 +86,7 @@ export default {
     }
 
     .person{
-        width: 49%;
         height: 200px;
-        float: left;
         text-align: center;
     }
 
@@ -99,9 +95,7 @@ export default {
     }
 
     .userInfo{
-        width: 49%;
         height: 200px;
-        float: right;
     }
 
 </style>

@@ -21,6 +21,9 @@ export default {};
 </script>
 
 <style scoped>
+*{
+    margin: 0;
+}
 .nav {
   height: 70px;
   border-bottom: 1px solid black;
