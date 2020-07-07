@@ -8,6 +8,9 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router,
+<<<<<<< Updated upstream
   components: { App },
   template: '<App/>',
+=======
+>>>>>>> Stashed changes
 }).$mount('#app')
