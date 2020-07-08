@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     clickNextBtn() {
-      this.paging += 5;
+      this.paging += 5
     },
     clickEndBtn() {
       
