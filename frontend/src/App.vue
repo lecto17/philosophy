@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <Menu/> 
+    <barchart/>
     <router-view/>
     
   </div>
 </template>
 
 <script>
-import Menu from './components/Menu.vue'
+import Menu from './components/Menu.vue';
+import barchart from './chart.vue';
 export default {
   name: 'App',
   components: {
-    Menu
+    Menu,
+    barchart
   }
 }
 </script>
