@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Menu/> 
-    <barchart/>
     <router-view/>
     
   </div>
@@ -9,12 +8,10 @@
 
 <script>
 import Menu from './components/Menu.vue';
-import barchart from './chart.vue';
 export default {
   name: 'App',
   components: {
     Menu,
-    barchart
   }
 }
 </script>

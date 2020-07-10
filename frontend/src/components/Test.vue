@@ -66,12 +66,17 @@
         </ul>
       </div>
       <div class="test_btn_wrap">
+        <button class="next_btn" v-show="paging >= 6" @click="clickBeforeBtn">
+          이전
+        </button>
         <button class="next_btn" v-if="paging < 16" @click="clickNextBtn">
           다음
         </button>
         <button class="end_btn" v-else @click="clickEndBtn">질의 완료</button>
       </div>
-      {{ values }}<br/>
+      {{ values }}<br />
+      {{ philosophy }}<br />
+      <progress :value="checkedBtnCount" max="20"></progress>
     </div>
   </div>
 </template>
@@ -115,17 +120,47 @@ export default {
     };
   },
   methods: {
+    clickBeforeBtn() {
+      this.paging -= 5;
+    },
     clickNextBtn() {
-      this.paging += 5
+      this.paging += 5;
     },
     clickEndBtn() {
-      
+      var index;
+      if (this.checkedBtnCount == 20) {
+        for (index = 0; index < 20; index++) {
+          switch (index % 5) {
+            case 0:
+              this.philosophy.aris += Number(this.values[index]);
+              break;
+            case 1:
+              this.philosophy.stoic += Number(this.values[index]);
+              break;
+            case 2:
+              this.philosophy.epic += Number(this.values[index]);
+              break;
+            case 3:
+              this.philosophy.skep += Number(this.values[index]);
+              break;
+            case 4:
+              this.philosophy.cyr += Number(this.values[index]);
+              break;
+          }
+        }
+        this.$router.push({
+            path: '/result'
+          })
+      } else {
+        alert('채워')
+      }
     },
-    calcIndex(){
-        
-    }
   },
-  computed: {},
+  computed: {
+    checkedBtnCount() {
+      return this.values.filter((nullCount) => nullCount != null).length;
+    },
+  },
 };
 </script>
 

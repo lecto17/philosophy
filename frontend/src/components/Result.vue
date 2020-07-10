@@ -61,7 +61,7 @@
                 <div class="userInfo">
                     <h3 class="title">참여자수<br/>&해당 유형수</h3>                   
                     <reactive :chart-data="datacollection"></reactive>
-                </div>                
+                </div>                 
             </div>
         </div>
     </div>
