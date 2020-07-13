@@ -17,27 +17,7 @@
             <div class="question">
               <span> Q-{{ index + paging }} {{ QuestionNum }} </span>
             </div>
-            <div class="selection_wrap">
-              <!-- <div class="selection_num1">
-                <input type="radio" :name="'selection' + index" vlaue="1" />
-                <span>매우 그렇다</span>
-              </div>
-              <div class="selection_num2">
-                <input type="radio" :name="'selection' + index" vlaue="2" />
-                <span>그렇다</span>
-              </div>
-              <div class="selection_num3">
-                <input type="radio" :name="'selection' + index" vlaue="3" />
-                <span>보통이다</span>
-              </div>
-              <div class="selection_num4">
-                <input type="radio" :name="'selection' + index" vlaue="4" />
-                <span>그렇지 않다</span>
-              </div>
-              <div class="selection_num5">
-                <input type="radio" :name="'selection' + index" vlaue="5" />
-                <span>전혀 그렇지 않다</span>
-              </div> -->
+            <div class="selection_wrap">             
               <b-form-group>
                 <b-form-radio-group
                   id="radio-slots"
@@ -88,7 +68,7 @@ export default {
     return {
       values: [],
       philosophy: {
-        aris: 0,
+        aris: 1,
         stoic: 0,
         epic: 0,
         skep: 0,
@@ -154,13 +134,31 @@ export default {
       } else {
         alert('채워')
       }
+      alert('Clicked');
+      fetch('localhost:8000/test/result', {
+        method: 'POST',
+        body: JSON.stringify(this.philosophy)
+      })
+      .then((response) => {
+          if(response.ok) {
+            alert('통신 성공');
+            return ; 
+            //return response.json();
+          }
+
+          alert('통신 실패');
+          //throw new Error('NET Error');
+      })//.catch(error => console.error('Error: ', console.error()))
+      alert('finish');
     },
   },
   computed: {
     checkedBtnCount() {
       return this.values.filter((nullCount) => nullCount != null).length;
     },
-  },
+  }
+          
+  
 };
 </script>
 

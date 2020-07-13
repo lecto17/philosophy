@@ -34,11 +34,31 @@
                 </div>
                 <div class="temp">                
                     <div class="textInfo">
-                        <h3> 철학 관련 내용 설명</h3>
-                        <h3> 해당 철학자들</h3>
-                        <h3> 해당 유명인들</h3>
-                        <h3> 안 어울리는 유형</h3>
-                        <h3> 읽어 볼만한 책</h3>
+                        <button @click="showDetail(1)" class="accordion" id="1">철학 관련 내용 설명</button>
+                        <div v-show="asd" class="panel">
+                            <p>아리스토텔레스는 .......</p>
+                        </div>
+
+                        <button @click="showDetail(2)" class="accordion" value="2" id="2">해당 철학자들</button>
+                        <div class="panel">
+                            <p>해당 철학자로는 .........</p>
+                        </div>
+
+                        <button v-on:click="showDetail(3)" class="accordion" id="3">해당 유명인들</button>
+                            <div class="panel">
+                        <p>해당 유명인으로는 .......</p>
+                        </div>
+
+                        <button v-on:click="showDetail(4)" class="accordion" id="4">안 어울리는 유형</button>
+                            <div class="panel">
+                        <p>당신과 안 어울릴 수 있는 사람의 유형은 .......</p>
+                        </div>
+
+                        <button @click="showDetail(5)" class="accordion" id="5">읽어 볼만한 책</button>
+                            <div class="panel">
+                        <p>읽어 볼만한 책으로는 ........</p>
+                        </div>
+
                     </div>
                 </div>
             </div>            
@@ -70,10 +90,40 @@
 <script>
 export default {
     name: 'Result',
+    data(){
+        return {
+            asd: false
+        }
+    },
     props: {
         msg: String
+    },
+    methods: {
+        showDetail(num){             
+            
+            // let panel = document.getElementById(num).nextElementSibling;
+            // alert(panel.style.maxHeight);
+            // if (panel.style.maxHeight) {
+            //     alert("if");
+            //     panel.style.maxHeight = null;
+            // } 
+            // else {
+            //     alert("else");
+            //     panel.style.maxHeight = panel.scrollHeight + "px";
+            // } 
+
+            var panel = document.getElementById(num).nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+                 
+        }
     }
 }
+
+
 
 </script>
 
@@ -137,9 +187,30 @@ export default {
         margin-left: 30px;        
     }
 
-    /* .textInfo{
-        
-    } */
+   .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 90%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+        margin: 10px;
+    }
+
+    .active, .accordion:hover {
+        background-color: #ccc; 
+    }
+
+    .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+    }
 
     /* .person, .userInfo{
         display: flex;
