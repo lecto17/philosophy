@@ -1,23 +1,22 @@
 from rest_framework.serializers import ModelSerializer
-from .models import *
-
+from .models import Result, Post, Comment, User
 
 class ResultSerializer(ModelSerializer):
     class Meta:
         model = Result
         fields = ['types','result']
 
-class DiscussPostSerializer(ModelSerializer):
+class PostSerializer(ModelSerializer):
     class Meta:
-        model = DiscussPost
-        fields = [ 'userid', 'title', 'content', 'date']
+        model = Post
+        fields = ['userid', 'title', 'content', 'date']
 
-class DiscussCommentSerializer(ModelSerializer):
+class CommentSerializer(ModelSerializer):
     class Meta:
-        model = DiscussComment
-        fields = ['userid', 'content', 'date']
+        model = Comment
+        fields = ['userid', 'postid', 'content', 'date']
 
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = [ 'userid', 'pw']
+        fields = ['userid', 'pw']

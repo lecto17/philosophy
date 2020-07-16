@@ -17,7 +17,7 @@
             <div class="question">
               <span> Q-{{ index + paging }} {{ QuestionNum }} </span>
             </div>
-            <div class="selection_wrap">             
+            <div class="selection_wrap">
               <b-form-group>
                 <b-form-radio-group
                   id="radio-slots"
@@ -57,17 +57,22 @@
       {{ values }}<br />
       {{ philosophy }}<br />
       <progress :value="checkedBtnCount" max="20"></progress>
-     
     </div>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
+import { mapMutations } from 'vuex'
 export default {
-  name: "Home",
+  name: "Test",
   data() {
     return {
-      values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      obj:{
+        id: 'aris',
+        value: 0
+      },
+      values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       philosophy: {
         aris: 0,
         stoic: 0,
@@ -101,13 +106,27 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['storeResult']),
+    getMaxNum(philo) {
+      this.cmpNum("aris", philo.aris);
+      this.cmpNum("stoic", philo.stoic);
+      this.cmpNum("skep", philo.skep);
+      this.cmpNum("epic", philo.epic);
+      this.cmpNum("cyr", philo.cyr);
+    },
+    cmpNum(id, num) {
+      if (this.obj.value <= num) {
+        this.obj.id = id;
+        this.obj.value = num;
+      }
+    },
     clickBeforeBtn() {
       this.paging -= 5;
     },
     clickNextBtn() {
       this.paging += 5;
     },
-   clickEndBtn() {
+    clickEndBtn() {
       var index;
       if (this.checkedBtnCount == 20) {
         for (index = 0; index < 20; index++) {
@@ -129,34 +148,37 @@ export default {
               break;
           }
         }
+        this.getMaxNum(this.philosophy);
+        this.storeResult(this.obj.id, this.obj.value)
+        // await fetch("http://localhost:8000/result/storeResult/",{
+        //   method:'POST',
+          
+        // })
+        //   .then((res) => {
+        //     if (res.ok) {
+        //       return res.json();
+        //     }
+        //     throw new Error("Network error");
+        //   })
+        //   .then((json) => {
+        //     this.philosophy = json;
+        //     this.$router.push({
+        //       path: "/result",
+        //     });
+        //   });
 
-        fetch('http://localhost:8000/test/result/', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.philosophy)
-        }).then(res=>{
-          console.log('123: ', res.json())
-        })
-
-
-        this.$router.push({
-            path: '/result'
-          })
+        // console.log(this.philosophy);
+        // console.log(this.philosophy[0].cyr);
       } else {
-        alert('채워')
+        alert("채워");
       }
-     
     },
   },
   computed: {
     checkedBtnCount() {
       return this.values.filter((nullCount) => nullCount != null).length;
     },
-  }
-          
-  
+  },
 };
 </script>
 

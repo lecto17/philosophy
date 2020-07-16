@@ -2,18 +2,6 @@
   <div id="app">
     <Menu/> 
     <router-view/>
-    <thead>
-      <th>name</th>
-      <th>course</th>
-      <th>rating</th>
-    </thead>
-    <tbody v-for="student in students" :key="student.id">
-      <td>{{student.name}}</td>
-      <td>{{student.course}}</td>
-      <td>{{student.rating}}</td>
-
-    </tbody>
-
   </div>
 </template>
 
@@ -30,10 +18,6 @@ export default {
       students:[]
     }
   },
-  async created(){
-    var response = await fetch('http://localhost:8000/api/students/')
-    this.students = await response.json();
-  }
 }
 </script>
 

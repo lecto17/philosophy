@@ -1,21 +1,13 @@
 from django.urls import path, include
-
 from rest_framework import routers
-
-from .views import *
+from .views import ResultViewSet, PostViewSet, CommentViewSet, UserViewSet
 
 router = routers.DefaultRouter()
 router.register('result', ResultViewSet)
-router.register('discuss/post', DiscussPostViewSet)
-router.register('discuss/comment', DiscussCommentViewSet)
+router.register('post', PostViewSet)
+router.register('comment', CommentViewSet)
 router.register('user', UserViewSet)
 
-urlpatterns = router.urls
-
-
-# from django.urls import path
-# from .views import index
-
-# urlpatterns = [
-#     path('result/, index)
-# ]
+urlpatterns = [
+    path('', include(router.urls))
+]
