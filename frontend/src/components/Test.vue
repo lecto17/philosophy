@@ -57,6 +57,7 @@
       {{ values }}<br />
       {{ philosophy }}<br />
       <progress :value="checkedBtnCount" max="20"></progress>
+     
     </div>
   </div>
 </template>
@@ -66,9 +67,9 @@ export default {
   name: "Home",
   data() {
     return {
-      values: [],
+      values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       philosophy: {
-        aris: 1,
+        aris: 0,
         stoic: 0,
         epic: 0,
         skep: 0,
@@ -106,7 +107,7 @@ export default {
     clickNextBtn() {
       this.paging += 5;
     },
-    clickEndBtn() {
+   clickEndBtn() {
       var index;
       if (this.checkedBtnCount == 20) {
         for (index = 0; index < 20; index++) {
@@ -128,28 +129,25 @@ export default {
               break;
           }
         }
+
+        fetch('http://localhost:8000/test/result/', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.philosophy)
+        }).then(res=>{
+          console.log('123: ', res.json())
+        })
+
+
         this.$router.push({
             path: '/result'
           })
       } else {
         alert('채워')
       }
-      alert('Clicked');
-      fetch('localhost:8000/test/result', {
-        method: 'POST',
-        body: JSON.stringify(this.philosophy)
-      })
-      .then((response) => {
-          if(response.ok) {
-            alert('통신 성공');
-            return ; 
-            //return response.json();
-          }
-
-          alert('통신 실패');
-          //throw new Error('NET Error');
-      })//.catch(error => console.error('Error: ', console.error()))
-      alert('finish');
+     
     },
   },
   computed: {
