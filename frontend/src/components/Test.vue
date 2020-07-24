@@ -1,5 +1,27 @@
 <template>
   <div class="Home">
+    <div class="test_wrap">
+      <div class="test_header">
+        <div class="hbox">
+          <img class="img time" src="../assets/time.png" />
+            <div class="text">
+              검사 시간은 15분 내외이며,
+              총 20문항으로 구성되었습니다.
+          </div>
+        </div>
+        <div class="hbox">
+          <img class="img tip" src="../assets/tip.png" />
+          <div class="text">
+              자신을 돌아보며 평소에 자신의 모습을 떠올려 보세요.
+          </div>
+        </div>
+        <div class="hbox">
+          <img class="img straight" src="../assets/straight.png" />
+          <div class="text">
+              가능한 보통‘중립’은 피해주세요 
+          </div>
+        </div>
+      </div>
       <div class="bar_box">
         <b-progress class="bar" max="20" height="2rem">
           <b-progress-bar :value="checkedBtnCount" show-progress animated>
@@ -7,7 +29,6 @@
           </b-progress-bar>
         </b-progress>
       </div>
-    <div class="test_wrap">
       <div class="test_title"></div>
       <!-- <progress class="bar" :value="checkedBtnCount" max="20"></progress> -->
       <div class="test_content_wrap">
@@ -21,7 +42,7 @@
             :key="QuestionNum"
           >
             <div class="question">
-              <span> {{ index + paging }} - {{ QuestionNum }} </span>
+              <span> {{ index + paging }}. {{ QuestionNum }} </span>
             </div>
             <div class="selection_wrap">
               <!-- <b-form-group>
@@ -243,33 +264,55 @@ export default {
 }
 .Home {
   text-align: -webkit-center;
+  position: relative;
 }
 .test_wrap {
-  width: 70%;
+  width: 100%;
 }
-.bar_box{
+.test_header {
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+}
+.hbox{
+  width: 33%;
+}
+.text{
+  margin: 15px 0 10px 0;
+  width: 70%;
+  font-size: 20px;
+}
+
+.bar_box {
   margin: 10px 0;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
   background: #eee;
 }
-.progress-bar {
-}
 .bar {
   height: 10px;
   width: 50%;
   background: #aaa;
+}
+.progress-bar {
+  background: purple;
 }
 .content {
   border-bottom: 1px solid #ddd;
 }
 .question {
   font-size: 25px;
+  margin-bottom: 15px;
+}
+.selection_wrap{
+  align-content: center;
 }
 .radio_group {
+  padding-top: 15px;
 }
 .radio_group label {
   position: relative;
@@ -280,12 +323,12 @@ export default {
 }
 .radio_div {
   margin: 0 13px;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   background: #833471;
   color: #fff;
-  font-size: 20px;
+  font-size: 30px;
 }
 .labels input:hover ~ .radio_div {
   background: #6f1e51;
