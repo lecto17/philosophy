@@ -22,12 +22,12 @@ export default new VueRouter({
     },
     {
       path: "/home",
-      name: "/Home",
+      name: "Home",
       component: Home,
     },
     {
       path: "/result",
-      name: "/Result",
+      name: "Result",
       component: Result
     }
   ],

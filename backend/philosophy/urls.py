@@ -3,7 +3,7 @@ from rest_framework import routers
 from .views import ResultViewSet, PostViewSet, CommentViewSet, UserViewSet
 
 router = routers.DefaultRouter()
-router.register('result', ResultViewSet)
+router.register('result', ResultViewSet, 'Result')
 router.register('post', PostViewSet)
 router.register('comment', CommentViewSet)
 router.register('user', UserViewSet)

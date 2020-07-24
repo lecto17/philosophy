@@ -26,7 +26,6 @@ export default {};
 }
 .nav {
   height: 70px;
-  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
   padding: 0 15px;
@@ -50,11 +49,11 @@ export default {};
 
 @media screen and (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 </style>
