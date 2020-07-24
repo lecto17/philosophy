@@ -1,75 +1,52 @@
 <template>
     <div class="Result">
-        <div class="wrapper">
+        <div class="wrapper">            
             <div class="phrase">
-                <h1>관련 사상 대표 문구</h1>
+                <h1 id="show-btn" @click="$bvModal.show('bv-modal-example')">“인간은 정치적 동물이다” <br/>
+   -아리스토텔레스주의 (Aristotelianism)- <br>
+</h1>
+<h6>↑ 더 알아보기</h6>
+                <!-- <b-button >Open Modal</b-button> -->
+                <b-modal id="bv-modal-example" hide-footer>
+                    <template v-slot:modal-title >
+                        <b>관련 <code>철학 내용</code>에 대하여 </b>
+                    </template>
+                    <div class="d-block text-center" >
+                    <h3 style="font-size: 22px;">플라톤에게는 이성적 앎이 곧 행복인 것과는 다르게 아리스토텔레스는 이성적인 앎에 기반한 실천적인 의지에 따른 행복을 주장합니다.<br/><br/> 아리스토텔레스의 용어로 인간의 본질은 이성적 동물(animal rationale)입니다. 그러므로 그는 기본적인 욕구가 우리를 이끄는 것처럼 우리의 합리적인 영혼(Nous)에 따라 행동하는 것이 다른 동물과는 구별되는 인간만의 특별한 행복이라 논증합니다. <br/><br/>이러한 틀 안에서, 행복은 잘 수련된 본성에 따른 영혼의 활동입니다. “우리의 반복적인 행동이 곧 우리다. 따라서 탁월함은 습관이다.”</h3>
+                    </div>
+                    <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
+                </b-modal>
             </div>            
             <div class="top">
+                
                 <div class="graphInfo">
-                    <h4>당신의 철학적 성향은</h4>                    
-                    <h5>아리스토텔레스</h5>
-                    <div class="container">
-                        <div class="skills ari">90%</div>
-                    </div>
+                    <h4>당신의 철학적 성향은</h4><br/>                     
+                    <div class="wrapcon">
+                        <div class="container" v-for="(list, index) in lists" :key="list.id">   
+                            <div :id="'rank'+index" :class="'skills rank rank'+index">{{list.value}}%</div><br/><br/>
+                            <button id="show-btn" class="typeBtn">{{list.id}}(더 보기)</button>
+                            <br/><br/>
+                        </div>
+                    </div>                                        
 
-                    <h5>스토아</h5>
-                    <div class="container">
-                        <div class="skills sto">80%</div>
-                    </div>
-
-                    <h5>에피쿠로스</h5>
-                    <div class="container">
-                        <div class="skills epi">65%</div>
-                    </div>
-
-                    <h5>회의주의</h5>
-                    <div class="container">
-                        <div class="skills ske">60%</div>
-                    </div>
-
-                    <h5>견유학파</h5>
-                    <div class="container">
-                        <div class="skills cyr">40%</div>
-                    </div>
                 </div>
-                <div class="temp">                
+                <div class="temp border">                    
                     <div class="textInfo">
-                        <button @click="showDetail(1)" class="accordion" id="1">철학 관련 내용 설명</button>
-                        <div v-show="asd" class="panel">
-                            <p>아리스토텔레스는 .......</p>
-                        </div>
-
-                        <button @click="showDetail(2)" class="accordion" value="2" id="2">해당 철학자들</button>
-                        <div class="panel">
-                            <p>해당 철학자로는 .........</p>
-                        </div>
-
-                        <button v-on:click="showDetail(3)" class="accordion" id="3">해당 유명인들</button>
-                            <div class="panel">
-                        <p>해당 유명인으로는 .......</p>
-                        </div>
-
-                        <button v-on:click="showDetail(4)" class="accordion" id="4">안 어울리는 유형</button>
-                            <div class="panel">
-                        <p>당신과 안 어울릴 수 있는 사람의 유형은 .......</p>
-                        </div>
-
-                        <button @click="showDetail(5)" class="accordion" id="5">읽어 볼만한 책</button>
-                            <div class="panel">
-                        <p>읽어 볼만한 책으로는 ........</p>
-                        </div>
-
+                        <h2>행복에 관한 글이 들어가는 곳입니다.</h2>
                     </div>
                 </div>
+                
             </div>            
             <div class="bottom">                
-                <div class="person">
+                <div class="person border">
                     <h3 class="title">활동시기</h3>
                     <div>
                         <b-card-group>
-                            <b-card title="Aristoles" img-src="https://lh3.googleusercontent.com/proxy/hPJGJEHEAcW04nvOOODdF57ceGpJ0qx1VgFnV7atD2ZIhF0ftBRgyizUeRud0mAaUwON_vsP56L4-a_ZUBneyqU63d7Kg0LPBYvMASeTDuQWDm1QmXHTfWIyFGaY1n4Ah0Lm8Xlx_eQ5ZKybl938V8yhPUbQfjHc2Xu-vE9HHHzX0wtcMhyGr4Gk9oFaUA"  img-alt="Image" img-top style="width: 300px; height: auto;">
+                            <b-card title="Aristoles">
+                            <!-- <b-card title="Aristoles" img-src="../assets/aristoteles.png"  img-alt="Image" img-top style="width: 300px; height: auto;"> -->
+                                <img class="person-img" src="../assets/aristoteles.png"><br/><br/>
                                 <b-card-text>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content.                                    
+                                    {{personInfo}}
                                 </b-card-text>
                                 <template v-slot:footer>
                                     <small class="text-muted">Last updated 3 mins ago</small>
@@ -77,66 +54,209 @@
                             </b-card>                      
                         </b-card-group>
                     </div>
+                </div>                
+                <div class="temp border">
+                    <div class="buttonInfo">
+                        <b-card no-body class="mb-1">
+                            <b-card-header header-tag="header" class="p-1" role="tab">
+                                <b-button block v-b-toggle.accordion-1 variant="info">키워드</b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                                <b-card-body>                                
+                                <b-card-text>
+                                    <code>
+                                        {{ keyword }}
+                                    </code>
+                                </b-card-text>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
+
+                        <b-card no-body class="mb-1">
+                            <b-card-header header-tag="header" class="p-1" role="tab">
+                                <b-button block v-b-toggle.accordion-2 variant="info">대표 인물</b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                                <b-card-body>
+                                <b-card-text>
+                                    {{ representative }}
+                                    <code>
+
+                                    </code>
+                                </b-card-text>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
+
+                        <b-card no-body class="mb-1">
+                            <b-card-header header-tag="header" class="p-1" role="tab">
+                                <b-button block v-b-toggle.accordion-3 variant="info">환장의 조합</b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                                <b-card-body>
+                                <b-card-text>{{ enemy }}</b-card-text>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
+
+                        <b-card no-body class="mb-1">
+                            <b-card-header header-tag="header" class="p-1" role="tab">
+                                <b-button block v-b-toggle.accordion-4 variant="info">추천하는 행동</b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
+                                <b-card-body>
+                                <b-card-text>{{ suggestion }}</b-card-text>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
+
+                        <b-card no-body class="mb-1">
+                            <b-card-header header-tag="header" class="p-1" role="tab">
+                                <b-button block v-b-toggle.accordion-5 variant="info">관련 서적</b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
+                                <b-card-body>
+                                <b-card-text>{{ book }}</b-card-text>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
+
+
+                       
+                    </div>        
+                </div>        
+                <div class="userInfo border">
+                    
+                        <h3 class="title">참여자수<br/>&해당 유형수</h3>                                       
+                        <div class="user total">94</div>
+                        <br/><span class="user-num">참여자수</span>
+                        <div class="user types">35</div>                                        
+                        <br/><span class="type-num">해당 유형수</span>
+                </div>       
+                
+            </div>            
+            <ul>
+                <strong>SNS 공유하기</strong>
+                
+                <br/><br/>
+                <div class="snsSection">
+                    <img class="sns-image" src="../assets/facebook.jpg" alt="페이스북 페이지 아이콘">
+                    <ShareNetwork class="sns"
+                        network="facebook"
+                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
+                        title="Find your happiness besides on you, with philosophy"
+                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
+                        quote="The hot reload is so fast it\'s near instant. - Evan You"
+                        hashtags="Happiness,Philosophy"
+                    >
+                        Share on Facebook
+                    </ShareNetwork>
                 </div>
-                <div class="userInfo">
-                    <h3 class="title">참여자수<br/>&해당 유형수</h3>                   
-                    <reactive :chart-data="datacollection"></reactive>
-                </div>                 
-            </div>
+                <br/>
+                
+                <!-- <img class="sns-image" src="https://png.pngtree.com/element_our/md/20180626/md_5b32227ca3eb9.jpg" alt="트위터 페이지 아이콘"> -->
+                <div class="snsSection">
+                    <img class="sns-image" src="../assets/twitter.jpg" alt="트위터 페이지 아이콘">
+                    <ShareNetwork class="sns"
+                        network="Twitter"
+                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
+                        title="Find your happiness besides on you, with philosophy"
+                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
+                        quote="The hot reload is so fast it\'s near instant. - Evan You"
+                        hashtags="Happiness,Philosophy"
+                    >
+                        Share on Twitter
+                    </ShareNetwork>
+                </div>                    
+                <br/>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'Result',
     data(){
         return {
-            asd: false
+            styleObject : {
+                width : 10
+            },
+            lists : [],
+            personInfo: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
+            keyword: '정치적, 공동체적',
+            representative: '해당 유형의 대표 인물로는 다음과 같은 사람이 있습니다.',
+            enemy: '당신과의 환장의 조합은 다음과 같은 유형의 사람입니다.',
+            suggestion: '정치적, 공동체성을 중요시하는 당신은 이렇게 행동하시면 좋습니다.',
+            book: '읽어 볼만한 책으로는 ........'
         }
     },
     props: {
         msg: String
+    },   
+    mounted : function(){
+        //alert('mounted()')
+        this.onload()
+        // window.addEventListener('load', () => {
+        //     alert('rank1', document.getElementById('rank1'))
+        //     // console.log('rank1: ', document.getElementById('rank1'))
+        // })
+        //alert('mount finished');
+    },
+    created(){
+        //alert('created()')
+        setTimeout(() => {
+          //  alert('setTimeout()')
+            //alert('rank1의 width: ', document.getElementById('rank1').style.width)
+            this.styleObject.width = 100;
+        }, 1000)
+        //alert('created finish()')
+    },
+    updated(){
+        //alert('변화된 width값: ', document.getElementById('rank1').style.width)
     },
     methods: {
-        showDetail(num){             
+        onload: function(){
+            //alert('onload');
+            //vue.js 생성주기, 실행 순서 확인하기
+            this.lists = this.$route.params
+            console.log('lists: ', this.lists)
             
-            // let panel = document.getElementById(num).nextElementSibling;
-            // alert(panel.style.maxHeight);
-            // if (panel.style.maxHeight) {
-            //     alert("if");
-            //     panel.style.maxHeight = null;
-            // } 
-            // else {
-            //     alert("else");
-            //     panel.style.maxHeight = panel.scrollHeight + "px";
-            // } 
+           //setTimeout(this.changeWidth(), 2000);
 
-            var panel = document.getElementById(num).nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-                 
+            // document.getElementById('rank1').style.setProperty('width', '150px')
+            // alert('rank1: ', document.querySelector('rank1'))
+            //document.getElementsByClassName("rank1").style.width = 150;
+           // alert('rank1의 width: ', document.getElementById('rank1').style.width)
+            // console.log('width: ',document.getElementsByClassName("ari").style.width) 
+        }, 
+
+        changeWidth : function(){
+            //alert('rank1: ', document.getElementById('rank1').style.width)
         }
+        
     }
 }
-
-
 
 </script>
 
 <style scoped>
-    div{
+
+    .border{
         border: 1px solid black;
     }
 
-    * {box-sizing: border-box}
+    * {box-sizing: border-box}    
 
     .container {
         width: 100%;
-        background-color: #ddd;
+        /* background-color: #ddd; */
+    }
+
+    #show-btn:hover{
+        cursor: pointer;
+        color: #8a8a5c;
     }
 
     .skills {
@@ -146,11 +266,88 @@ export default {
         color: white;
     }
 
-    .ari {width: 90%; background-color: #ff0000;}
-    .sto {width: 80%; background-color: #00a3cc;}
-    .epi {width: 65%; background-color: #00ff00;}
-    .ske {width: 60%; background-color: #ff9900;}
-    .cyr {width: 40%; background-color: #808080;}
+    /* .rank1 {width: 10%; background-color: #ff0000; transition: width 2s;}         */
+    
+    
+    .rank{
+        position:absolute;
+        animation-name: test;
+        animation-duration:2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    .user{
+        /* display: flex;
+        flex-direction: column-reverse; */
+        position:absolute;
+        top: 50%;
+        animation-name: total;
+        animation-duration:2s;
+        animation-iteration-count: 1;
+        /* animation-direction: reverse; */
+        animation-fill-mode: forwards;
+    }
+
+    .user-num{
+        position: absolute;
+        top: 90%;
+        right: 55%;
+    }
+
+    .type-num{
+        position: absolute;
+        top: 90%;
+        right: 0%;
+    }
+
+    .total{
+        background-color:#ff0000;    
+        left:25%;    
+    }
+    .types{        
+        left:75%;
+        background-color: #000a3cc0;
+        border: 1px solid black;
+    }
+
+    .rank1{        
+        background-color:#ff0000;        
+    }
+
+    .rank2{
+        background-color:#000a3cc0;        
+    }
+
+    .rank3{
+        background-color:#00ff00;        
+    }
+
+    .rank4{
+        background-color:#ff9900;        
+    }
+
+    .rank5{
+        background-color:#808080;        
+    }
+    
+    @keyframes test {
+        0% {
+            width: 0px;
+        }
+        100% {
+            width: 200px;
+        }
+    }
+
+    @keyframes total {
+        0% {
+            height: 0px;
+        }
+        100% {
+            height: 200px;
+        }
+    }
 
     .wrapper{
         margin: 20px;
@@ -163,11 +360,11 @@ export default {
 
     .top, .bottom{
         height: 700px;
-        margin-bottom: 20px;        
+        margin-bottom: 20px;
         display: flex;
         flex-direction: row;
         align-items: center; /* top, bottom div안에 있는 자식 div들을 세로 중앙정렬하기 위함(display: flex, align-items: center) */
-        justify-content: center;        
+        justify-content: space-around   ;        
     }     
 
     .temp{
@@ -177,17 +374,65 @@ export default {
 
     .graphInfo, .person{        
         height: auto;        
-        margin-right: 30px;
-    }
+        margin-right: 10px;
+    }    
 
-    .textInfo, .userInfo{
+    .buttonInfo, .textInfo, .userInfo{
         height: 500px;       
         display: table-cell;
         vertical-align: middle;
-        margin-left: 30px;        
+        margin-left: 10px;    
+    }    
+    .userInfo{
+        position: relative;
+    }
+    .buttonInfo{
+        width: 25vw;
+        height: auto;
     }
 
-   .accordion {
+    .person{
+        width: 250px;
+    }
+
+    .person-img{
+        width: 200px; 
+        height: auto;
+    }
+
+    .typeBtn{
+        border: none;
+        outline: 0;
+        background-color: transparent;
+    }
+
+    .typeBtn:hover{
+        cursor: pointer;
+    }
+
+    /* .typesBox{        
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+    } */
+
+    .snsSection{
+        /* width: 200px;
+        height :auto;
+        display: flex; */
+    }
+
+    .sns:hover{
+        cursor: pointer;
+        font: bold;
+    }
+
+    .sns-image{
+        width: 40px;
+        height: 40px;
+    }
+
+   /* .accordion {
         background-color: #eee;
         color: #444;
         cursor: pointer;
@@ -210,7 +455,7 @@ export default {
         display: none;
         background-color: white;
         overflow: hidden;
-    }
+    } */
 
     /* .person, .userInfo{
         display: flex;

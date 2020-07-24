@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Result(models.Model):
     objects = models.Manager()
-    types = models.CharField(max_length=10)
+    types = models.CharField(max_length=10, primary_key=True)
     result = models.IntegerField()
 
     def __str__(self):
@@ -20,9 +20,9 @@ class User(models.Model):
     def __str__(self):
         return self.userid
 
-class DiscussPost(models.Model):
+class Post(models.Model):
     objects = models.Manager()
-    userid = models.ForeignKey('User', on_delete=models.CASCADE)
+    userid = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.CharField(max_length=1000)
     date = models.DateField()
@@ -30,12 +30,12 @@ class DiscussPost(models.Model):
     def __str__(self):
         return self.title
     
-class DiscussComment(models.Model):
+class Comment(models.Model):
     objects = models.Manager()
-    userid = models.ForeignKey('User', on_delete=models.CASCADE)
-    postid = models.ForeignKey('DiscussPost', on_delete=models.CASCADE)
-    content = models.CharField(max_length=300)
+    userid = models.ForeignKey(User, on_delete=models.CASCADE)
+    postid = models.ForeignKey(Post, on_delete=models.CASCADE)
+    content = models.TextField(max_length=300)
     date = models.DateField()
 
     def __str__(self):
-        return self.userid
+        return self.content

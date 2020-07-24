@@ -17,7 +17,7 @@
             <div class="question">
               <span> Q-{{ index + paging }} {{ QuestionNum }} </span>
             </div>
-            <div class="selection_wrap">             
+            <div class="selection_wrap">
               <b-form-group>
                 <b-form-radio-group
                   id="radio-slots"
@@ -53,21 +53,30 @@
           다음
         </button>
         <button class="end_btn" v-else @click="clickEndBtn">질의 완료</button>
-      </div>
-      {{ values }}<br />
-      {{ philosophy }}<br />
+      </div>      
       <progress :value="checkedBtnCount" max="20"></progress>
-     
     </div>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
+import { mapMutations } from 'vuex'
 export default {
-  name: "Home",
+  name: "Test",
   data() {
-    return {
+    return {      
+      totalscore: 0,
+      obj:{
+        id: '',
+        value: 0
+      },
       values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      rankArr: [],
+      rankObj : {
+        id: '',
+        value : 0
+      },
       philosophy: {
         aris: 0,
         stoic: 0,
@@ -101,14 +110,29 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['storeResult']),
+    getMaxNum(philo) {
+      this.cmpNum("aris", philo.aris);
+      this.cmpNum("stoic", philo.stoic);
+      this.cmpNum("skep", philo.skep);
+      this.cmpNum("epic", philo.epic);
+      this.cmpNum("cyr", philo.cyr);
+    },
+    cmpNum(id, num) {
+      if (this.obj.value <= num) {
+        this.obj.id = id;
+        this.obj.value = num;
+      }
+    },
     clickBeforeBtn() {
       this.paging -= 5;
     },
     clickNextBtn() {
       this.paging += 5;
     },
-   clickEndBtn() {
+    clickEndBtn() {
       var index;
+      //var totalscore = this.philosophy.aris + this.philosophy.epic + this.philosophy.stoic + this.philosophy.cyr + this.philosophy.skep;
       if (this.checkedBtnCount == 20) {
         for (index = 0; index < 20; index++) {
           switch (index % 5) {
@@ -128,35 +152,81 @@ export default {
               this.philosophy.cyr += Number(this.values[index]);
               break;
           }
+          this.totalscore += Number(this.values[index]);
         }
+        this.getMaxNum(this.philosophy);
+        console.log('totalscore: ', this.totalscore)        
 
-        fetch('http://localhost:8000/test/result/', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.philosophy)
-        }).then(res=>{
-          console.log('123: ', res.json())
+        this.storeResult(this.obj.id)
+      
+        this.rankArr.push({id: '', value: 999})
+        this.rankArr.push({id: '아리스토텔레스', value: (100 / this.totalscore * this.philosophy.aris).toFixed(1)})        
+        this.rankArr.push({id: '회의주의', value: (100 / this.totalscore * this.philosophy.skep).toFixed(1)})
+        this.rankArr.push({id: '견유학파', value: (100 / this.totalscore * this.philosophy.cyr).toFixed(1)})
+        this.rankArr.push({id: '에피쿠로스', value: (100 / this.totalscore * this.philosophy.epic).toFixed(1)})
+        this.rankArr.push({id: '스토아학파', value: (100 / this.totalscore * this.philosophy.stoic).toFixed(1)})    
+
+
+        // this.rankArr[0].id = 'aris'
+        // this.rankArr[0].value = (100 / this.totalscore * this.philosophy.aris).toFixed(1)      
+
+        // this.rankArr[1].id = 'skep'
+        // this.rankArr[1].value = (100 / this.totalscore * this.philosophy.skep).toFixed(1)         
+
+        // this.rankArr[2].id = 'cyr'
+        // this.rankArr[2].value = (100 / this.totalscore * this.philosophy.cyr).toFixed(1)        
+
+        // this.rankArr[3].id = 'epic'
+        // this.rankArr[3].value = (100 / this.totalscore * this.philosophy.epic).toFixed(1)
+
+        // this.rankArr[4].id = 'stoic'
+        // this.rankArr[4].value = (100 / this.totalscore * this.philosophy.stoic).toFixed(1)
+
+        //고득점 순으로 저장                
+        this.rankArr.sort(function(a,b){
+          return parseInt(b.value) - parseInt(a.value);
         })
 
+        console.log('rankArr 구조: ', this.rankArr)
+
+        let i ;
+        for(i=0; i <= 5; i++){
+          console.log(i+'번쨰, id: '+ this.rankArr[i].id + ', value: '+ this.rankArr[i].value)
+        }
+
+        //console.log('마지막 id: '+this.rankArr[4].id+', value: '+ this.rankArr[4].value)        
 
         this.$router.push({
-            path: '/result'
-          })
+          name: 'Result', 
+          // params : {
+          //   id : this.obj.id,
+          //   aris : (100 / this.totalscore * this.philosophy.aris).toFixed(1),
+          //   skep : (100 / this.totalscore * this.philosophy.skep).toFixed(1),
+          //   cyr : (100 / this.totalscore * this.philosophy.cyr).toFixed(1),
+          //   epic : (100 / this.totalscore * this.philosophy.epic).toFixed(1),
+          //   stoic : (100 / this.totalscore * this.philosophy.stoic).toFixed(1)
+          // }        
+          params : this.rankArr
+
+          // params : [
+          //   {id: aris, value: (100 / this.totalscore * this.philosophy.aris).toFixed(1) }, 
+          //   {id: skep, value: (100 / this.totalscore * this.philosophy.skep).toFixed(1) }, 
+          //   {id: cyr, value: (100 / this.totalscore * this.philosophy.cyr).toFixed(1) }, 
+          //   {id: epic, value: (100 / this.totalscore * this.philosophy.epic).toFixed(1) }, 
+          //   {id: stoic, value: (100 / this.totalscore * this.philosophy.stoic).toFixed(1) }, 
+          // ]
+        })
+       
       } else {
-        alert('채워')
+        alert("채워");
       }
-     
     },
   },
   computed: {
     checkedBtnCount() {
       return this.values.filter((nullCount) => nullCount != null).length;
     },
-  }
-          
-  
+  },
 };
 </script>
 

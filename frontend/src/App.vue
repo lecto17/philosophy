@@ -1,39 +1,26 @@
 <template>
   <div id="app">
     <Menu/> 
+    <Ads/>
     <router-view/>
-    <thead>
-      <th>name</th>
-      <th>course</th>
-      <th>rating</th>
-    </thead>
-    <tbody v-for="student in students" :key="student.id">
-      <td>{{student.name}}</td>
-      <td>{{student.course}}</td>
-      <td>{{student.rating}}</td>
-
-    </tbody>
-
   </div>
 </template>
 
 <script>
 import Menu from './components/Menu.vue';
+import Ads from './components/Ads.vue';
 
 export default {
   name: 'App',
   components: {
     Menu,
+    Ads,
   },
   data(){
     return{
       students:[]
     }
   },
-  async created(){
-    var response = await fetch('http://localhost:8000/api/students/')
-    this.students = await response.json();
-  }
 }
 </script>
 
