@@ -23,7 +23,7 @@ export default {
   },
 }
 </script>
-
+<style>@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap');</style>
 <style>
 *{
   margin:0;

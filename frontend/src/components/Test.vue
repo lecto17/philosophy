@@ -1,9 +1,36 @@
 <template>
   <div class="Home">
     <div class="test_wrap">
-      <div class="test_title">
-        <h1>Question 질문 (0/20)</h1>
+      <div class="test_header">
+        <div class="hbox">
+          <img class="img time" src="../assets/time.png" />
+            <div class="text">
+              검사 시간은 15분 내외이며,
+              총 20문항으로 구성되었습니다.
+          </div>
+        </div>
+        <div class="hbox">
+          <img class="img tip" src="../assets/tip.png" />
+          <div class="text">
+              자신을 돌아보며 평소에 자신의 모습을 떠올려 보세요.
+          </div>
+        </div>
+        <div class="hbox">
+          <img class="img straight" src="../assets/straight.png" />
+          <div class="text">
+              가능한 보통‘중립’은 피해주세요 
+          </div>
+        </div>
       </div>
+      <div class="bar_box">
+        <b-progress class="bar" max="20" height="2rem">
+          <b-progress-bar :value="checkedBtnCount" show-progress animated>
+            <strong>{{ checkedBtnCount * 5 }}%</strong>
+          </b-progress-bar>
+        </b-progress>
+      </div>
+      <div class="test_title"></div>
+      <!-- <progress class="bar" :value="checkedBtnCount" max="20"></progress> -->
       <div class="test_content_wrap">
         <ul class="content_list">
           <li
@@ -15,46 +42,106 @@
             :key="QuestionNum"
           >
             <div class="question">
-              <span> Q-{{ index + paging }} {{ QuestionNum }} </span>
+              <span> {{ index + paging }}. {{ QuestionNum }} </span>
             </div>
             <div class="selection_wrap">
               <b-form-group>
+
                 <b-form-radio-group
+                  class="radio_group"
                   id="radio-slots"
                   v-model="values[index + paging - 1]"
                   :name="'selection' + index"
                 >
-                  <b-form-radio value="5">
-                    매우 그렇다
-                  </b-form-radio>
-                  <b-form-radio value="4">
-                    그렇다
-                  </b-form-radio>
-                  <b-form-radio value="3">
-                    보통이다
-                  </b-form-radio>
-                  <b-form-radio value="2">
-                    그렇지 않다
-                  </b-form-radio>
-                  <b-form-radio value="1">
-                    매우 그렇지 않다
-                  </b-form-radio>
+                  그렇다
+                  <b-form-radio class="radio radio5" value="5"> </b-form-radio>
+                  <b-form-radio class="radio radio4" value="4"> </b-form-radio>
+                  <b-form-radio class="radio radio3" value="3"> </b-form-radio>
+                  <b-form-radio class="radio radio2" value="2"> </b-form-radio>
+                  <b-form-radio class="radio radio1" value="1"> </b-form-radio>
+                  아니다
                 </b-form-radio-group>
-              </b-form-group>
+              </b-form-group> -->
+              <div class="radio_group">
+                <label class="labels">
+                  <input
+                    type="radio"
+                    :name="'radio' + index"
+                    v-model="values[index + paging - 1]"
+                    value="5"
+                  />
+                  <div class="radio_div">5</div>
+                </label>
+                <label class="labels">
+                  <input
+                    type="radio"
+                    :name="'radio' + index"
+                    v-model="values[index + paging - 1]"
+                    value="4"
+                  />
+                  <div class="radio_div">4</div>
+                </label>
+                <label class="labels">
+                  <input
+                    type="radio"
+                    :name="'radio' + index"
+                    v-model="values[index + paging - 1]"
+                    value="3"
+                  />
+                  <div class="radio_div">3</div>
+                </label>
+                <label class="labels">
+                  <input
+                    type="radio"
+                    :name="'radio' + index"
+                    v-model="values[index + paging - 1]"
+                    value="2"
+                  />
+                  <div class="radio_div">2</div>
+                </label>
+                <label class="labels">
+                  <input
+                    type="radio"
+                    :name="'radio' + index"
+                    v-model="values[index + paging - 1]"
+                    value="1"
+                  />
+                  <div class="radio_div">1</div>
+                </label>
+              </div>
+              <br />
+              <!-- <div class="sizing_group">
+                <div class="sizing_up" id="plus">그렇다</div>
+                <div class="sizing_score"><img src="../assets/smile.png"></div>
+                <div class="sizing_down" id="minus">아니다</div>
+              </div> -->
             </div>
           </li>
         </ul>
       </div>
       <div class="test_btn_wrap">
-        <button class="next_btn" v-show="paging >= 6" @click="clickBeforeBtn">
-          이전
-        </button>
-        <button class="next_btn" v-if="paging < 16" @click="clickNextBtn">
-          다음
-        </button>
-        <button class="end_btn" v-else @click="clickEndBtn">질의 완료</button>
-      </div>      
-      <progress :value="checkedBtnCount" max="20"></progress>
+        <b-button
+          variant="secondary"
+          class="btn next_btn"
+          v-show="paging >= 6"
+          @click="clickBeforeBtn"
+          >이전</b-button
+        >
+        <b-button
+          variant="secondary"
+          class="btn next_btn"
+          v-if="paging < 16"
+          @click="clickNextBtn"
+          >다음</b-button
+        >
+        <b-button
+          variant="secondary"
+          class="btn end_btn"
+          v-else
+          @click="clickEndBtn"
+          >완료</b-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -110,7 +197,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['storeResult']),
+    ...mapMutations(["storeResult"]),
     getMaxNum(philo) {
       this.cmpNum("aris", philo.aris);
       this.cmpNum("stoic", philo.stoic);
@@ -224,6 +311,11 @@ export default {
   },
   computed: {
     checkedBtnCount() {
+      // const progress = document.querySelector('.bar_container');
+      // setTimeout(()=>{
+      //   progress.style.opacity =1;
+      //   progress.style.width = progress.getAttribute('data-done') + '%';
+      // }, 500)
       return this.values.filter((nullCount) => nullCount != null).length;
     },
   },
@@ -235,9 +327,109 @@ export default {
   margin: 0;
   padding: 0;
   list-style: none;
+  font-family: "Gaegu", cursive;
 }
-.selection_wrap div {
-  margin: 5px;
-  display: inline-block;
+.Home {
+  text-align: -webkit-center;
+  position: relative;
 }
+.test_wrap {
+  width: 100%;
+}
+.test_header {
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+}
+.hbox{
+  width: 33%;
+}
+.text{
+  margin: 15px 0 10px 0;
+  width: 70%;
+  font-size: 20px;
+}
+
+.bar_box {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background: #eee;
+}
+.bar {
+  height: 10px;
+  width: 50%;
+  background: #aaa;
+}
+.progress-bar {
+  background: purple;
+}
+.content {
+  border-bottom: 1px solid #ddd;
+}
+.question {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.selection_wrap{
+  align-content: center;
+}
+.radio_group {
+  padding-top: 15px;
+}
+.radio_group label {
+  position: relative;
+  cursor: pointer;
+}
+.radio_group label input {
+  display: none;
+}
+.radio_div {
+  margin: 0 13px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: #833471;
+  color: #fff;
+  font-size: 30px;
+}
+.labels input:hover ~ .radio_div {
+  background: #6f1e51;
+}
+.labels input:checked ~ .radio_div {
+  color: #fff;
+  background: #d980fa;
+}
+.btn {
+  margin: 15px;
+  padding: 10px;
+  width: 120px;
+  border-radius: 40px;
+}
+/* .sizing_group{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.sizing_up, .sizing_down{
+  color: #000;
+}
+.sizing_score{
+  position: relative;
+  width: 100px;
+  height: 100px
+}
+.sizing_score img{
+  position: absolute;
+  width: 50%;
+  top:  50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+} */
 </style>
