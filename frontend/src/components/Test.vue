@@ -45,7 +45,7 @@
               <span> {{ index + paging }}. {{ QuestionNum }} </span>
             </div>
             <div class="selection_wrap">
-              <b-form-group>
+              <!-- <b-form-group>
 
                 <b-form-radio-group
                   class="radio_group"
@@ -61,7 +61,7 @@
                   <b-form-radio class="radio radio1" value="1"> </b-form-radio>
                   아니다
                 </b-form-radio-group>
-              </b-form-group> -->
+              </b-form-group> --> 
               <div class="radio_group">
                 <label class="labels">
                   <input
@@ -158,7 +158,7 @@ export default {
         id: '',
         value: 0
       },
-      values: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      values: [],
       rankArr: [],
       rankObj : {
         id: '',
