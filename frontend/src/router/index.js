@@ -25,8 +25,7 @@ export default new VueRouter({
       name: "Home",
       component: Home,
     },
-    {
-      // path: "/result/:aris",
+    {      
       path: "/result",
       name: "Result",
       component: Result

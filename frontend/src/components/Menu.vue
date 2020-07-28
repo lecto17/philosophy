@@ -25,7 +25,8 @@ export default {};
     margin: 0;
 }
 .nav {
-  height: 70px;
+  position: absolute;
+  top: 0;
   display: flex;
   align-items: center;
   padding: 0 15px;

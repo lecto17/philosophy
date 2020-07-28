@@ -1,5 +1,6 @@
 <template>
   <div class="Home">
+    <Ads/>
     <div class="test_wrap">
       <div class="test_header">
         <div class="hbox">

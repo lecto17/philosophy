@@ -51,184 +51,162 @@
               </button>
               <br /><br />
             </div>
-          </div>
+          </div>                                    
         </div>
-        <div class="temp border">
-          <div class="textInfo">
-            <h2>행복에 관한 글이 들어가는 곳입니다.</h2>
-          </div>
-        </div>
-      </div>
-      <div class="bottom">
-        <div class="person border">
-          <h3 class="title">활동시기</h3>
-          <div>
-            <b-card-group>
-              <b-card title="Aristoles">
-                <!-- <b-card title="Aristoles" img-src="../assets/aristoteles.png"  img-alt="Image" img-top style="width: 300px; height: auto;"> -->
-                <img
-                  class="person-img"
-                  src="../assets/aristoteles.png"
-                /><br /><br />
-                <b-card-text>
-                  {{ personInfo }}
-                </b-card-text>
-                <template v-slot:footer>
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </template>
-              </b-card>
-            </b-card-group>
-          </div>
-        </div>
-        <div class="temp border">
-          <div class="buttonInfo">
-            <b-card no-body class="mb-1">
-              <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-button block v-b-toggle.accordion-1 variant="info"
-                  >키워드</b-button
-                >
-              </b-card-header>
-              <b-collapse
-                id="accordion-1"
-                visible
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-card-text>
-                    <code>
-                      {{ keyword }}
-                    </code>
-                  </b-card-text>
-                </b-card-body>
-              </b-collapse>
-            </b-card>
+        <div class="temp border">                    
+            <div class="textInfo">
+                <h2>행복에 관한 글이 들어가는 곳입니다.</h2>
+            </div>
+        </div>                
+      </div>            
+          <div class="bottom">                
+              <div class="person border">
+                  <h3 class="title">활동시기</h3>
+                  <div>
+                      <b-card-group>
+                          <b-card title="Aristoles">
+                          <!-- <b-card title="Aristoles" img-src="../assets/aristoteles.png"  img-alt="Image" img-top style="width: 300px; height: auto;"> -->
+                              <img class="person-img" src="../assets/aristoteles.png"><br/><br/>
+                              <b-card-text>
+                                  {{personInfo}}
+                              </b-card-text>
+                              <template v-slot:footer>
+                                  <small class="text-muted">Last updated 3 mins ago</small>
+                              </template>
+                          </b-card>                      
+                      </b-card-group>
+                  </div>
+              </div>                
+              <div class="temp border">
+                  <div class="buttonInfo">
+                      <b-card no-body class="mb-1">
+                          <b-card-header header-tag="header" class="p-1" role="tab">
+                              <b-button block v-b-toggle.accordion-1 variant="info">키워드</b-button>
+                          </b-card-header>
+                          <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                              <b-card-body>                                
+                              <b-card-text>
+                                  <code>
+                                      {{ keyword }}
+                                  </code>
+                              </b-card-text>
+                              </b-card-body>
+                          </b-collapse>
+                      </b-card>
 
-            <b-card no-body class="mb-1">
-              <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-button block v-b-toggle.accordion-2 variant="info"
-                  >대표 인물</b-button
-                >
-              </b-card-header>
-              <b-collapse
-                id="accordion-2"
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-card-text>
-                    {{ representative }}
-                    <code> </code>
-                  </b-card-text>
-                </b-card-body>
-              </b-collapse>
-            </b-card>
+                      <b-card no-body class="mb-1">
+                          <b-card-header header-tag="header" class="p-1" role="tab">
+                              <b-button block v-b-toggle.accordion-2 variant="info">대표 인물</b-button>
+                          </b-card-header>
+                          <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                              <b-card-body>
+                              <b-card-text>
+                                  {{ representative }}
+                                  <code>
 
-            <b-card no-body class="mb-1">
-              <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-button block v-b-toggle.accordion-3 variant="info"
-                  >환장의 조합</b-button
-                >
-              </b-card-header>
-              <b-collapse
-                id="accordion-3"
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-card-text>{{ enemy }}</b-card-text>
-                </b-card-body>
-              </b-collapse>
-            </b-card>
+                                  </code>
+                              </b-card-text>
+                              </b-card-body>
+                          </b-collapse>
+                      </b-card>
 
-            <b-card no-body class="mb-1">
-              <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-button block v-b-toggle.accordion-4 variant="info"
-                  >추천하는 행동</b-button
-                >
-              </b-card-header>
-              <b-collapse
-                id="accordion-4"
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-card-text>{{ suggestion }}</b-card-text>
-                </b-card-body>
-              </b-collapse>
-            </b-card>
+                      <b-card no-body class="mb-1">
+                          <b-card-header header-tag="header" class="p-1" role="tab">
+                              <b-button block v-b-toggle.accordion-3 variant="info">환장의 조합</b-button>
+                          </b-card-header>
+                          <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                              <b-card-body>
+                              <b-card-text>{{ enemy }}</b-card-text>
+                              </b-card-body>
+                          </b-collapse>
+                      </b-card>
 
-            <b-card no-body class="mb-1">
-              <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-button block v-b-toggle.accordion-5 variant="info"
-                  >관련 서적</b-button
-                >
-              </b-card-header>
-              <b-collapse
-                id="accordion-5"
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-card-text>{{ book }}</b-card-text>
-                </b-card-body>
-              </b-collapse>
-            </b-card>
-          </div>
-        </div>
-        <div class="userInfo border">
-          <h3 class="title">참여자수<br />&해당 유형수</h3>
-          <div class="user total">94</div>
-          <br /><span class="user-num">참여자수</span>
-          <div class="user types">35</div>
-          <br /><span class="type-num">해당 유형수</span>
-        </div>
-      </div>
-      <ul>
-        <strong>SNS 공유하기</strong>
+                      <b-card no-body class="mb-1">
+                          <b-card-header header-tag="header" class="p-1" role="tab">
+                              <b-button block v-b-toggle.accordion-4 variant="info">추천하는 행동</b-button>
+                          </b-card-header>
+                          <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
+                              <b-card-body>
+                              <b-card-text>{{ suggestion }}</b-card-text>
+                              </b-card-body>
+                          </b-collapse>
+                      </b-card>
 
-        <br /><br />
-        <div class="snsSection">
-          <img
-            class="sns-image"
-            src="../assets/facebook.jpg"
-            alt="페이스북 페이지 아이콘"
-          />
-          <ShareNetwork
-            class="sns"
-            network="facebook"
-            url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
-            title="Find your happiness besides on you, with philosophy"
-            description="Recognize oneself by five types of philosophy, just within 5 muinutes"
-            quote="The hot reload is so fast it\'s near instant. - Evan You"
-            hashtags="Happiness,Philosophy"
-          >
-            Share on Facebook
-          </ShareNetwork>
-        </div>
-        <br />
+                      <b-card no-body class="mb-1">
+                          <b-card-header header-tag="header" class="p-1" role="tab">
+                              <b-button block v-b-toggle.accordion-5 variant="info">관련 서적</b-button>
+                          </b-card-header>
+                          <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
+                              <b-card-body>
+                              <b-card-text>{{ book }}</b-card-text>
+                              </b-card-body>
+                          </b-collapse>
+                      </b-card>
 
-        <!-- <img class="sns-image" src="https://png.pngtree.com/element_our/md/20180626/md_5b32227ca3eb9.jpg" alt="트위터 페이지 아이콘"> -->
-        <div class="snsSection">
-          <img
-            class="sns-image"
-            src="../assets/twitter.jpg"
-            alt="트위터 페이지 아이콘"
-          />
-          <ShareNetwork
-            class="sns"
-            network="Twitter"
-            url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
-            title="Find your happiness besides on you, with philosophy"
-            description="Recognize oneself by five types of philosophy, just within 5 muinutes"
-            quote="The hot reload is so fast it\'s near instant. - Evan You"
-            hashtags="Happiness,Philosophy"
-          >
-            Share on Twitter
-          </ShareNetwork>
-        </div>
-        <br />
-      </ul>
+
+                      
+                  </div>        
+              </div>        
+              <div class="userInfo border">
+                  
+                  <h3 class="title">참여자수<br/>&해당 유형수</h3>                                       
+                  <div class="user total">94</div>
+                  <br/><span class="user-num">참여자수</span>
+                  <div class="user types">35</div>                                        
+                  <br/><span class="type-num">해당 유형수</span>
+              </div>       
+              
+          </div>            
+          <ul>
+                <strong>SNS 공유하기</strong>
+                
+                <br/><br/>
+                <div class="snsSection">
+                    <img class="sns-image" src="../assets/facebook.jpg" alt="페이스북 페이지 아이콘">
+                    <ShareNetwork class="sns"
+                        network="facebook"
+                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
+                        title="Find your happiness besides on you, with philosophy"
+                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
+                        quote="The hot reload is so fast it\'s near instant. - Evan You"
+                        hashtags="Happiness,Philosophy"
+                    >
+                        Share on Facebook
+                    </ShareNetwork>
+                </div>
+                <br/>
+                
+                <!-- <img class="sns-image" src="https://png.pngtree.com/element_our/md/20180626/md_5b32227ca3eb9.jpg" alt="트위터 페이지 아이콘"> -->
+                <div class="snsSection">
+                    <img class="sns-image" src="../assets/twitter.jpg" alt="트위터 페이지 아이콘">
+                    <ShareNetwork class="sns"
+                        network="Twitter"
+                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
+                        title="Find your happiness besides on you, with philosophy"
+                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
+                        quote="The hot reload is so fast it\'s near instant. - Evan You"
+                        hashtags="Happiness,Philosophy"
+                    >
+                        Share on Twitter
+                    </ShareNetwork>
+                </div>                    
+                <br/>
+
+                <div class="snsSection">
+                    <img class="sns-image" src="../assets/skype.jpg" alt="스카이프 페이지 아이콘">
+                    <ShareNetwork class="sns"
+                        network="Skype"
+                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
+                        title="Find your happiness besides on you, with philosophy"
+                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
+                        quote="The hot reload is so fast it\'s near instant. - Evan You"
+                        hashtags="Happiness,Philosophy"
+                    >
+                        Share on Skype
+                    </ShareNetwork>
+                </div>                    
+                <br/>
+          </ul>
     </div>
   </div>
 </template>
@@ -380,14 +358,12 @@ export default {
   animation-fill-mode: forwards;
 }
 
-.user-num {
-  position: absolute;
+.user-num {  
   top: 90%;
   right: 55%;
 }
 
-.type-num {
-  position: absolute;
+.type-num {  
   top: 90%;
   right: 0%;
 }
@@ -448,7 +424,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.top,
+.top, 
 .bottom {
   height: 50%;
   margin-bottom: 20px;
