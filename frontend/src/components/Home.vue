@@ -96,8 +96,7 @@
         </div>
 
       </div>
-    </div>
-        
+    </div>        
 </div>
 
 </template>
@@ -130,14 +129,14 @@ export default {
         if(e.originalEvent.wheelDelta >= 0) {  
           $("html,body").stop().animate({scrollTop:sectionPos - win_h});   
           console.log('if문')
-          console.log('scrollTop: ', sectionPos-win_h) 
-          return false;    
+          console.log('scrollTop: ', sectionPos-win_h)
+          return false;
         }else if (e.originalEvent.wheelDelta < 0) {              
           $("html,body").stop().animate({scrollTop:sectionPos + win_h});    
           console.log('else if문')
           console.log('scrollTop: ', sectionPos + win_h) 
           return false;     
-        }    
+        }
     });
   },
   methods: {
@@ -329,37 +328,7 @@ export default {
       border: 1px solid black;
   }
 
-  body {
-      margin: 0;
-  }
-
-  .nav {
-      height: 70px;
-      border-bottom: 1px solid black;
-      display: flex;
-      align-items: center;
-      padding: 0 15px; 
-  }
-
-  .navbar{
-      display: flex;
-      list-style: none;
-      margin: auto;
-      line-height: 1em;
-      font-size: 28px;
-  }
-
-
-  .navbar li {
-      padding: 5px 15px;
-  }
-
-  .navbar li:hover {
-      background-color: #d49466;
-      border-radius: 4px;
-  }
-
-
+  
 </style>
 
 

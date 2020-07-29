@@ -9,10 +9,6 @@ router.register('comment', CommentViewSet)
 router.register('user', UserViewSet)
 
 urlpatterns = [
-<<<<<<< HEAD
     path('', include(router.urls)),
     #path('/result/<id>/', include(router.urls))
-=======
-    path('', include(router.urls))
->>>>>>> 4150eca56efd71fc0892e7a37c20e9f4e5c9a4d6
 ]

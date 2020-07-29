@@ -8,6 +8,8 @@ export const store = new Vuex.Store({
   state: {
     data: {
         id:0,
+        totalUser: 0,
+        typeUser: 0,
         result: [],   
         posts: [        
           { postID: '1', userID: 'u', title: 't1', content: '', date: '' },
@@ -98,8 +100,19 @@ export const store = new Vuex.Store({
       .then((res)=>{
         console.log('res Data : ', res.data)
         state.data.result = res.data
-        console.log('state.data.result: ', state.data.result)
-        
+
+        //총 참여자 수& 해당 유형 수 구하는 코드
+        for(let i=0; i < res.data.length; i++){
+          this.state.data.totalUser += res.data[i].result;
+          if(res.data[i].types == state.data.id)
+            this.state.data.typeUser = res.data[i].result;
+        }
+
+        console.log('st typeUser: ', this.state.data.typeUser)
+        console.log('st totalUser: ',this.state.data.totalUser)
+
+
+        alert('d')
       }).catch((err)=>{
         console.log('storeResult err : ', err)
       })

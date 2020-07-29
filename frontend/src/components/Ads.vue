@@ -49,7 +49,7 @@ export default {
     }    
 
     .ads-right {        
-        left:90%; 
+        right:0;
     }    
 
     .ads1{

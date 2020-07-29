@@ -6,20 +6,21 @@
         <div class="hbox">
           <img class="img time" src="../assets/time.png" />
             <div class="text">
-              검사 시간은 15분 내외이며,
-              총 20문항으로 구성되었습니다.
+              <h3>검사 시간은 15분 내외이며,
+                총 20문항으로 구성되었습니다.
+              </h3>
           </div>
         </div>
         <div class="hbox">
           <img class="img tip" src="../assets/tip.png" />
           <div class="text">
-              자신을 돌아보며 평소에 자신의 모습을 떠올려 보세요.
+              <h3>자신을 돌아보며 평소에 자신의 모습을 떠올려 보세요.</h3>
           </div>
         </div>
         <div class="hbox">
           <img class="img straight" src="../assets/straight.png" />
           <div class="text">
-              가능한 보통‘중립’은 피해주세요 
+              <h3>가능한 보통‘중립’은 피해주세요</h3>
           </div>
         </div>
       </div>
@@ -280,7 +281,7 @@ export default {
         let i ;
         for(i=0; i <= 5; i++){
           console.log(i+'번쨰, id: '+ this.rankArr[i].id + ', value: '+ this.rankArr[i].value)
-        }
+        }        
 
         //console.log('마지막 id: '+this.rankArr[4].id+', value: '+ this.rankArr[4].value)        
 
@@ -359,7 +360,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 50px;
-  background: #eee;
+  background: white;
 }
 .bar {
   height: 10px;
