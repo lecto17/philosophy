@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
         totalUser: 0,
         typeUser: 0,
         philoObj : [],
+        userData: [],
         result: [],   
         posts: [        
           { postID: '1', userID: 'u', title: 't1', content: '', date: '' },
@@ -91,7 +92,32 @@ export const store = new Vuex.Store({
     },         
   },
   mutations: {
-    
+    getUserData(state, payload){    
+      console.log('payload: ', payload)
+      state.data.userData = payload;
+
+      for(let i=0; i < state.data.userData.length; i++){
+        //총 참여자 수
+        this.state.data.totalUser += state.data.userData[i].result;
+      }
+
+      // axios.get('http://localhost:8000/result/', {
+      //   params : {
+      //     id : -1
+      //   }
+      // })
+      // .then((res) => {        
+      //   state.data.userData = res.data
+
+      //   for(let i=0; i < res.data.length; i++){
+      //     //총 참여자 수
+      //     this.state.data.totalUser += res.data[i].result;
+      //   }
+        
+      // }).catch((err)=>{
+      //   console.log('getUserData err : ', err)
+      // })
+    },
     storeResult(state, id){
       state.data.id = id;
       axios.get('http://localhost:8000/result/',{
@@ -105,7 +131,7 @@ export const store = new Vuex.Store({
         
         for(let i=0; i < res.data.length; i++){
           //총 참여자 수
-          this.state.data.totalUser += res.data[i].result;          
+          //this.state.data.totalUser += res.data[i].result;          
           
           //해당(결과) 유형 수 구하는 코드        
           if(res.data[i].types == state.data.id)
@@ -133,5 +159,31 @@ export const store = new Vuex.Store({
     }
     
   },  
-  action: {},
+  actions: {
+    getUserData(context){      
+      console.log('action, getUserData')
+      axios.get('http://localhost:8000/result/', {
+        params: {
+          id : -1
+        }
+      }).then((res) => {
+          context.commit('getUserData', res.data)
+      }).catch((res) => {
+          console.log(res);
+      });
+    },
+    
+   storeResult(context, id) {
+    console.log('actions, storeResult');
+    axios.get('http://localhost:8000/result/', {
+        params: {
+          id : id
+        }
+      }).then((res) => {
+          context.commit('storeResult', res.data)
+      }).catch((res) => {
+          console.log(res);
+      });
+   }
+  },
 })

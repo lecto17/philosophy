@@ -101,12 +101,17 @@
             <p v-html="textInfo"></p>
           </div>
           <div class="graphInfo">
+            <div class="notice">
+              <div>
+                총 참여자 수: <strong>{{totalUser}}명</strong>
+              </div>
+            </div>
             <div class="graph">
-              <span class="user aris">aris</span>
-              <span class="user stoic">stoic</span>
-              <span class="user epic">epic</span>
-              <span class="user skep">skep</span>
-              <span class="user cyr">cyr</span>
+              <span class="user aris">아리스토<br/>텔레스</span>
+              <span class="user stoic">스토아학파</span>
+              <span class="user epic">에피쿠로스</span>
+              <span class="user skep">회의주의</span>
+              <span class="user cyr">신플라톤주의</span>
               <!-- <div class="user aris">aris</div>
             <div class="user stoic">stoic</div>
             <div class="user epic">epic</div>
@@ -143,56 +148,59 @@
               </div>
               <div class="gridgauge">
                 <div class="gauge">
-                  90%
-                </div>
-                <div class="gauge">
-                  80%
-                </div>
-                <div class="gauge">
-                  70%
-                </div>
-                <div class="gauge">
-                  60%
-                </div>
-                <div class="gauge">
                   50%
+                </div>
+                <div class="gauge">
+                  45%
                 </div>
                 <div class="gauge">
                   40%
                 </div>
                 <div class="gauge">
+                  35%
+                </div>
+                <div class="gauge">
                   30%
+                </div>
+                <div class="gauge">
+                  25%
                 </div>
                 <div class="gauge">
                   20%
                 </div>
                 <div class="gauge">
+                  15%
+                </div>
+                <div class="gauge">
                   10%
                 </div>
                 <div class="gauge">
-                  0%
+                  5%
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
 </template>
 
 <script>
 import $ from "jquery";
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
       types: {
-        aris: 100,
-        stoic: 40,
-        epic: 20,
-        skep: 30,
-        cyr: 10,
+        aris: 0,
+        stoic: 0,
+        epic: 0,
+        skep: 0,
+        cyr: 0,
       },
+      totalUser: 0,
+      userArr: [],
       slide: 0,
       sliding: null,
       textInfo:
@@ -205,8 +213,14 @@ export default {
   props: {
     msg: String,
   },
+  created: function(){
+    console.log('crete')
+    this.$store.dispatch('getUserData');
+    console.log('finsih');
+  },
   mounted: function() {
     var win_h = $(window).height();
+    // this.getUserData();
 
     $(".section").each(function(index) {
       $(this).attr("data-index", win_h * index);
@@ -225,10 +239,12 @@ export default {
           .animate({ scrollTop: sectionPos + win_h });
         return false;
       }
-    });
+    });    
+    this.setData();
     this.changeWidth();
   },
   methods: {
+    ...mapMutations(["getUserData"]),
     onSlideStart() {
       this.sliding = true;
     },
@@ -251,6 +267,27 @@ export default {
         console.log(aris[0].style.height);
       }, 1000);
     },
+    setData: function(){
+      setTimeout(() => {
+        this.userArr = this.$store.state.data.userData;
+        this.totalUser = this.$store.state.data.totalUser ;
+    
+        for(let i=0; i < this.userArr.length; i++){
+          switch(this.userArr[i].types){
+            case 'aris':
+              this.types.aris = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
+            case 'skep':
+              this.types.skep = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
+            case 'epic':
+              this.types.epic = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
+            case 'cyr':
+              this.types.cyr = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
+            case 'stoic':
+              this.types.stoic = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
+          }
+        }
+      }, 1000);
+    }
   },
 };
 </script>
@@ -396,7 +433,26 @@ export default {
 .graphInfo {
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
   padding-top: 2px;
+  position: relative;
 }
+
+.notice{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transform: translate(-50%);
+  width: 15vw;
+  height: 10vh;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  font-family:'Do Hyeon', sans-serif;
+}
+
 .graph {
   position: relative;
   height: 100%;
@@ -428,28 +484,38 @@ export default {
 .user {
   position: absolute;
   display: inline-block;
-  width: 10%;
+  width: 12%;
+  margin: 0 3%;
   bottom: 0;
   background: skyblue;
-  height: 5%;
+  min-height: 7%;
+  height: 5%;  
+  border-radius: 13px 13px 0px 0px;
+  font-weight: bold;
+  font-family: "Do Hyeon", sans-serif;
   transition: height 2s;
   z-index: 300;
 }
 .aris {
   left: 10%;
+  background-color: rgb(252, 86, 86);
 }
 .stoic {
   left: 27.5%;
+  background-color: rgb(255, 120, 38);
 }
 .epic {
-  left: 50%;
-  transform: translate(-50%);
+  left: 45%;  
+  /* transform: translate(-50%);딱 정중앙에 맞추기 위해 */
+  background-color: rgb(255, 195, 44);
 }
 .skep {
-  right: 27.5%;
+  left: 62.5%;
+  background-color: rgb(43, 185, 60);
 }
 .cyr {
-  right: 10%;
+  left: 80%;
+  background-color: rgb(74, 125, 213);
 }
 
 .footer {

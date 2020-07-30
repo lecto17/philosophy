@@ -3,19 +3,21 @@
     <Menu/> 
     <Ads v-show="$route.name != 'Home' && false" />
     <router-view/>
-    
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Menu from './components/Menu.vue';
 import Ads from './components/Ads.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Menu,
     Ads,
+    Footer
   },
   data(){
     return{

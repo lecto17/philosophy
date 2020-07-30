@@ -13,7 +13,11 @@ class ResultViewSet(viewsets.ModelViewSet):
     serializer_class = ResultSerializer    
 
     @action(detail=True, methods=['get'])
-    def get_queryset(self):
+    def get_queryset(self):       
+        if self.request.query_params.get('id') == '-1':            
+            all_query = Result.objects.all()
+            return all_query
+                    
         result = Result.objects.get(types = self.request.query_params.get('id'))
         result.result += 1
         result.save()

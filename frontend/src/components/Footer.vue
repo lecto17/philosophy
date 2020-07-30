@@ -78,8 +78,7 @@ export default {
 
     footer {
         background-color: lightgray;
-        color: black;
-        margin: 2% 0;
+        color: black;        
         width: 100vw;
         height: 25vh;
     }
