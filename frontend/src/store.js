@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
         id:0,
         totalUser: 0,
         typeUser: 0,
+        philoObj : [],
         result: [],   
         posts: [        
           { postID: '1', userID: 'u', title: 't1', content: '', date: '' },
@@ -90,6 +91,7 @@ export const store = new Vuex.Store({
     },         
   },
   mutations: {
+    
     storeResult(state, id){
       state.data.id = id;
       axios.get('http://localhost:8000/result/',{
@@ -100,19 +102,31 @@ export const store = new Vuex.Store({
       .then((res)=>{
         console.log('res Data : ', res.data)
         state.data.result = res.data
-
-        //총 참여자 수& 해당 유형 수 구하는 코드
+        
         for(let i=0; i < res.data.length; i++){
-          this.state.data.totalUser += res.data[i].result;
+          //총 참여자 수
+          this.state.data.totalUser += res.data[i].result;          
+          
+          //해당(결과) 유형 수 구하는 코드        
           if(res.data[i].types == state.data.id)
-            this.state.data.typeUser = res.data[i].result;
+          this.state.data.typeUser = res.data[i].result;          
+            
+          //유형 별 인원 수 저장코드
+          switch(res.data[i].types){          
+            case 'aris' :
+              state.data.philoObj.push({id: '아리스토텔레스', value: res.data[i].result}); break;
+            case 'stoic' :
+              state.data.philoObj.push({id: '스토아학파', value: res.data[i].result}); break;
+            case 'skep' :
+              state.data.philoObj.push({id: '회의주의', value: res.data[i].result}); break;
+            case 'epic' :
+              state.data.philoObj.push({id: '에피쿠로스', value: res.data[i].result}); break;
+            case 'cyr' :
+              state.data.philoObj.push({id: '견유학파', value: res.data[i].result}); break;                    
+          }          
+
         }
-
-        console.log('st typeUser: ', this.state.data.typeUser)
-        console.log('st totalUser: ',this.state.data.totalUser)
-
-
-        alert('d')
+        
       }).catch((err)=>{
         console.log('storeResult err : ', err)
       })
