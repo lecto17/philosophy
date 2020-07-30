@@ -186,6 +186,9 @@ export default {
       ],
     };
   },
+  created: function() {
+    // this.$store.dispatch('storeResult', );
+  },
   methods: {
     ...mapMutations(["storeResult"]),
     getMaxNum(philo) {
@@ -234,7 +237,8 @@ export default {
         this.getMaxNum(this.philosophy);
         console.log("totalscore: ", this.totalscore);
 
-        this.storeResult(this.obj.id);
+        // this.storeResult(this.obj.id);       
+        this.$store.dispatch('storeResult', this.obj.id);
 
         this.rankArr.push({ id: "", value: 999 });
         this.rankArr.push({

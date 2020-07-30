@@ -100,68 +100,40 @@ export const store = new Vuex.Store({
         //총 참여자 수
         this.state.data.totalUser += state.data.userData[i].result;
       }
-
-      // axios.get('http://localhost:8000/result/', {
-      //   params : {
-      //     id : -1
-      //   }
-      // })
-      // .then((res) => {        
-      //   state.data.userData = res.data
-
-      //   for(let i=0; i < res.data.length; i++){
-      //     //총 참여자 수
-      //     this.state.data.totalUser += res.data[i].result;
-      //   }
-        
-      // }).catch((err)=>{
-      //   console.log('getUserData err : ', err)
-      // })
+      
     },
-    storeResult(state, id){
-      state.data.id = id;
-      axios.get('http://localhost:8000/result/',{
-        params : {
-          id : id
-        }
-      })
-      .then((res)=>{
-        console.log('res Data : ', res.data)
-        state.data.result = res.data
+    storeResult(state, payload){      
+      
+      state.data.result = payload;    
+      
+      for(let i=0; i < state.data.result.length; i++){
+        //총 참여자 수
+        //this.state.data.totalUser += res.data[i].result;          
         
-        for(let i=0; i < res.data.length; i++){
-          //총 참여자 수
-          //this.state.data.totalUser += res.data[i].result;          
+        //해당(결과) 유형 수 구하는 코드        
+        if(state.data.result[i].types == state.data.id)
+        this.state.data.typeUser = state.data.result[i].result;  
           
-          //해당(결과) 유형 수 구하는 코드        
-          if(res.data[i].types == state.data.id)
-          this.state.data.typeUser = res.data[i].result;          
-            
-          //유형 별 인원 수 저장코드
-          switch(res.data[i].types){          
-            case 'aris' :
-              state.data.philoObj.push({id: '아리스토텔레스', value: res.data[i].result}); break;
-            case 'stoic' :
-              state.data.philoObj.push({id: '스토아학파', value: res.data[i].result}); break;
-            case 'skep' :
-              state.data.philoObj.push({id: '회의주의', value: res.data[i].result}); break;
-            case 'epic' :
-              state.data.philoObj.push({id: '에피쿠로스', value: res.data[i].result}); break;
-            case 'cyr' :
-              state.data.philoObj.push({id: '견유학파', value: res.data[i].result}); break;                    
-          }          
+        //유형 별 인원 수 저장코드
+        switch(state.data.result[i].types){          
+          case 'aris' :
+            state.data.philoObj.push({id: '아리스토텔레스', value: state.data.result[i].result}); break;
+          case 'stoic' :
+            state.data.philoObj.push({id: '스토아학파', value: state.data.result[i].result}); break;
+          case 'skep' :
+            state.data.philoObj.push({id: '회의주의', value: state.data.result[i].result}); break;
+          case 'epic' :
+            state.data.philoObj.push({id: '에피쿠로스', value: state.data.result[i].result}); break;
+          case 'cyr' :
+            state.data.philoObj.push({id: '견유학파', value: state.data.result[i].result}); break;                    
+        }          
 
-        }
-        
-      }).catch((err)=>{
-        console.log('storeResult err : ', err)
-      })
+      }              
     }
     
   },  
   actions: {
-    getUserData(context){      
-      console.log('action, getUserData')
+    getUserData(context){            
       axios.get('http://localhost:8000/result/', {
         params: {
           id : -1
@@ -174,7 +146,7 @@ export const store = new Vuex.Store({
     },
     
    storeResult(context, id) {
-    console.log('actions, storeResult');
+    this.state.data.id = id;    
     axios.get('http://localhost:8000/result/', {
         params: {
           id : id
