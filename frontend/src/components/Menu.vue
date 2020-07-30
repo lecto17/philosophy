@@ -53,6 +53,7 @@ export default {};
 .navbar1{
   width: 100%;
   background: #fff;
+  padding: 0;
 }
 .navbar-nav{
   background: #fff;
