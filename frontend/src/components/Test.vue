@@ -1,31 +1,17 @@
 <template>
-  <div class="Home">
-    <Ads/>
+  <div class="Test">
     <div class="test_wrap">
       <div class="test_header">
         <div class="hbox">
           <img class="img time" src="../assets/time.png" />
-            <div class="text">
-              <h3>검사 시간은 15분 내외이며,
-                총 20문항으로 구성되었습니다.
-              </h3>
-          </div>
         </div>
-        <div class="hbox">
-          <img class="img tip" src="../assets/tip.png" />
-          <div class="text">
-              <h3>자신을 돌아보며 평소에 자신의 모습을 떠올려 보세요.</h3>
-          </div>
-        </div>
+
         <div class="hbox">
           <img class="img straight" src="../assets/straight.png" />
-          <div class="text">
-              <h3>가능한 보통‘중립’은 피해주세요</h3>
-          </div>
         </div>
       </div>
       <div class="bar_box">
-        <b-progress class="bar" max="20" height="2rem">
+        <b-progress class="bar" max="20">
           <b-progress-bar :value="checkedBtnCount" show-progress animated>
             <strong>{{ checkedBtnCount * 5 }}%</strong>
           </b-progress-bar>
@@ -44,7 +30,7 @@
             :key="QuestionNum"
           >
             <div class="question">
-              <span> {{ index + paging }}. {{ QuestionNum }} </span>
+              <span>{{ QuestionNum }} </span>
             </div>
             <div class="selection_wrap">
               <!-- <b-form-group>
@@ -63,8 +49,9 @@
                   <b-form-radio class="radio radio1" value="1"> </b-form-radio>
                   아니다
                 </b-form-radio-group>
-              </b-form-group> --> 
+              </b-form-group> -->
               <div class="radio_group">
+                <span>그렇다</span>
                 <label class="labels">
                   <input
                     type="radio"
@@ -72,7 +59,7 @@
                     v-model="values[index + paging - 1]"
                     value="5"
                   />
-                  <div class="radio_div">5</div>
+                  <div class="radio_div"><div>5</div></div>
                 </label>
                 <label class="labels">
                   <input
@@ -81,7 +68,7 @@
                     v-model="values[index + paging - 1]"
                     value="4"
                   />
-                  <div class="radio_div">4</div>
+                  <div class="radio_div"><div>4</div></div>
                 </label>
                 <label class="labels">
                   <input
@@ -90,7 +77,7 @@
                     v-model="values[index + paging - 1]"
                     value="3"
                   />
-                  <div class="radio_div">3</div>
+                  <div class="radio_div"><div>3</div></div>
                 </label>
                 <label class="labels">
                   <input
@@ -99,7 +86,7 @@
                     v-model="values[index + paging - 1]"
                     value="2"
                   />
-                  <div class="radio_div">2</div>
+                  <div class="radio_div"><div>2</div></div>
                 </label>
                 <label class="labels">
                   <input
@@ -108,8 +95,9 @@
                     v-model="values[index + paging - 1]"
                     value="1"
                   />
-                  <div class="radio_div">1</div>
+                  <div class="radio_div"><div>1</div></div>
                 </label>
+                <span>아니다</span>
               </div>
               <br />
               <!-- <div class="sizing_group">
@@ -150,21 +138,21 @@
 
 <script>
 // import axios from 'axios'
-import { mapMutations } from 'vuex'
+import { mapMutations } from "vuex";
 export default {
   name: "Test",
   data() {
-    return {      
+    return {
       totalscore: 0,
-      obj:{
-        id: '',
-        value: 0
+      obj: {
+        id: "",
+        value: 0,
       },
       values: [],
       rankArr: [],
-      rankObj : {
-        id: '',
-        value : 0
+      rankObj: {
+        id: "",
+        value: 0,
       },
       philosophy: {
         aris: 0,
@@ -175,26 +163,26 @@ export default {
       },
       paging: 1,
       questions: [
-        "이상적으로는, 나를 행동하도록 동기를 부여하는 것은 적절하게 형성된 감각과 감정이다", //aris
-        "이상적으로는, 나를 행동하도록 동기를 부여하는 것은 통찰력과 소질 내지는 개성이다", //stoic
+        "적절한 감각과 감정이 나의 행동을 이끈다", //aris
+        "나를 행동하도록 동기를 부여하는 것은 통찰력과 소질 내지는 개성이다", //stoic
         "만족스러운 인생은 속세로부터 떠나 마음이 맞는 몇몇 친구들과 작은 그룹을 이뤄야 가능하다", //epic
-        "삶에 관한 심오한 질문에 대해 진지하고 철저하게 생각하는 것은 모든 의견에 있는 모순을 이해하는데 필요하고, 그에 따라 평온을 가져다 준다", //skep
-        "내 인생의 가장 중요한 목적은 전체적으로 보았을 때, 지금 이 순간 강렬한 경험을 갖는 것이다", //cyr
-        "만족스러운 인생은 공동체에 소속됨에 의해 얻어진다", //aris
+        "삶의 심오한 질문에 대한 성찰은 모든 의견에 있는 모순을 이해하는데 필요하고, 그에 따라 평온을 가져다 준다", //skep
+        "내 인생의 가장 중요한 목적은 지금 이 순간 강렬한 쾌락을 갖는 것이다", //cyr
+        "공동체에 소속되어야 행복할 수 있다", //aris
         "만족스러운 인생은 무엇보다 주어진 상황 속에서 현명하게 행동할 자유가 있는 것이고, 외부의 환경으로부터 독립하는 것이다", //stoic
-        "만족스러운 인생은 무엇보다 조화롭고 즐거운 환경 속에 동화되는 것이다", //epic
-        "비판적 사고와 논증은 중요하다. 왜냐하면 비판적 사고와 논증은 어떤 의견이든지 항상 장단점이 있다는 것을 보여주기 때문이다", //skep
-        "다른 사람들과의 관계, 우정은 중요하지는 않지만, 종종 더 즐거운 인생을 위한 유용한 도구이고 심한 대접을 피하게 해준다", //cyr
-        "삶에 관한 심오한 질문에 대해 진지하고 철저하게 생각하는 것은 그 자체로 중요한 목적이고 진취적인 관점을 창조한다", //aris
+        "조화롭고 즐거운 환경 속에 동화되는 삶이 만족스러운 인생이다", //epic
+        "비판적 사고와 논증은 중요하다. 왜냐하면 비판적 사고와 논증은 어떤 의견이든지 항상 양면성이 있다는 것을 보여주기 때문이다", //skep
+        "부지런한 삶은 인간의 본성에 맞지 않고 할 수만 있다면 게으른 삶을 살아야 한다", //cyr
+        "인생의 근원적인 질문에 대해 진지하고 철저하게 생각하는 것은 그 자체로 중요한 목적이고 진취적인 관점을 창조한다", //aris
         "비판적 사고와 논증은 중요하다. 왜냐하면 나는 건전한 이성에 기반하여 행동해야만 하기 때문이다", //stoic
-        "근본적인 질문에서는 단일한 이성적인 견해에 국한되는 것이 가장 좋다", //epic
-        "근본적인 질문에서는 다양한 관점들을 고려하고 각각의 의견의 양면성을 이해하는 것이 가장 좋다", //skep
-        "행복은 육체적 단련을 통해서 나타나고 극한의 경험 속에서도 나에게 활력을 준다", //cyr
-        "내 인생의 가장 중요한 목적은 전체적으로 보았을 때, 건강하고 유복하게 사는 것(잘 먹고 잘 사는 것)이다", //aris
-        "다른 사람들과의 관계, 우정은 근본적인 가치이고 좋은 삶의 본질적인 요소이다", //stoic
-        "행복은 그 자체로 흥분이 없이 고요한 상태로서 나타난다", //epic
+        "행복의 척도는 이성적 사고보다는 감각을 만족시키는 쾌락이다", //epic
+        "근본적인 질문에서는 다양한 관점들을 고려하고 각각의 의견의 장단점을 이해하는 것이 좋다", //skep
+        "행복은 나 자신을 잃을 정도로 황홀한 경험으로 나타난다", //cyr
+        "내 인생의 가장 중요한 목적은 전체적으로 보았을 때, 기본적인 욕구가 충족된 뒤, 자아를 실현하는 것이다", //aris
+        "다른 사람들과의 관계, 우정, 공정함은 인생의 근본적인 가치이고 좋은 삶의 본질적인 요소이다", //stoic
+        "행복은 그 자체로 흥분이 없는 고요한 상태로서 나타난다", //epic
         "자신의 상태에 대한 지속적이고 엄격한 사고는 사물에 관한 균형이 잡힌 관점을 만들어 낸다", //skep
-        "자신의 상태에 대한 지속적이고 엄격한 사고는 힘들거나 지루하며 피해야 한다", //cyr
+        "이성적이고 논리적인 사고는 힘들거나 지루하며 피해야 한다", //cyr
       ],
     };
   },
@@ -244,26 +232,40 @@ export default {
           this.totalscore += Number(this.values[index]);
         }
         this.getMaxNum(this.philosophy);
-        console.log('totalscore: ', this.totalscore)        
+        console.log("totalscore: ", this.totalscore);
 
-        this.storeResult(this.obj.id)
-      
-        this.rankArr.push({id: '', value: 999})
-        this.rankArr.push({id: '아리스토텔레스', value: (100 / this.totalscore * this.philosophy.aris).toFixed(1)})        
-        this.rankArr.push({id: '회의주의', value: (100 / this.totalscore * this.philosophy.skep).toFixed(1)})
-        this.rankArr.push({id: '견유학파', value: (100 / this.totalscore * this.philosophy.cyr).toFixed(1)})
-        this.rankArr.push({id: '에피쿠로스', value: (100 / this.totalscore * this.philosophy.epic).toFixed(1)})
-        this.rankArr.push({id: '스토아학파', value: (100 / this.totalscore * this.philosophy.stoic).toFixed(1)})    
+        this.storeResult(this.obj.id);
 
+        this.rankArr.push({ id: "", value: 999 });
+        this.rankArr.push({
+          id: "아리스토텔레스",
+          value: ((100 / this.totalscore) * this.philosophy.aris).toFixed(1),
+        });
+        this.rankArr.push({
+          id: "회의주의",
+          value: ((100 / this.totalscore) * this.philosophy.skep).toFixed(1),
+        });
+        this.rankArr.push({
+          id: "견유학파",
+          value: ((100 / this.totalscore) * this.philosophy.cyr).toFixed(1),
+        });
+        this.rankArr.push({
+          id: "에피쿠로스",
+          value: ((100 / this.totalscore) * this.philosophy.epic).toFixed(1),
+        });
+        this.rankArr.push({
+          id: "스토아학파",
+          value: ((100 / this.totalscore) * this.philosophy.stoic).toFixed(1),
+        });
 
         // this.rankArr[0].id = 'aris'
-        // this.rankArr[0].value = (100 / this.totalscore * this.philosophy.aris).toFixed(1)      
+        // this.rankArr[0].value = (100 / this.totalscore * this.philosophy.aris).toFixed(1)
 
         // this.rankArr[1].id = 'skep'
-        // this.rankArr[1].value = (100 / this.totalscore * this.philosophy.skep).toFixed(1)         
+        // this.rankArr[1].value = (100 / this.totalscore * this.philosophy.skep).toFixed(1)
 
         // this.rankArr[2].id = 'cyr'
-        // this.rankArr[2].value = (100 / this.totalscore * this.philosophy.cyr).toFixed(1)        
+        // this.rankArr[2].value = (100 / this.totalscore * this.philosophy.cyr).toFixed(1)
 
         // this.rankArr[3].id = 'epic'
         // this.rankArr[3].value = (100 / this.totalscore * this.philosophy.epic).toFixed(1)
@@ -271,22 +273,28 @@ export default {
         // this.rankArr[4].id = 'stoic'
         // this.rankArr[4].value = (100 / this.totalscore * this.philosophy.stoic).toFixed(1)
 
-        //고득점 순으로 저장                
-        this.rankArr.sort(function(a,b){
+        //고득점 순으로 저장
+        this.rankArr.sort(function(a, b) {
           return parseInt(b.value) - parseInt(a.value);
-        })
+        });
 
-        console.log('rankArr 구조: ', this.rankArr)
+        console.log("rankArr 구조: ", this.rankArr);
 
-        let i ;
-        for(i=0; i <= 5; i++){
-          console.log(i+'번쨰, id: '+ this.rankArr[i].id + ', value: '+ this.rankArr[i].value)
-        }        
+        let i;
+        for (i = 0; i <= 5; i++) {
+          console.log(
+            i +
+              "번쨰, id: " +
+              this.rankArr[i].id +
+              ", value: " +
+              this.rankArr[i].value
+          );
+        }
 
-        //console.log('마지막 id: '+this.rankArr[4].id+', value: '+ this.rankArr[4].value)        
+        //console.log('마지막 id: '+this.rankArr[4].id+', value: '+ this.rankArr[4].value)
 
         this.$router.push({
-          name: 'Result', 
+          name: "Result",
           // params : {
           //   id : this.obj.id,
           //   aris : (100 / this.totalscore * this.philosophy.aris).toFixed(1),
@@ -294,18 +302,17 @@ export default {
           //   cyr : (100 / this.totalscore * this.philosophy.cyr).toFixed(1),
           //   epic : (100 / this.totalscore * this.philosophy.epic).toFixed(1),
           //   stoic : (100 / this.totalscore * this.philosophy.stoic).toFixed(1)
-          // }        
-          params : this.rankArr
+          // }
+          params: this.rankArr,
 
           // params : [
-          //   {id: aris, value: (100 / this.totalscore * this.philosophy.aris).toFixed(1) }, 
-          //   {id: skep, value: (100 / this.totalscore * this.philosophy.skep).toFixed(1) }, 
-          //   {id: cyr, value: (100 / this.totalscore * this.philosophy.cyr).toFixed(1) }, 
-          //   {id: epic, value: (100 / this.totalscore * this.philosophy.epic).toFixed(1) }, 
-          //   {id: stoic, value: (100 / this.totalscore * this.philosophy.stoic).toFixed(1) }, 
+          //   {id: aris, value: (100 / this.totalscore * this.philosophy.aris).toFixed(1) },
+          //   {id: skep, value: (100 / this.totalscore * this.philosophy.skep).toFixed(1) },
+          //   {id: cyr, value: (100 / this.totalscore * this.philosophy.cyr).toFixed(1) },
+          //   {id: epic, value: (100 / this.totalscore * this.philosophy.epic).toFixed(1) },
+          //   {id: stoic, value: (100 / this.totalscore * this.philosophy.stoic).toFixed(1) },
           // ]
-        })
-       
+        });
       } else {
         alert("채워");
       }
@@ -329,11 +336,14 @@ export default {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: "Gaegu", cursive;
+  /* font-family: "Gaegu", cursive; */
+  /* font-family: 'Sunflower', sans-serif; */
+  font-family: "IBMPlexSansKR-Text";
 }
-.Home {
+.Test {
   text-align: -webkit-center;
   position: relative;
+  margin-top: 15vh;
 }
 .test_wrap {
   width: 100%;
@@ -345,13 +355,13 @@ export default {
   align-content: center;
   justify-content: space-around;
 }
-.hbox{
+.hbox {
   width: 33%;
 }
-.text{
-  margin: 15px 0 10px 0;
-  width: 70%;
-  font-size: 20px;
+.img {
+  width: 14vh;
+  max-width: 128px;
+  min-width: 30px;
 }
 
 .bar_box {
@@ -359,26 +369,33 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  background: white;
-}
+  height: 5vw;
+  min-height: 30px;
+  max-height: 70px;
+  }
 .bar {
-  height: 10px;
-  width: 50%;
+  height: 70%;
+  width: 80%;
   background: #aaa;
 }
 .progress-bar {
   background: purple;
 }
+.progress-bar strong {
+  font-size: 2.3vh;
+}
 .content {
   border-bottom: 1px solid #ddd;
 }
 .question {
-  font-size: 25px;
-  margin-bottom: 15px;
+  font-size: 2vh;
+  margin: 0.8vw 0.8vw;
 }
-.selection_wrap{
+.selection_wrap {
   align-content: center;
+}
+.radio_group span {
+  font-size: 2vh;
 }
 .radio_group {
   padding-top: 15px;
@@ -391,13 +408,18 @@ export default {
   display: none;
 }
 .radio_div {
-  margin: 0 13px;
-  width: 50px;
-  height: 50px;
+  position: relative;
+  margin: 0 1vw;
+  min-width: 30px;
+  min-height: 30px;
+  width: 3vw;
+  height: 3vw;
   border-radius: 100%;
   background: #833471;
   color: #fff;
-  font-size: 30px;
+  font-size: 3.5vh;
+}
+.radio_div div {
 }
 .labels input:hover ~ .radio_div {
   background: #6f1e51;

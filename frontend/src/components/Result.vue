@@ -1,24 +1,11 @@
 <template>
   <div class="Result">
-    <div class="wrapper">
-     <!-- <div id="flipbook">
-      <div class="hard"> Turn.js </div>
-      <div class="hard"></div>
-      <div> Page 1 </div>
-      <div> Page 2 </div>
-      <div> Page 3 </div>
-      <div> Page 4 </div>
-      <div class="hard"></div>
-      <div class="hard"></div>
-    </div> -->
+    <div class="wrapper">     
       <div class="phrase">
         <h1 id="show-btn" @click="$bvModal.show('bv-modal-example')">
-          <span v-html="philoArr[index].sentence"></span>
-          <!-- “인간은 정치적 동물이다” <br />
-          -아리스토텔레스주의 (Aristotelianism)- <br /> -->
+          <span v-html="philoArr[index].sentence"></span>          
         </h1>
         <h6>↑ 더 알아보기</h6>
-        <!-- <b-button >Open Modal</b-button> -->
         <b-modal id="bv-modal-example" hide-footer>
           <template v-slot:modal-title>
             <b>관련 <code>철학 내용</code>에 대하여 </b>
@@ -40,14 +27,14 @@
           <br />
           <div class="wrapcon">
             <div
-              class="container"
+              class="list-container"
               v-for="(list, index) in lists"
               :key="list.id"
             >
               <div :id="'rank' + index" :class="'skills rank rank' + index" >
                 {{ list.value }}%
               </div>
-              <button id="show-btn" class="typeBtn" v-on:click="renew">
+              <button :id="list.id" class="typeBtn" :value="index" v-on:click="renew(list.id)">
                 {{ list.id }}(더 보기)
               </button>
               <br /><br />
@@ -56,24 +43,29 @@
         </div>
         <div class="temp border">                    
             <div class="textInfo">
-                <h4 v-html="this.philoArr[index].happiness" />
+                <img src="../assets/board.png" alt="칠판이미지"/>
+                <div class="content">
+                  <span v-html="philoArr[index].happiness" />
+                </div>
             </div>
         </div>                
       </div>            
           <div class="bottom">                
               <div class="person border">
-                  <h3 class="title">{{this.philoArr[index].period}}</h3>
+                  활동시기
+                  <h3 class="title">{{philoArr[index].period}}</h3>
                   <div>
                       <b-card-group>
                           <b-card title=''>
                           <!-- <b-card title="Aristoles" img-src="../assets/aristoteles.png"  img-alt="Image" img-top style="width: 300px; height: auto;"> -->
-                              <img class="person-img" src="../assets/aris.png"><br/><br/>
-                              <!-- <img class="person-img" :src="'../assets/'+this.philoArr[index].picture"><br/><br/> -->
+                              <!-- <img class="person-img" src="../assets/aris.png"><br/><br/> -->
+                              <img class="person-img" :src="require('../assets/'+philoArr[index].picture)"><br/><br/>                              
                               <b-card-text>                                  
-                                  {{personInfo}}
+                                  {{philoArr[index].personInfo}}
                               </b-card-text>
                               <template v-slot:footer>
-                                  <small class="text-muted">Last updated 3 mins ago</small>
+                                  <!-- <small class="text-muted">{{philoArr[index].id}}</small> -->
+                                  <span class="text-muted">{{philoArr[index].id}}</span>
                               </template>
                           </b-card>                      
                       </b-card-group>
@@ -87,18 +79,18 @@
                           </b-card-header>
                           <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
                               <b-card-body>                                
-                                <b-card-text v-html="this.philoArr[index].keyword" />  
+                                <b-card-text v-html="philoArr[index].keyword" />  
                               </b-card-body>
                           </b-collapse>
                       </b-card>
 
                       <b-card no-body class="mb-1">
                           <b-card-header header-tag="header" class="p-1" role="tab">
-                              <b-button block v-b-toggle.accordion-2 variant="info">대표 인물</b-button>
+                              <b-button block v-b-toggle.accordion-2 variant="info">영향</b-button>
                           </b-card-header>
                           <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
                               <b-card-body>
-                                <b-card-text v-html="this.philoArr[index].representative" />                                                                
+                                <b-card-text v-html="philoArr[index].representative" />                                                                
                               </b-card-body>
                           </b-collapse>
                       </b-card>
@@ -109,7 +101,7 @@
                           </b-card-header>
                           <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
                               <b-card-body>
-                              <b-card-text v-html="this.philoArr[index].enemy"/>
+                              <b-card-text v-html="philoArr[index].enemy"/>
                               </b-card-body>
                           </b-collapse>
                       </b-card>
@@ -120,7 +112,7 @@
                           </b-card-header>
                           <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
                               <b-card-body>
-                              <b-card-text v-html="this.philoArr[index].suggestion"/>
+                              <b-card-text v-html="philoArr[index].suggestion"/>
                               </b-card-body>
                           </b-collapse>
                       </b-card>
@@ -131,7 +123,7 @@
                           </b-card-header>
                           <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
                               <b-card-body>
-                              <b-card-text v-html="this.philoArr[index].book"/>
+                              <b-card-text v-html="philoArr[index].book"/>
                               </b-card-body>
                           </b-collapse>
                       </b-card>
@@ -141,71 +133,24 @@
                   </div>        
               </div>        
               <div class="userInfo border">
-                  
-                  <h3 class="title">참여자수<br/>&해당 유형수</h3>                                       
-                  <div class="user types"><span class="inner-text">{{typeUser}}</span></div>                                        
-                  <br/><span class="type-num">해당 유형수</span>
-                  <div class="user total"><span class="inner-text">{{totalUser}}</span></div>
-                  <br/><span class="user-num">참여자수</span>
+                  <!-- <div class="graph"> -->
+                    <h3 class="title">참여자수<br/>&해당 유형수</h3>                                       
+                    <div class="user types"><span class="inner-text">{{philoArr[index].value}}</span></div>
+                    <br/><span class="type-num">해당 유형수</span>
+                    <div class="user total"><span class="inner-text">{{totalUser}}</span></div>
+                    <br/><span class="user-num">참여자수</span>
+                  <!-- </div> -->
               </div>       
               
           </div>            
-          <ul>
-                <strong>SNS 공유하기</strong>
-                
-                <br/><br/>
-                <div class="snsSection">
-                    <img class="sns-image" src="../assets/facebook.jpg" alt="페이스북 페이지 아이콘">
-                    <ShareNetwork class="sns"
-                        network="facebook"                        
-                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
-                        title="Find your happiness besides on you, with philosophy"
-                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
-                        quote="The hot reload is so fast it\'s near instant. - Evan You"
-                        hashtags="Happiness,Philosophy"
-                    >
-                        Share on Facebook
-                    </ShareNetwork>
-                </div>
-                <br/>
-                
-                <!-- <img class="sns-image" src="https://png.pngtree.com/element_our/md/20180626/md_5b32227ca3eb9.jpg" alt="트위터 페이지 아이콘"> -->
-                <div class="snsSection">
-                    <img class="sns-image" src="../assets/twitter.jpg" alt="트위터 페이지 아이콘">
-                    <ShareNetwork class="sns"
-                        network="Twitter"
-                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
-                        title="Find your happiness besides on you, with philosophy"
-                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
-                        quote="The hot reload is so fast it\'s near instant. - Evan You"
-                        hashtags="Happiness,Philosophy"
-                    >
-                        Share on Twitter
-                    </ShareNetwork>
-                </div>                    
-                <br/>
 
-                <div class="snsSection">
-                    <img class="sns-image" src="../assets/line.png" alt="스카이프 페이지 아이콘">
-                    <ShareNetwork class="sns"
-                        network="Line"
-                        url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
-                        title="Find your happiness besides on you, with philosophy"
-                        description="Recognize oneself by five types of philosophy, just within 5 muinutes"
-                        quote="The hot reload is so fast it\'s near instant. - Evan You"
-                        hashtags="Happiness,Philosophy"
-                    >
-                        Share on Line
-                    </ShareNetwork>
-                </div>                    
-                <br/>
-          </ul>
+          <footer></footer>       
     </div>
   </div>
-</template>
+</template> 
 
 <script>
-// import $ from 'jquery'
+import $ from 'jquery'
 export default {
   name: "Result",
   data() {
@@ -214,19 +159,23 @@ export default {
       totalUser: 0,
       typeUser: 0,
       lists: [],
-      index: 0,      
+      path: '',
+      index: -1,
+      renewIndex: 0,    
       philoArr: [
         {
          id: '아리스토텔레스', sentence : '"인간은 정치적 동물이다"<br>-아리스토텔레스주의 (Aristotelianism)-',
          detail: '플라톤에게는 이성적 앎이 곧 행복인 것과는 다르게 아리스토텔레스는 이성적인 앎에 기반한 실천적인 의지에 따른 행복을 주장합니다.<br /><br />아리스토텔레스의 용어로 인간의 본질은 이성적 동물(animal rationale)입니다. 그러므로 그는 기본적인 욕구가 우리를 이끄는 것처럼 우리의 합리적인 영혼(Nous)에 따라 행동하는 것이 다른 동물과는 구별되는 인간만의 특별한 행복이라 논증합니다. <br /><br />이러한 틀 안에서, 행복은 잘 수련된 본성에 따른 영혼의 활동입니다. “우리의 반복적인 행동이 곧 우리다. 따라서 탁월함은 습관이다.” <br/><br/><br/>아리스토텔레스에 따르면, 우리는 기본적으로 사회-정치적 존재(Zoon Politikon)입니다. 심지어 우리의 가장 높은 수준의 행복(철학적 삶)도 훌륭한 사회 환경, 교육을 기반으로 하기 때문에 아리스토텔레스는 정치 참여가 매우 중요하다고 주장합니다. 인간을 위해 사회적 명예와 함께 정치 생활을 하는 것은 행복한 삶의 두 번째 단계입니다. 좋은 사회-정치 생활은 우리의 행복한 삶에 필요한 미덕(Arete)을 구축하고 계발할 수 있도록 합니다. 그런데 아리스토텔레스의 행복(Eudemonia)은 단지 운 좋은 날이 아니라 평생을 의미합니다. “한 마리의 제비가 여름을 만들지 않는다.” “우리의 반복적인 행동이 곧 우리다. 따라서 탁월함은 습관이다.”아리스토텔레스에 따르면, 높은 수준의 이성(Nous)을 키우지 않고 기본적인 욕구에 충실하여, 단순하고 일시적인 만족을 추구하는 것은  좋지 않은 행복의 사례입니다. 그에게 행복은 이성(Nous)가 지배하는 영혼 활동입니다. 그렇다고 해서 아리스토텔레스가 현실을 무시하지는 것은 아닙니다. 즉, 더 높은 수준의 행복을 주장하지만, 기본적인 욕구에 대한 만족을 건너 뛰어야 한다고 말하지는 않습니다. 그러니까, 그는 금욕적인 삶을 주장하지 않습니다!', 
          happiness: '당신은 이성을 기반한 실천을 통해 행복을 얻을 수 있다고 생각합니다. 나아가 인간은 사회적 동물이기에 이성적 실천은 혼자서는 이룰 수 없고 정치적 참여에 의해 가능하다고 여깁니다. 당신은 정치, 시사에 관심이 많고 타인과 함께 어울리기를 즐깁니다. 자신만이 아니라 남의 인생에도 관심이 많은 따듯한 사람입니다. 다만 타인에 대한 관심이 지나쳐 마음이 지치기 쉬우니 먼저 자신을 돌보시길 바랍니다. ', 
          period: '384-322 BC', 
-         picture: '../assets/aris.png', 
-         keyword: '<code>정치, 공동체, 이성, 미덕, 실천</code>', 
+         picture: 'aris.png', 
+         personInfo: "This is a wider card with supporting text below as a natural lead-in to additional content.",       
+         keyword: '<strong>정치, 공동체, 이성, 미덕, 실천</strong>', 
          representative: '토마스 아퀴나스, 헤겔,   공동체주의, 공화주의. 마이클 샌델, 앙겔라 메르켈', 
          enemy: '에피쿠로스 학파 => 사회, 정치에 참여하기 보다 세상과 거리를 두는 에피쿠로스 학파에 속하는 사람과는 안 맞을 수 있습니다.', 
          suggestion: '사색, 공부, 정치 활동, 시민 운동', 
-         book: '아리스토텔레스, 강상진 외 2인 역, <code>니코마코스 윤리학</code>(길, 2011). 아리스토텔레스, 김재홍 역, <code>정치학</code>(길, 2017). 아리스토텔레스, 오지은 역, <code>영혼에 관하여</code>(아카넷, 2018)'
+         book: '『아리스토텔레스』, 강상진 외 2인 역, 『<strong>니코마코스 윤리학</strong>』(길, 2011). 『아리스토텔레스』, 김재홍 역, 『<strong>정치학</strong>』(길, 2017). 『아리스토텔레스』, 오지은 역, 『<strong>영혼에 관하여</strong>』(아카넷, 2018)',
+         value: 0
         },        
         
         {
@@ -235,37 +184,43 @@ export default {
           happiness: '스토아 학파에 속하는 당신은 불행의 원인을 정념 혹은 욕망으로 보고 있습니다. 따라서 불행으로부터 벗어나기 위해서 금욕적인 삶을 통해 이성을 강화시키고 나의 이성을 자연의 질서에 맞추고자 합니다. 이러한 당신은 어떤 상황에서도 버틸 수 있는 강한 정신력과 인내심을 갖고 있습니다. 자신의 뜻을 신의 섭리에 맞추고자 하는 많은 크리스천이 스토아 학파에 속합니다. 다만 육체를 지나치게 단련하다 건강을 잃을 수도 있으니 적절한 휴식도 필요합니다. 헬스 붐이 부는 요즘, 스토아 학파의 영향력은 여전히 유지되는듯 합니다.', 
           period: '333-264 BC', 
           picture: 'stoic.png', 
-          keyword: '<code>금욕, 단련, 극한, 질서, 이성</code>', 
+          personInfo: "This is a wider card with supporting text below as a natural lead-in to additional content.",       
+          keyword: '<strong>금욕, 단련, 극한, 질서, 이성</strong>', 
           representative: '금욕주의, 기독교, 에피테토스(노예), 세네카(상인), 마르크스 아울렐리우스(황제), 이소룡, 김계란', 
           enemy: '견유학파. 육체를 단련하지 않고자 하는 견유학파에 속하는 사람과는 안 맞을 수 있습니다', 
           suggestion: '복싱, 주짓수, 익스트림 스포츠, 새벽기상, 금식', 
-          book: '마르크스 아우렐리우스, 천병희 옮김, 명상록(숲, 2005). 에피테토스, 김재홍 역, 왕보다 더 자유로운 삶(서광사, 2013), 세네카, 김남우 외 2인, 세네카의 대화(까치, 2016)'
+          book: '『마르크스 아우렐리우스』, 천병희 옮김, 『명상록』(숲, 2005). 『에피테토스』, 김재홍 역, 『왕보다 더 자유로운 삶』(서광사, 2013), 『세네카』, 김남우 외 2인, 『세네카의 대화』(까치, 2016)',
+          value: 0
         },
         
         {
-          id: '회의주의', sentence : '“세계의 이성적 질서에 나의 생각을 맞춰야한다”<br/> -스토아 학파 (Stoic)- ', 
-          detail: '',
-          happiness: '',
-          period: '', 
-          picture: '', 
-          keyword: '', 
-          representative: '', 
-          enemy: '', 
-          suggestion: '', 
-          book: ''
+          id: '회의주의', sentence : '“절대적 진리는 없다!” <br/>-회의주의 (Skepticism)-', 
+          detail: '회의주의자는 스토아 학파처럼 ‘Apatheia’를 추구하지만, 영원한 자연의 질서(Kosmos)가 있다는 전제를 공유하지는 않습니다. 그리고 그들은 기본적으로 아리스토텔레스주의자처럼 윤리적, 자연적 질서에 대한 믿음을 갖고 있지 않습니다. 회의주의자들은 어지러운 사고를 정리 하기 위해, 아무런 선입견 없이 생각하는 법을 익힙니다. 주어진 의견을 심사숙고하고, 동등한 반대 의견을 발견함으로써 편견(Doxa)을 극복하고자 합니다. 더욱이 그들은 편견에 의한 혼란을 넘어서고자 하고, 균형 잡힌 견해를 달성하고자 하며, 결코 한 가지 의견만을 고집하지 않습니다. 결국 그들은 모든 이론을 판단중지(Epoche)하고자 노력합니다. 회의주의자에 따르면, 행복은 독단적인 신념 없이 우리의 순수한 생각에 의해 만들어진 영혼의 평온(Apatheia)입니다. ',
+          happiness: '회의주의에 속하는 당신은 여러 견해가 마음을 어지럽게 하는 불행의 원인이라 생각합니다. 이렇게 생각하는 당신은 <strong>판단중지</strong>를 통해 평정심을 누리고자 합니다. 한 가지 의견을 고집하지 않는 당신은 여러 의견을 경청하고 포용하는 자세를 갖고 있습니다. <strong>균형 잡힌 사고</strong>를 바탕으로 여러 경우의 수를 고려하고 남의 의견에도 신중하게 접근합니다. 이런 당신은 다단계나 보이스피싱에 빠질 위험성이 매우 낮습니다. 다만, 지나치게 우유부단한 면이 있기에 주변으로부터 결정장애란 소리도 들을 수 있으니, 확실한 결정이 필요한 순간에는 확고하게 생각을 정리하는 편이 좋습니다',
+          period: '360-270 BC', 
+          picture: 'skep.png', 
+          personInfo: "This is a wider card with supporting text below as a natural lead-in to additional content.",       
+          keyword: '의심, 신중, 판단중지, 포용성, 균형', 
+          representative: '섹스투스 엠피리쿠스', 
+          enemy: '스토아 학파. 세계에 이성적 질서가 있다는 확고한 신념이 있는 스토아 학파에 속하는 사람과는 맞지 않을 수 있습니다', 
+          suggestion: '바둑, 프로파일러, 상담가, 교사, 협상가', 
+          book: '『섹스투스 엠피리쿠스』, 오유석 역, 『피론주의 개요』(지식을만드는지식, 2012). 황설중, 『고대 회의주의와 근대 철학』(철학과 현실사, 2019). 말테 호센펠더, 조규홍 역, 『헬레니즘 철학사』(한길사, 2011)',
+          value: 0
         },
         
         {
-         id: '견유학파', sentence : '',
-         detail: '', 
+         id: '견유학파', sentence : '극단적인 육체적 쾌락이 행복이다” <br/>-키레네 학파 (Cyrenaicism)-',
+         detail: '키레네 학파는 극단적인 쾌락주의입니다. 그들은 ‘Apatheia’(이성적 행복)에 관한 생각을 버렸습니다. 그러니까 그들은 이성과 우리의 인생에 관한 규칙에 대한 사고를 거부합니다. 에피쿠로스 학파와는 반대로 정신적인 쾌락을 받아들이지 않습니다. 키레네 학파는 지금 당장 강렬하게 느낄 수 있는 쾌락을 추구하고, 육체를 쾌락의 척도의 원천으로 여깁니다. 디오니시오스란 인물은 스토아 학파로 시작했다가 육체적 고통을 더 이상 무시하고 싶지 않아서 키레네 학파로 전환했습니다. 그는 높은 수준의 이성 없이 육체적 쾌락을 행복의 척도로 삼았습니다.', 
          happiness: '', 
-         period: '', 
-         picture: '', 
-         keyword: '', 
-         representative: '', 
+         period: '435-350 BC', 
+         picture: 'cyr.png', 
+         personInfo: "This is a wider card with supporting text below as a natural lead-in to additional content.",       
+         keyword: '방탕, 게으름, ', 
+         representative: '',  
          enemy: '', 
          suggestion: '', 
-         book: ''
+         book: '',
+         value: 0
         },
 
         {
@@ -273,46 +228,48 @@ export default {
          detail: '아리스토텔레스와 스토아학파와는 반대로 에피쿠로스는 정치적 삶의 중요성을 부정합니다. 그는 기본적으로 철학을 행복을 성취하고 최대화하기 위한 인생의 예술로서 이해합니다. 에피쿠로스는 우리의 본성에 따라“선”을 실현하기 위한 이성을 우선 순위로 두는 아리스토텔레스와 스토아학파 대신에 좋음의 구체적인 척도로 쾌락(HEDONE)만을 받아들입니다. 에피쿠로스는 더 높고 영원한 질서(윤리적 또는 자연적 질서)를 넘어서 극단적인 감정과 경험을 피함으로써 즐거움을 달성하고 안정화시키는 데 주의를 기울입니다. 이를 에피쿠로스의 용어로 Ataraxia라고 부릅니다. 그는 행복한 삶을 위해 쾌적한 환경(예 : 정원, 친구들과 어울리기)에서 생활하고, 철학과 이성을 그 자체에 목적이 있다고 보지 않습니다 원자론적 존재론 (아리스토텔레스, 스토아학파와 반대)를 기반으로 그는 우리가 신과 죽음에 대한 두려움을 극복할 수 있고 고통을 피하기 위한 방법으로 냉정한 마음에 의해 지배되는 즐거움에 집중하자고 주장합니다. 에피쿠로스에 따르면 행복은 고통과 불쾌감을 견딜 수 있는 안정된 형태의 쾌락입니다.', 
          happiness: '에피쿠로스 학파에 속하는 당신은 행복의 척도로 이성이 아닌 감각을 중요시 여깁니다. 당신은 육체적 고통을 불행의 원인으로 여기어 육체를 만족시켜 행복하고자 합니다. 다만, 당신이 추구하는 쾌락은 흥분되고 극단적인 쾌락이 아닌, 고요한 마음의 평온입니다. 이를 위해 속세로부터 떠나 여유있는 삶을 추구합니다. 이러한 당신은 바쁜 삶 속에서도 한가함을 즐길 줄 알며 차분한 성품을 유지합니다. 기술의 발전으로 점점 빨라지는 현대 사회 속에서 요가나 명상을 통해 자신의 감정을 잘 돌보시길 바랍니다.', 
          period: '341-270 BC', 
-         picture: '../assets/epic.png', 
+         picture: 'epic.png',
+         personInfo: "This is a wider card with supporting text below as a natural lead-in to additional content.",       
          keyword: '평온, 감각, 웰빙, 쉼, Sleep nomix', 
          representative: '무신론, 원자론, 켄 윌버, 마릴리 먼로', 
          enemy: '아리스토텔레스주의자. 공동체 성향이 강한 그들과 세상과의 단절을 추구하는 에피쿠로스 학파는 안 맞을 수 있습니다', 
          suggestion: '요가, 명상, 정원 가꾸기, 고양기 키우기', 
-         book: '에피쿠로스, 오유석 옮김, 쾌락(문학과 지성사, 1998). 앤소니 롱 이경직 역, 헬레니즘 철학(서광사, 2000). 루크레티우스, 강대진 옮김, 사물의 본성에 관하여(아카넷, 2012)'
-         }
+         book: '『에피쿠로스』, 오유석 옮김, 『쾌락』(문학과 지성사, 1998). 앤소니 롱 이경직 역, 『헬레니즘 철학』(서광사, 2000). 『루크레티우스』, 강대진 옮김, 『사물의 본성에 관하여』(아카넷, 2012)',
+         value: 0
+        }
       ],
-      personInfo:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      keyword: "정치적, 공동체적",
-      representative: "해당 유형의 대표 인물로는 다음과 같은 사람이 있습니다.",
-      enemy: "당신과의 환장의 조합은 다음과 같은 유형의 사람입니다.",
-      suggestion:
-        "정치적, 공동체성을 중요시하는 당신은 이렇게 행동하시면 좋습니다.",
-      book: "읽어 볼만한 책으로는 ........",
+      
     };
   },
   props: {
     msg: String,
   },
-  created: function(){
+  created: function(){  
     this.lists = this.$route.params;
     this.typeUser = this.$store.state.data.typeUser;
-    console.log("lists: ", this.lists); 
-    console.log("typeUser: ", this.typeUser);     
+
+    console.log('index 바뀌기 전: ' ,this.index); 
+    this.index = this.philoArr.findIndex(i => i.id == this.lists[1].id);
+    // console.log('결과: ',this.philoArr.filter(el => el.id.includes(this.lists[1].id)))       
     
-    console.log('결과: ',this.philoArr.filter(el => el.id.includes(this.lists[1].id)))
-    this.index = this.philoArr.findIndex(i => i.id == this.lists[1].id)
+  },
+  updated: function(){
+    // this.$nextTick(function() {
+    //   console.log('변경됨: ', this.$el.textContext)
+    // })
   },
   mounted: function() {    
-    
+    //화면 최상단으로 띄우기.
+    $(window).scrollTop(0,0);
+
     this.changeWidth();
     this.getData();
+    this.renew();
+
+
     
   },  
-  methods: {   
-    renew: function(){      
-      
-    },
+  methods: {       
     changeWidth: function() {
       setTimeout(() => {
         var rank1 = document.getElementById("rank1")
@@ -331,24 +288,46 @@ export default {
 
     getData: function() {
       setTimeout(() => {
-        this.totalUser = this.$store.state.data.totalUser;
-        this.typeUser = this.$store.state.data.typeUser;
+                
+        // // this.index = this.philoArr.findIndex(i => i.id == this.lists[1].id)            
+        // console.log('list[1].id: ' ,this.lists[1].id);
+        console.log('index 바뀐 후: ' ,this.index);
+
+        for(let i=0; i < this.philoArr.length; i++){
+          switch(this.$store.state.data.philoObj[i].id){
+            case '아리스토텔레스':
+              this.philoArr.find(i => i.id == '아리스토텔레스').value = this.$store.state.data.philoObj[i].value; break;
+            case '에피쿠로스':
+              this.philoArr.find(i => i.id == '에피쿠로스').value = this.$store.state.data.philoObj[i].value; break;
+            case '스토아학파':
+              this.philoArr.find(i => i.id == '스토아학파').value = this.$store.state.data.philoObj[i].value; break;
+            case '회의주의':
+              this.philoArr.find(i => i.id == '회의주의').value = this.$store.state.data.philoObj[i].value; break;
+            case '견유학파':
+              this.philoArr.find(i => i.id == '견유학파').value = this.$store.state.data.philoObj[i].value; break;
+          }
+          this.totalUser += this.$store.state.data.philoObj[i].value;
+        }        
+        
+        //this.typeUser = this.$store.state.data.typeUser;
         
         document.getElementsByClassName("types")[0].style.setProperty('height', ((this.typeUser / this.totalUser)*100).toFixed(0)*3 +'px')
         document.getElementsByClassName("total")[0].style.setProperty('height', '300px')        
-
-        console.log("totalUser: ", this.totalUser);
-        console.log("totalUser / typeUser: ", (( this.typeUser / this.totalUser)*100).toFixed(0));
-        console.log("typeUser: ", this.typeUser)
-        console.log("types height: ", document.getElementsByClassName("types")[0].style.height);
+                
       }, 1000);
      
-    },
+    },    
 
-    // renew: function(id){
-    //   console.log('id: ', id);
-    
-    // },
+    renew: function(id){       
+      let i;
+      for(i = 0; i < 5; i++){
+        if(id == this.philoArr[i].id){
+          this.index = i;        
+          break;
+        }
+      }                
+
+    },
 
   },
   
@@ -363,6 +342,9 @@ export default {
 * {
   box-sizing: border-box;
 }
+.Result{
+  margin-top: 15vh;
+}
 
 #show-btn:hover {
   cursor: pointer;
@@ -376,50 +358,9 @@ export default {
   color: white;
 }
 
-/* .rank1 {width: 10%; background-color: #ff0000; transition: width 2s;}         */
-
-.rank {
-  /* animation-name: test;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards; */
+.rank {  
   width:0;
   transition: width 2s;
-}
-
-.user {
-  /* display: flex;
-        flex-direction: column-reverse; */
-  position: absolute;
-  top: 50%;
-  /* animation-name: total;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  animation-direction: reverse;
-  animation-fill-mode: forwards; */
-}
-
-.user-num {  
-  top: 90%;
-  right: 55%;
-}
-
-.type-num {  
-  top: 90%;
-  right: 0%;
-}
-
-.total {
-  background-color: #000a3cc0;
-  height: 0;
-  transition: height 2s;
-  left: 75%;
-}
-.types {
-  left: 25%;
-  height: 0;
-  transition: height 2s;
-  background-color: #ff0000;  
 }
 
 .rank1 {
@@ -440,35 +381,6 @@ export default {
 
 .rank5 {
   background-color: #808080;
-}
-
-/* @keyframes test {
-  0% {
-    width:0;
-  }
-  100% {
-    width: var(--endValue);
-  }
-} */
-
-/* @keyframes total {
-  0% {
-    height: 0%;
-  }
-  100% {
-    height: 50%;
-  }
-} */
-
-#mybook{
-  width: 600px;
-  height: 300px;
-}
-
-#mybook .turn-page{
-  width: 300px;
-  height: 300px;
-  background-color: pink;
 }
 
 .wrapper {
@@ -500,7 +412,7 @@ export default {
   margin-left: 15%;
 }
 
-.container {
+.list-container {
   width: 100%;
   margin-left: 10%;
 }
@@ -525,13 +437,63 @@ export default {
 }
 
 .textInfo{
-  width: 45vw;
+  position: relative;
+  width: 45vw;  
+}
+
+.textInfo img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+}
+
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  text-align: center;
+  z-index: 22;
 }
 
 .userInfo {
   position: relative;
   right: 5%;
 }
+
+.user { 
+  position: absolute;
+  top: 50%;  
+}
+
+.user-num {  
+  top: 90%;
+  right: 55%;
+}
+
+.type-num {  
+  top: 90%;
+  right: 0%;
+}
+
+.types {
+  background-color: #ff0000;  
+  height: 0;
+  transition: height 2s;
+  left: 25%;
+}
+
+.total {
+  background-color: #000a3cc0;
+  height: 0;
+  transition: height 2s;
+  left: 75%;
+}
+
 .buttonInfo {
   width: 25vw;
   height: auto;
@@ -547,13 +509,12 @@ export default {
 }
 
 .inner-text{
-  font-weight: bold;
-  font-size: 12px;
+  font-weight: bold;  
   color: white;
 }
 
 .typeBtn {
-  border: none;
+  border: none;  
   outline: 0;
   background-color: transparent;
   float: left;
@@ -561,17 +522,8 @@ export default {
 }
 
 .typeBtn:hover {
+  color: #8a8a5c;  
   cursor: pointer;
-}
-
-.sns:hover {
-  cursor: pointer;
-  font: bold;
-}
-
-.sns-image {
-  width: 40px;
-  height: 40px;
 }
 
 .bottom {
@@ -581,4 +533,5 @@ export default {
 .title {
   height: 50px;
 }
+
 </style>

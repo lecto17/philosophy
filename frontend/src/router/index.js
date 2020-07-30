@@ -21,7 +21,7 @@ export default new VueRouter({
       component: Discussion,
     },
     {
-      path: "/home",
+      path: "/",
       name: "Home",
       component: Home,
     },

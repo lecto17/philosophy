@@ -1,73 +1,91 @@
 <template>
-<div>
-    <div class="section">
-      <div class="main">      
+  <div>
+    <div class="section section1">
+      <div class="main">
+        <div class="text-field1">
+          <div class="floating">
+            <div class="title">
+              행복 성향 테스트!
+              <div>“철학자가 제시하는 나에게 맞는 행복은?”<br /></div>
+            </div>
+            <div class="subtitle">
+              “행복이란 무엇인가?” <br />
+              누구나 행복하려고 살아가지만,<br />
+              정작 행복이 무엇인지 모를 때가 많습니다. <br />
+              몇 가지 간단한 테스트를 통해 <br />
+              나도 몰랐던 나에게 맞는 행복을 찾아보아요!<br />
+              Philosophical Happiness Type Test
+            </div>
+            <div class="price">
+              <router-link class="price_button" to="/test" tag="button">
+                검사시작
+              </router-link>
+            </div>
+          </div>
+        </div>
         <b-carousel
           id="carousel-1"
           v-model="slide"
-          :interval="4000"              
+          :interval="4500"
           indicators
           background="#ababab"
-          img-width="1024"
-          img-height="480"
-          style="text-shadow: 1px 1px 2px #333;"
           @sliding-start="onSlideStart"
           @sliding-end="onSlideEnd"
         >
-          <div class="floating">
-            <div class="title">
-              행복 유형 테스트!
-            </div> <br/><br/><br/><br/><br/>
-            <div class="subtitle">
-              “철학자가 제시하는 나에게 맞는 행복은?”<br/><br/>
-              “행복이란 무엇인가?” <br/><br/>누구나 행복하려고 살아가지만, 
-              정작 행복이 무엇인지 모를 때가 많습니다.
-              <br/><br/>몇 가지 간단한 테스트를 통해 나도 몰랐던 나에게 맞는 행복을 찾아보아요!
-              <br/><br/>Philosophical Happiness Type Test
-            </div>
-            <div class="price">
-                <button class="price_button">
-                    검사시작
-                </button>
-            </div>
-          </div>
           <!-- Text slides with image -->
-          <b-carousel-slide
-            caption="- 아리스토텔레스 -"
-            text="행복은 정치 참여하는 과정 속에서 이루어진다."
-            img-src="https://picsum.photos/1024/480/?image=52"
-          ></b-carousel-slide>
-
-          <!-- Slides with custom text -->
-          <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-            <h1>에피쿠로스</h1>
+          <b-carousel-slide class="carousel-slide">
+            <template v-slot:img>
+              <img
+                class="slide-img"
+                src="..\assets\slide1.jpg"
+                alt="image slot"
+              />
+            </template>
           </b-carousel-slide>
 
+          <!-- Slides with custom text -->
+
           <!-- Slides with image only -->
-          <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+          <b-carousel-slide class="carousel-slide">
+            <template v-slot:img>
+              <img
+                class="slide-img"
+                src="..\assets\slide2.jpg"
+                alt="image slot"
+              /> </template
+          ></b-carousel-slide>
 
           <!-- Slides with img slot -->
           <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-          <b-carousel-slide>
+          <b-carousel-slide class="carousel-slide">
             <template v-slot:img>
               <img
-                class="d-block img-fluid w-100"
-                width="1024"
-                height="480"
-                src="https://picsum.photos/1024/480/?image=55"
+                class="slide-img"
+                src="..\assets\slide3.jpg"
                 alt="image slot"
-              >
+              />
             </template>
           </b-carousel-slide>
 
           <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-          <b-carousel-slide caption="이미지 삽입" img-blank img-alt="Blank image">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-              a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-            </p>
+          <b-carousel-slide class="carousel-slide">
+            <template v-slot:img>
+              <img
+                class="slide-img"
+                src="..\assets\slide4.jpg"
+                alt="image slot"
+              />
+            </template>
           </b-carousel-slide>
-
+          <b-carousel-slide class="carousel-slide">
+            <template v-slot:img>
+              <img
+                class="slide-img"
+                src="..\assets\slide5.jpg"
+                alt="image slot"
+              />
+            </template>
+          </b-carousel-slide>
         </b-carousel>
 
         <!-- <p class="mt-4">
@@ -76,259 +94,433 @@
         </p> -->
       </div>
     </div>
-    <br/><br/>       
-
-    <div class="section">
+    <div class="section section2">
       <div class="mainBottom">
-
-        <div class="graphInfo">
-          <h4 class="title">참여자수<br/>&해당 유형수</h4>
-          <div class="user total">94</div>
-          <br/><span class="user-num">참여자수</span>
-          <div class="user types">35</div>                                        
-          <br/><span class="type-num">해당 유형수</span>
-        </div>
-
-        <div class="profit">                           
+        <div class="bottom">
           <div class="textInfo">
-            <span v-html="textInfo"></span>
-          </div>        
+            <p v-html="textInfo"></p>
+          </div>
+          <div class="graphInfo">
+            <div class="graph">
+              <span class="user aris">aris</span>
+              <span class="user stoic">stoic</span>
+              <span class="user epic">epic</span>
+              <span class="user skep">skep</span>
+              <span class="user cyr">cyr</span>
+              <!-- <div class="user aris">aris</div>
+            <div class="user stoic">stoic</div>
+            <div class="user epic">epic</div>
+            <div class="user skep">skep</div>
+            <div class="user cyr">cyr</div> -->
+              <div class="gridline">
+                <svg class="line">
+                  <line x1="0" y1="90%" x2="100%" y2="90%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="80%" x2="100%" y2="80%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="70%" x2="100%" y2="70%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="60%" x2="100%" y2="60%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="40%" x2="100%" y2="40%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="30%" x2="100%" y2="30%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="20%" x2="100%" y2="20%" stroke="#ddd" />
+                </svg>
+                <svg class="line">
+                  <line x1="0" y1="10%" x2="100%" y2="10%" stroke="#ddd" />
+                </svg>
+              </div>
+              <div class="gridgauge">
+                <div class="gauge">
+                  90%
+                </div>
+                <div class="gauge">
+                  80%
+                </div>
+                <div class="gauge">
+                  70%
+                </div>
+                <div class="gauge">
+                  60%
+                </div>
+                <div class="gauge">
+                  50%
+                </div>
+                <div class="gauge">
+                  40%
+                </div>
+                <div class="gauge">
+                  30%
+                </div>
+                <div class="gauge">
+                  20%
+                </div>
+                <div class="gauge">
+                  10%
+                </div>
+                <div class="gauge">
+                  0%
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
-    </div>        
-</div>
-
+    </div>
+  </div>
 </template>
 
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
   data() {
-      return {
-        slide: 0,
-        sliding: null,
-        textInfo: "5유형의 철학자들은 제 각각 다른 행복을 알려줍니다.<br/> 이 사람들은 외부의 환경으로부터 자기 마음을 지키기 위해<br/> 행복을 탐구한 사람들입니다. 오늘날 세계화 시대를<br/> 살아가는 우리는 팬데믹, 경제대공황 같이<br/>우리가 감당하기 힘든 외부의 영향력 속에서 살아갑니다. <br/>그러나 이런 환경 속에서도 우리는 우리의 <code>마음</code>을 지킬 수 있습니다.<br/>이들의 통찰력을 바탕으로 어떤 상황 속에서도 우리의 마음을 지켜 나가봅시다.",
-        scrollEvent : false,
-        count : 0,       
-      }
+    return {
+      types: {
+        aris: 100,
+        stoic: 40,
+        epic: 20,
+        skep: 30,
+        cyr: 10,
+      },
+      slide: 0,
+      sliding: null,
+      textInfo:
+        "다섯유형의 철학자들은 제 각각 다른 행복을 알려줍니다. <br><br>이 사람들은 외부의 환경으로부터 자기 마음을 지키기 위해 행복을 탐구한 사람들입니다. <br><br>오늘날 세계화 시대를 살아가는 우리는 팬데믹, 경제대공황 같이 우리가 감당하기 힘든 외부의 영향력 속에서 살아갑니다. <br><br>이에 따라 불안, 우울, 외로움, 두려움과 같은 정신적 어려움을 현대인들은 호소합니다.<br><br>그러나 이런 환경 속에서도 우리는 우리의 <span style='color:red; font-weight: bold'>마음</span>을 지킬 수 있습니다. <br><br>이들의 통찰력을 바탕으로 어떤 상황 속에서도 우리의 마음을 지켜 나가봅시다.",
+      scrollEvent: false,
+      count: 0,
+    };
   },
-  name: 'Main',
+  name: "Home",
   props: {
-    msg: String
+    msg: String,
   },
-  mounted: function(){
+  mounted: function() {
     var win_h = $(window).height();
 
-    $('.section').each(function(index){    
-        $(this).attr("data-index",win_h * index);    
+    $(".section").each(function(index) {
+      $(this).attr("data-index", win_h * index);
     });
-    
-    $('.section').on("mousewheel",function(e){    
-        var sectionPos = parseInt($(this).attr("data-index"));    
-        if(e.originalEvent.wheelDelta >= 0) {  
-          $("html,body").stop().animate({scrollTop:sectionPos - win_h});   
-          console.log('if문')
-          console.log('scrollTop: ', sectionPos-win_h)
-          return false;
-        }else if (e.originalEvent.wheelDelta < 0) {              
-          $("html,body").stop().animate({scrollTop:sectionPos + win_h});    
-          console.log('else if문')
-          console.log('scrollTop: ', sectionPos + win_h) 
-          return false;     
-        }
+
+    $(".section").on("mousewheel", function(e) {
+      var sectionPos = parseInt($(this).attr("data-index"));
+      if (e.originalEvent.wheelDelta >= 0) {
+        $("html,body")
+          .stop()
+          .animate({ scrollTop: sectionPos - win_h });
+        return false;
+      } else if (e.originalEvent.wheelDelta < 0) {
+        $("html,body")
+          .stop()
+          .animate({ scrollTop: sectionPos + win_h });
+        return false;
+      }
     });
+    this.changeWidth();
   },
   methods: {
-      onSlideStart() {
-        this.sliding = true
-      },
-      onSlideEnd() {
-        this.sliding = false
-      }
-    }
-}
+    onSlideStart() {
+      this.sliding = true;
+    },
+    onSlideEnd() {
+      this.sliding = false;
+    },
+    changeWidth: function() {
+      setTimeout(() => {
+        var aris = document.getElementsByClassName("aris");
+        var stoic = document.getElementsByClassName("stoic");
+        var epic = document.getElementsByClassName("epic");
+        var skep = document.getElementsByClassName("skep");
+        var cyr = document.getElementsByClassName("cyr");
+
+        aris[0].style.setProperty("height", this.types.aris + "%");
+        stoic[0].style.setProperty("height", this.types.stoic + "%");
+        epic[0].style.setProperty("height", this.types.epic + "%");
+        skep[0].style.setProperty("height", this.types.skep + "%");
+        cyr[0].style.setProperty("height", this.types.cyr + "%");
+        console.log(aris[0].style.height);
+      }, 1000);
+    },
+  },
+};
 </script>
 
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
+.section1 {
+  height: 100%;
+}
+.section2 {
+  height: 100%;
+}
+.main {
+  position: relative;
+  width: 100%;
+  /* width: 850px; */
+}
+.text-field1 {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 50vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
 
-<style scoped >
-  body {
-    margin: 0;
+#carousel-1 {
+}
+.carousel-slide {
+  height: 100vh;
+}
+.slide-img {
+  width: 100%;
+  height: 100%;
+}
+.floating {
+  margin-top: 15vh;
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%);
+  z-index: 100;
+}
+
+.title {
+  color: #ddd;
+  font-size: 5vw;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Do Hyeon", sans-serif;
+  /* z-index: 100; */
+}
+.title div {
+  color: #fff;
+  font-size: 1.5vw;
+  margin-bottom: 5%;
+  font-weight: 100;
+}
+
+.subtitle {
+  margin: 10vh 0;
+  color: #fff;
+  text-align: center;
+  font-size: 1.2vw;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+.price {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.price_button {
+  color: #000;
+  font-size: 1.2vw;
+  background: rgb(255, 255, 255);
+  border: none;
+  z-index: 200;
+  background-image: none;
+  width: 15vh;
+  height: 5vh;
+  min-width: 15vw;
+  min-height: 5vw;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.price_button:hover {
+  background-color: #2ee59d;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.mainBottom {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+}
+
+.graphInfo,
+.textInfo {
+  margin: 50px;
+  width: 50%;
+  text-align: center;
+}
+
+.textInfo {
+  /* 자동개행(단어 단위) */
+  margin-top: 8vw;
+  display: flex;
+  justify-content: center;
+  word-break: keep-all;
+  font-size: 23px;
+  text-align: justify;
+  font-family:'Do Hyeon', sans-serif;
+}
+
+.graphInfo {
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+  padding-top: 2px;
+}
+.graph {
+  position: relative;
+  height: 100%;
+}
+
+.gridline {
+  height: 100%;
+  width: 100%;
+}
+
+.line {
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+.gridgauge {
+  position: absolute;
+  top: 6%;
+  left: 0%;
+  height: 100%;
+  font-size: 18px;
+}
+.gauge {
+  height: 10%;
+}
+
+.user {
+  position: absolute;
+  display: inline-block;
+  width: 10%;
+  bottom: 0;
+  background: skyblue;
+  height: 5%;
+  transition: height 2s;
+  z-index: 300;
+}
+.aris {
+  left: 10%;
+}
+.stoic {
+  left: 27.5%;
+}
+.epic {
+  left: 50%;
+  transform: translate(-50%);
+}
+.skep {
+  right: 27.5%;
+}
+.cyr {
+  right: 10%;
+}
+
+.footer {
+  width: 100%;
+  height: 200px;
+  background: #333;
+}
+
+@media all and (max-width: 650px) {
+  .floating {
+    margin-top: 12vh;
   }
-
-  .w-100{
-    height: 650px;
+  .carousel-slide {
+    height: 50vh;
   }
-
-  .main{
-    position: relative;
-    /* width: 850px; */
-  }
-
-  .floating{
-    position: absolute;
-    top: 5%;
-    left: 30%; 
-    z-index: 100;
-  }
-
-  .title {        
+  .title {
+    font-size: 30px;
+    width: 100%;
     text-align: center;
-    font-size: 60px;
     font-weight: bold;
-    color: black;
+    font-family: "Do Hyeon", sans-serif;
     /* z-index: 100; */
   }
-
-  .subtitle {    
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: bold;
-      text-shadow: none;
-  }  
-
-  .main {
-      margin: 0 auto;
-      margin-top: 60px;
+  .title div {
+    color: #fff;
+    font-size: 13px;
   }
 
-  .price {
-      display: flex;
-      justify-content:center;
-      padding: 18px;
+  .subtitle {
+    margin: 2vh 0;
+    color: #fff;
+    text-align: center;
+    font-size: 9px;
   }
-
-
-  .price_button {
-      padding: .5rem 1rem;
-      font-size: 1.25rem;
-      color: #000;
-      background-color: #fff;
-      border: none;
-      background-image: none;
-      width: 150px;
-      height: 70px;
-      border: 1px solid black;
-      border-radius: 45px;
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease 0s;
-      cursor: pointer;
-      outline: none;
-  }
-
-  button:hover {
-      background-color: #2EE59D;
-      box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-      color: #fff;
-      transform: translateY(-7px);
-  }
-
-
-
-  @media screen and (max-width: 768px) {
-
-
-      .main {
-          flex-direction: column;
-      }
-  
-      .navbar {
-              flex-direction: column;
-      }
-      
-      .navbar {
-              flex-direction: column;
-      }
-  }
-
-  .mainBottom{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center; 
-    justify-content: space-around ;   
-  }
-
-  .graphInfo, .textInfo{
-    width: 40vw;
-    height: 400px;
-    display: table-cell;
-    vertical-align: middle;
-    border: 1px solid black;
-    font-size: 16px;
-  }
-
-  .graphInfo{
+  .mainBottom {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  
-  .title{
-    height: 50px;
+  .bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
   }
-
-  .user{     
-      position:absolute;
-      top: 50%;
-      animation-name: total;
-      animation-duration:2s;
-      animation-iteration-count: 1;
-      /* animation-direction: reverse; */
-      animation-fill-mode: forwards;
+  .graphInfo,
+  .textInfo {
+    margin: 0 15px;
+    width: 100%;
   }
-
-  .user-num{
-      /* position: absolute; */
-      top: 90%;
-      right: 55%;
+  .graphInfo {
+    height: 50vh;
+    width: 80%;
   }
-
-  .type-num{
-      /* position: absolute; */
-      top: 90%;
-      right: 0%;
+  .gridgauge {
+    position: absolute;
+    left: 0%;
+    height: 100%;
+    font-size: 10px;
   }
-
-  .total{
-      background-color:#ff0000;    
-      left:25%;    
-  }
-  .types{        
-      left:75%;
-      background-color: #000a3cc0;
-      border: 1px solid black;
+  .textInfo {
+    display: flex;
+    font-size: 11px;
+    text-align: justify;
+    width: 80%;
   }
 
-  .profit{
-    display: table-cell;
-    vertical-align: middle;
-  }    
-
-  .user{
-        /* display: flex;
-        flex-direction: column-reverse; */
-        position:absolute;
-        top: 50%;
-        animation-name: total;
-        animation-duration:2s;
-        animation-iteration-count: 1;
-        /* animation-direction: reverse; */
-        animation-fill-mode: forwards;
-  }
-
-  .total{
-      background-color:#ff0000;    
-      left:25%;    
-  }
-  
-  .types{        
-      left:75%;
-      background-color: #000a3cc0;
-      border: 1px solid black;
-  }
-
-  
+}
 </style>
-
-

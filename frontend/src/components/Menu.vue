@@ -1,17 +1,25 @@
 <template>
-  <div>
-    <div>
-      <div class="nav">
-        <div class="company-name">
-          로고
-        </div>
-
-        <ul class="navbar">
-            <li><router-link to="/home">Home </router-link></li>
-            <li><router-link to="/test">TEST </router-link></li>
-            <li><router-link to="/discussion">Discussion</router-link></li>
-        </ul>
-      </div>
+  <div class="nav">
+    <div class="navbox">
+    <template>
+      <b-navbar class="navbar1" toggleable type="light" >
+      <!-- <b-navbar class="navbar1" toggleable type="light" variant="light"> -->
+        <b-navbar-brand href="/"><img class="nav-img" src="../assets/logo.png" /></b-navbar-brand>
+        <b-navbar-toggle target="navbar-toggle-collapse">
+          <template v-slot:default="{ expanded }">
+            <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+            <b-icon v-else icon="chevron-bar-down"></b-icon>
+          </template>
+        </b-navbar-toggle>
+        <b-collapse id="navbar-toggle-collapse" is-nav>
+          <b-navbar-nav class="ml-auto">
+            <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
+            <b-nav-item><router-link to="/test">Test</router-link></b-nav-item>
+            <b-nav-item><router-link to="/discussion">Discussion</router-link></b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </template>
     </div>
   </div>
 </template>
@@ -21,40 +29,42 @@ export default {};
 </script>
 
 <style scoped>
-*{
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .nav {
   position: absolute;
   top: 0;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
+  width: 100%;
+  z-index: 500;
+  background: #fff;
 }
+.navbox{
+  width: 80%;
+  margin: 0 10%;
 
-.navbar {
-  display: flex;
-  list-style: none;
-  margin-left: auto;
-  line-height: 1em;
 }
-
-.navbar li {
-  padding: 5px 8px;
+.nav-img {
+  height: 10vh;
+  padding: 5px;
 }
-
-.navbar li:hover {
-  background-color: #d49466;
-  border-radius: 4px;
+.navbar1{
+  width: 100%;
+  background: #fff;
 }
-
-@media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: row;
-  }
-
-  .navbar {
-    flex-direction: row;
-  }
+.navbar-nav{
+  background: #fff;
+}
+.nav-link{
+  border-bottom: 1px solid #eee;
+}
+a{
+  color: black; 
+}
+a:hover {
+  color: #777;
+  text-decoration: underline;
 }
 </style>
