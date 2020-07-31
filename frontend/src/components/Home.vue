@@ -583,10 +583,31 @@ export default {
   }
   .textInfo {
     display: flex;
-    font-size: 11px;
+    font-size: 13px;
     text-align: justify;
     width: 80%;
   }
+  .notice{
+  font-size: 12px;
+  transform: translate(-50%);
+  width: 120px;
+  height: 60px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  font-family:'Do Hyeon', sans-serif;
+}
+.user{
+  font-size: 10px;
+}
+.graphInfo {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  padding-top: 2px;
+  position: relative;
+}
+.price_button{
+  font-size: 15px;
+}
 
 }
 </style>

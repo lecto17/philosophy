@@ -13,9 +13,9 @@
         </b-navbar-toggle>
         <b-collapse id="navbar-toggle-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
-            <b-nav-item><router-link to="/test">Test</router-link></b-nav-item>
-            <b-nav-item><router-link to="/discussion">Discussion</router-link></b-nav-item>
+            <b-nav-item href="/">Home</b-nav-item>
+            <b-nav-item href="/test">Test</b-nav-item>
+            <b-nav-item href="/discussion">Discussion</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -48,7 +48,6 @@ export default {};
 }
 .nav-img {
   height: 10vh;
-  padding: 5px;
 }
 .navbar1{
   width: 100%;
@@ -67,5 +66,10 @@ a{
 a:hover {
   color: #777;
   text-decoration: underline;
+}
+@media all and (max-width: 650px) {
+  .nav-img{
+    height: 50px;
+  }
 }
 </style>

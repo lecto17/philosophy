@@ -103,9 +103,7 @@ export const store = new Vuex.Store({
       
     },
     storeResult(state, payload){      
-      
-      state.data.result = payload;    
-      
+      state.data.result = payload;
       for(let i=0; i < state.data.result.length; i++){
         //총 참여자 수
         //this.state.data.totalUser += res.data[i].result;          
@@ -129,6 +127,7 @@ export const store = new Vuex.Store({
         }          
 
       }              
+
     }
     
   },  

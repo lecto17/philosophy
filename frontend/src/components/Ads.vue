@@ -49,27 +49,14 @@ export default {};
   z-index: 900;
 }
 
-<<<<<<< Updated upstream
-    .ads{                
-        border: 1px solid black;        
-        position:fixed;
-        width: 130px;
-        height: 65vh;
-        margin-top: 10%;
-        
-        /* bottom:auto;  */
-        /* margin-bottom:0 auto; */
-        z-index:900;        
-    }    
+      
 
     .ads-right {        
         right:0;
     }    
-=======
 .ads-right {
   right: 0%;
 }
->>>>>>> Stashed changes
 
 .ads1 {
 }

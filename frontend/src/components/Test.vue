@@ -148,7 +148,7 @@ export default {
         id: "",
         value: 0,
       },
-      values: [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,2],
+      values: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2],
       rankArr: [],
       rankObj: {
         id: "",
@@ -235,11 +235,7 @@ export default {
           this.totalscore += Number(this.values[index]);
         }
         this.getMaxNum(this.philosophy);
-        console.log("totalscore: ", this.totalscore);
-
-        // this.storeResult(this.obj.id);       
-        this.$store.dispatch('storeResult', this.obj.id);
-
+        this.$store.dispatch("storeResult", this.obj.id);
         this.rankArr.push({ id: "", value: 999 });
         this.rankArr.push({
           id: "아리스토텔레스",
@@ -376,7 +372,7 @@ export default {
   height: 5vw;
   min-height: 30px;
   max-height: 70px;
-  }
+}
 .bar {
   height: 70%;
   width: 80%;
@@ -392,14 +388,14 @@ export default {
   border-bottom: 1px solid #ddd;
 }
 .question {
-  font-size: 2vh;
-  margin: 0.8vw 0.8vw;
+  font-size: 20px;
+  margin: 10px 10px 0 10px;
 }
 .selection_wrap {
   align-content: center;
 }
 .radio_group span {
-  font-size: 2vh;
+  font-size: 18px;
 }
 .radio_group {
   padding-top: 15px;
@@ -460,4 +456,21 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%)
 } */
+@media all and (max-width: 650px) {
+  .question {
+    font-size: 14px;
+    margin: 6px 6px 0 6px;
+  }
+  .radio_group span {
+    font-size: 13px;
+  }
+  .radio_div {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background: #833471;
+    color: #fff;
+    font-size: 22px;
+  }
+}
 </style>

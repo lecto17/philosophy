@@ -39,38 +39,39 @@
                 :value="index"
                 v-on:click="renew(list.id)"
               >
-                {{ list.id }}<br/>(더 보기)
+                {{ list.id }}
+                <div class="graph-more">더 보기</div>
               </button>
               <div :id="'rank' + index" :class="'skills rank rank' + index">
                 <div>{{ list.value }}%</div>
               </div>
             </div>
             <div class="gridline">
-                <svg class="line">
-                  <line x1="90%" y1="0%" x2="90%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="80%" y1="0%" x2="80%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="70%" y1="0%" x2="70%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="70%" y1="0%" x2="70%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="60%" y1="0%" x2="60%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="40%" y1="0%" x2="40%" y2="100%" stroke="#fff" />
-                </svg>
-                <svg class="line">
-                  <line x1="30%" y1="0%" x2="30%" y2="100%" stroke="#fff" />
-                </svg>
-              </div>
+              <svg class="line">
+                <line x1="90%" y1="0%" x2="90%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="80%" y1="0%" x2="80%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="70%" y1="0%" x2="70%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="70%" y1="0%" x2="70%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="60%" y1="0%" x2="60%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="40%" y1="0%" x2="40%" y2="100%" stroke="#fff" />
+              </svg>
+              <svg class="line">
+                <line x1="30%" y1="0%" x2="30%" y2="100%" stroke="#fff" />
+              </svg>
+            </div>
           </div>
         </div>
         <div class="textInfo">
@@ -81,41 +82,66 @@
         </div>
       </div>
       <div class="bottom inwrapper">
-        <div class="person border">
-          활동시기
-          <h3 class="title">{{ philoArr[index].period }}</h3>
-          <div>
-            <b-card-group>
-              <b-card title="">
-                <!-- <b-card title="Aristoles" img-src="../assets/aristoteles.png"  img-alt="Image" img-top style="width: 300px; height: auto;"> -->
-                <!-- <img class="person-img" src="../assets/aris.png"><br/><br/> -->
-                <img
-                  class="person-img"
-                  :src="require('../assets/' + philoArr[index].picture)"
-                /><br /><br />
-                <b-card-text>
-                  {{ philoArr[index].personInfo }}
-                </b-card-text>
-                <template v-slot:footer>
-                  <!-- <small class="text-muted">{{philoArr[index].id}}</small> -->
-                  <span
-                    class="text-muted"
-                    v-if="
-                      philoArr[index].id != '스토아학파' &&
-                        philoArr[index].id != '견유학파'
-                    "
-                    ><strong>{{ philoArr[index].id }}</strong></span
-                  >
-                  <span v-else-if="philoArr[index].id == '견유학파'"
-                    ><strong>플로토니스</strong></span
-                  >
-                  <span v-else>키티온의 <strong>제논</strong></span>
-                </template>
-              </b-card>
-            </b-card-group>
+        <div class="bottom-box1">
+          <div class="temp">
+            <div class="outerBox keyword">
+              <span class="innerBox">키워드</span>
+              <div v-html="philoArr[index].keyword"></div>
+            </div>
+            <div class="outerBox representative">
+              <span class="innerBox">영향</span>
+              <div v-html="philoArr[index].representative"></div>
+            </div>
+            <div class="outerBox enemy">
+              <span class="innerBox">환장의 조합</span>
+              <div v-html="philoArr[index].enemy"></div>
+            </div>
+            <div class="outerBox suggestion">
+              <span class="innerBox">추천하는 행동</span>
+              <div v-html="philoArr[index].suggestion"></div>
+            </div>
+            <div class="outerBox book">
+              <span class="innerBox">관련 서적</span>
+              <div v-html="philoArr[index].book"></div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="philoCard">
+              <b-card-group>
+                <b-card title="">
+                  <!-- <b-card title="Aristoles" img-src="../assets/aristoteles.png"  img-alt="Image" img-top style="width: 300px; height: auto;"> -->
+                  <!-- <img class="person-img" src="../assets/aris.png"><br/><br/> -->
+                  <img
+                    class="person-img"
+                    :src="require('../assets/' + philoArr[index].picture)"
+                  /><br /><br />
+                  <b-card-text>
+                    {{ philoArr[index].personInfo }}
+                  </b-card-text>
+                  <template v-slot:footer>
+                    <!-- <small class="text-muted">{{philoArr[index].id}}</small> -->
+                    <span
+                      class="text-muted"
+                      v-if="
+                        philoArr[index].id != '스토아학파' &&
+                          philoArr[index].id != '견유학파'
+                      "
+                      ><strong>{{ philoArr[index].id }}</strong></span
+                    >
+                    <span v-else-if="philoArr[index].id == '견유학파'"
+                      ><strong>플로토니스</strong></span
+                    >
+                    <span v-else>키티온의 <strong>제논</strong></span>
+                    <div class="title">
+                      활동시기 {{ philoArr[index].period }}
+                    </div>
+                  </template>
+                </b-card>
+              </b-card-group>
+            </div>
           </div>
         </div>
-        <div class="temp border">
+        <!-- <div class="temp">
           <div class="buttonInfo">
             <b-card no-body class="mb-1">
               <b-card-header header-tag="header" class="p-1" role="tab">
@@ -203,18 +229,18 @@
               </b-collapse>
             </b-card>
           </div>
-        </div>
-        <div class="userInfo border">
+        </div> -->
+        <div class="userInfo">
           <!-- <div class="graph"> -->
-          <h3 class="title">참여자수<br />&해당 유형수</h3>
-          <div class="user types">
-            <span class="inner-text">{{ philoArr[index].value }}</span>
+          <!-- <div class="title">참여자수<br />&해당 유형수</div> -->
+          <div class="graph">
+            <div class="type-graph">{{ philoArr[index].value }}</div>
+            <div class="total-graph">{{ totalUser }}</div>
           </div>
-          <br /><span class="type-num">해당 유형수</span>
-          <div class="user total">
-            <span class="inner-text">{{ totalUser }}</span>
+          <div class="user">
+            <div class="type">해당 유형수</div>
+            <div class="total">참여자수</div>
           </div>
-          <br /><span class="user-num">참여자수</span>
           <!-- </div> -->
         </div>
       </div>
@@ -231,8 +257,8 @@ export default {
   data() {
     return {
       testColor: "red",
-      totalUser: 0,
-      typeUser: 0,
+      totalUser: 1,
+      typeUser: 1,
       lists: [],
       path: "",
       index: -1,
@@ -250,7 +276,7 @@ export default {
           picture: "aris.png",
           personInfo:
             "This is a wider card with supporting text below as a natural lead-in to additional content.",
-          keyword: "<strong>중용, 공동체, 이성, 미덕, 실천</strong>",
+          keyword: "중용, 공동체, 이성, 미덕, 실천",
           representative:
             "토마스 아퀴나스, 헤겔, 공동체주의, 마이클 샌델, 앙겔라 메르켈",
           enemy:
@@ -273,7 +299,7 @@ export default {
           picture: "stoic.png",
           personInfo:
             "This is a wider card with supporting text below as a natural lead-in to additional content.",
-          keyword: "<strong>금욕, 단련, 극한, 질서, 이성</strong>",
+          keyword: "금욕, 단련, 극한, 질서, 이성",
           representative:
             "금욕주의, 기독교, 에피테토스(노예), 세네카(상인), 마르크스 아울렐리우스(황제), 이소룡, 김계란.",
           enemy:
@@ -357,7 +383,6 @@ export default {
   },
   created: function() {
     this.lists = this.$route.params;
-    this.typeUser = this.$store.state.data.typeUser;
 
     console.log("index 바뀌기 전: ", this.index);
     this.index = this.philoArr.findIndex((i) => i.id == this.lists[1].id);
@@ -432,14 +457,16 @@ export default {
         //this.typeUser = this.$store.state.data.typeUser;
 
         document
-          .getElementsByClassName("types")[0]
+          .getElementsByClassName("type-graph")[0]
           .style.setProperty(
             "height",
-            ((this.typeUser / this.totalUser) * 100).toFixed(0) * 3 + "px"
+            ((this.$store.state.data.typeUser / this.totalUser) * 100).toFixed(
+              0
+            ) + "%"
           );
         document
-          .getElementsByClassName("total")[0]
-          .style.setProperty("height", "300px");
+          .getElementsByClassName("total-graph")[0]
+          .style.setProperty("height", "100%");
       }, 1000);
     },
 
@@ -474,7 +501,7 @@ export default {
 .inwrapper {
   margin: 50px 0;
 }
-.phrase{
+.phrase {
   margin-bottom: 0;
 }
 .phrase-title {
@@ -493,29 +520,34 @@ export default {
 .graph-title {
   font-size: 24px;
 }
-.wrapcon{
+.wrapcon {
   position: relative;
   height: 80%;
   background: #ddd;
 }
-.list-container{
-  display:flex;
+.list-container {
+  display: flex;
   flex-direction: row;
   height: 20%;
 }
-.typeBtn{
-  font-size: 10px;
+.typeBtn {
+  font-size: 15px;
   width: 20%;
   background: #fff;
-  border:none;
+  border: none;
   z-index: 5;
+}
+.graph-more {
+  background: #000;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 12px;
+  width: 90%;
 }
 
 .rank {
   width: 0;
   transition: width 2s;
-  border-bottom: 1px solid #000;
-  border-right: 1px solid #000;
   z-index: 3;
 }
 .rank1 {
@@ -575,10 +607,160 @@ export default {
 .bottom {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   width: 100%;
 }
-.border {
-  width: 30%;
+.bottom-box1 {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+.temp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 40px;
+  text-align: left;
+}
+.outerBox {
+}
+.outerBox > div {
+  border-radius: 0 5px 5px 5px;
+}
+.innerBox {
+  border-radius: 5px 5px 0 0;
+  font-weight: bold;
+  background: #fff;
+}
+.person {
+  width: 40%;
+}
+.userInfo {
+  width: 20%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.graph {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 90%;
+  border-bottom: 1px solid #888;
+}
+.graph > div {
+  position: absolute;
+  width: 25%;
+  border-radius: 10px 10px 0 0;
+  height: 5%;
+  bottom: 0;
+  transition: height 2s;
+}
+.type-graph {
+  background: green;
+  left: 12.5%;
+}
+.total-graph {
+  background: red;
+  right: 12.5%;
+}
+.user {
+  display: flex;
+  width: 100%;
+}
+.user > div {
+  width: 50%;
+  height: 10%;
+}
+
+@media (max-width: 650px) {
+  .wrapper {
+    margin-top: 12vh;
+    width: 95%;
+  }
+  .more-info {
+    font-size: 15px;
+  }
+  .inwrapper {
+    margin: 5px 0;
+    padding: 15px 0;
+  }
+  .phrase {
+    margin: 15px;
+    border-bottom: 1px solid black;
+  }
+  .phrase-title {
+    font-size: 20px;
+  }
+  .top {
+    flex-direction: column;
+    height: 110vh;
+  }
+  .graphInfo {
+    width: 100%;
+    height: 50%;
+    padding: 0;
+  }
+  .graph-title {
+    font-size: 18px;
+  }
+  .typeBtn {
+    font-size: 13px;
+  }
+  .graph-more {
+    font-size: 10px;
+  }
+  .textInfo {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .content {
+    padding: 0;
+  }
+  .content-html {
+  }
+  .bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .bottom-box1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .temp {
+    width: 100%;
+    border: none;
+  }
+  .person {
+    width: 100%;
+  }
+  .userInfo {
+    width: 100%;
+    height: 150px;
+  }
+  .graph > div {
+    width: 15%;
+  }
+
+  .total,
+  .type {
+    font-size: 13px;
+  }
+  .type-graph {
+    background: green;
+    left: 17.5%;
+  }
+  .total-graph {
+    background: red;
+    right: 17.5%;
+  }
 }
 </style>

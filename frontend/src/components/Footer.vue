@@ -8,7 +8,6 @@
                     </div>
                     <div class="sns-wrap">                    
                         <div class="snsSection">
-                            <img class="sns-image" src="../assets/facebook.png" alt="페이스북 아이콘">
                             <ShareNetwork class="sns"
                                 network="facebook"                        
                                 url="http://happiness-every-where.coi.kr"
@@ -17,6 +16,8 @@
                                 quote='"마음의 병에 대해서는 철학이 치료약을 제공한다. 이점에서 철학은 마음의 치료제라고 할 수 있다. "- 에피쿠로스-'
                                 hashtags="HappinessPhilosophy"
                             >
+                            <img class="sns-image" src="../assets/facebook.png" alt="페이스북 아이콘">
+
                                 Share on Facebook
                             </ShareNetwork>
                         </div>
@@ -24,7 +25,7 @@
                         
                         <!-- <img class="sns-image" src="https://png.pngtree.com/element_our/md/20180626/md_5b32227ca3eb9.jpg" alt="트위터 페이지 아이콘"> -->
                         <div class="snsSection">
-                            <img class="sns-image" src="../assets/twitter.png" alt="트위터 아이콘">
+                            
                             <ShareNetwork class="sns"
                                 network="Twitter"
                                 url="http://happiness-every-where.coi.kr"
@@ -33,13 +34,14 @@
                                 quote="마음의 병에 대해서는 철학이 치료약을 제공한다. 이점에서 철학은 마음의 치료제라고 할 수 있다. - 에피쿠로스"
                                 hashtags="Happiness,Philosophy"
                             >
+                                <img class="sns-image" src="../assets/twitter.png" alt="트위터 아이콘">
                                 Share on Twitter
                             </ShareNetwork>
                         </div>                    
                         <br/>
 
                         <div class="snsSection">
-                            <img class="sns-image" src="../assets/line.png" alt="라인 아이콘">
+                            
                             <ShareNetwork class="sns"
                                 network="Line"
                                 url="https://i.ytimg.com/vi/2_69hDmB634/maxresdefault.jpg"
@@ -48,6 +50,7 @@
                                 quote="마음의 병에 대해서는 철학이 치료약을 제공한다. 이점에서 철학은 마음의 치료제라고 할 수 있다. - 에피쿠로스"
                                 hashtags="Happiness,Philosophy"
                             >
+                                <img class="sns-image" src="../assets/line.png" alt="라인 아이콘">
                                 Share on Line
                             </ShareNetwork>
                         </div>                    
@@ -79,8 +82,8 @@ export default {
     footer {
         background-color: lightgray;
         color: black;        
-        width: 100vw;
-        height: 25vh;
+        width: 100%;
+        height: 200px;
     }
 
     /* .container{
@@ -89,29 +92,26 @@ export default {
     } */
 
     p{
-        padding-top: 2%;
+        padding-top: 15px;
+        margin: 0;
     }
 
     .sns-wrap{        
         display: flex;
         flex-direction: row;
-        align-items: center; /*top, bottom div안에 있는 자식 div들을 세로 중앙정렬하기 위함(display: flex, align-items: center) */
-        position: relative;
+        justify-content: center;
+        align-items: center;
         /* left: 30% */
     /* justify-content: space-around; */
     }
 
-    .snsSection:first-child{
-        margin-left: 25%;
-    }
-
     .snsSection{
-        margin-right: 3%; 
+        margin: 0 10px;
     }
 
     .sns:hover {
         cursor: pointer;
-        font-weight: bold;
+        color: #777;
     }
 
     .sns-image {
@@ -124,5 +124,20 @@ export default {
         /* color: #c2c2a3; */
         font-weight: bold;
     }
+@media all and (max-width:650px) {
+    .snsSection{
+        margin: 0 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 10px;
+    }
+    footer{
+        height: 170px;
+    }
+    .contact{
+        font-size: 13px;
+    }
 
+}
 </style>
