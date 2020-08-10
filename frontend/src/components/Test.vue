@@ -138,6 +138,7 @@
 
 <script>
 // import axios from 'axios'
+import $ from 'jquery'
 import { mapMutations } from "vuex";
 export default {
   name: "Test",
@@ -148,7 +149,7 @@ export default {
         id: "",
         value: 0,
       },
-      values: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2],
+      values: [],
       rankArr: [],
       rankObj: {
         id: "",
@@ -187,7 +188,7 @@ export default {
     };
   },
   created: function() {
-    // this.$store.dispatch('storeResult', );
+    // this.$store.dispatch('storeResult', );    
   },
   methods: {
     ...mapMutations(["storeResult"]),
@@ -209,6 +210,7 @@ export default {
     },
     clickNextBtn() {
       this.paging += 5;
+      $(window).scrollTop(0, 0);
     },
     clickEndBtn() {
       var index;
