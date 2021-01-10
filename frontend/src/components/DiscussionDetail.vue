@@ -1,72 +1,61 @@
-<template>
-  <div class="DiscussionDetail">
-    <div class="container">
-      <img class="back_img" src="../assets/back.png" @click="backToList" />
-      <div class="detail">
-        <div class="detail_title">
-          {{ $store.state.data.posts[postID].title }}
+<template>  
+  <div class="discussionDetail">  
+    <div class="comments">
+      <div class="comment">
+        <div class="user_info">
+          <div class="user">최승태</div>
         </div>
-        <div class="detail_content">
-          {{ $store.state.data.posts[postID].content }}
+        <div class="comment_content">
+          전역 가드는 라우터 인스턴스를 참조하는 객체로 설정할 수 있습니다.
+          그러면 전역 가드 설정 방법을 알아보겠습니다. 먼저, 전역 가드 설정을
+          위해 먼저 아래와 같이 라우터 인스턴스를 생성합니다
         </div>
       </div>
-      <div class="comments">
-        <div class="comment">
-          <div class="user_info">
-            <div class="user">최승태</div>
-          </div>
-          <div class="comment_content">
-            전역 가드는 라우터 인스턴스를 참조하는 객체로 설정할 수 있습니다.
-            그러면 전역 가드 설정 방법을 알아보겠습니다. 먼저, 전역 가드 설정을
-            위해 먼저 아래와 같이 라우터 인스턴스를 생성합니다
-          </div>
+      <div class="comment">
+        <div class="user_info">
+          <div class="user">김현수</div>
         </div>
-        <div class="comment">
-          <div class="user_info">
-            <div class="user">김현수</div>
-          </div>
-          <div class="comment_content">
-            전역 가드는 라우터 인스턴스를 참조하는 객체로 설정할 수 있습니다.
-            그러면 전역 가드 설정 방법을 알아보겠습니다. 먼저, 전역 가드 설정을
-            위해 먼저 아래와 같이 라우터 인스턴스를 생성합니다
-          </div>
+        <div class="comment_content">
+          전역 가드는 라우터 인스턴스를 참조하는 객체로 설정할 수 있습니다.
+          그러면 전역 가드 설정 방법을 알아보겠습니다. 먼저, 전역 가드 설정을
+          위해 먼저 아래와 같이 라우터 인스턴스를 생성합니다
         </div>
-        
       </div>
-      <div class="new_comment">
-        <div class="comment_info">
-          <div class="user_info">
-            <b-form-input
-              class="user"
-              v-model="text"
-              placeholder="User"
-            ></b-form-input>
-            <b-form-input
-              class="pw"
-              v-model="text"
-              placeholder="PassWord"
-            ></b-form-input>
-          </div>
-          <b-form-textarea
-            id="textarea"
-            class="new_comment_content"
-            placeholder="Enter something..."
-            rows="3"
-            max-rows="6"
-          ></b-form-textarea>
+      
+    </div>
+    <div class="new_comment">
+      <div class="comment_info">
+        <div class="user_info">
+          <b-form-input
+            class="user"
+            v-model="text"
+            placeholder="User"
+          ></b-form-input>
+          <b-form-input
+            class="pw"
+            v-model="text"
+            placeholder="PassWord"
+          ></b-form-input>
         </div>
+        <b-form-textarea
+          id="textarea"
+          class="new_comment_content"
+          placeholder="Enter something..."
+          rows="3"
+          max-rows="6"
+        ></b-form-textarea>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
 export default {
   name: "DiscussionDetail",
-  props: ["toggle"],
+  
   data() {
-    return {
-      postID: this.toggle - 1,
+    return {  
       post: {
         postID: "",
         userID: "",
@@ -93,7 +82,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-.DiscussionDetail {
+.discussionDetail {
+  margin: 15vh;
   width: 70%;
 }
 .container {

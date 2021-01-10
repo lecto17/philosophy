@@ -134,7 +134,7 @@ export const store = new Vuex.Store({
   actions: {
     getUserData(context){
       console.log('getStart')
-      axios.get('http://13.209.47.123:8000/result/', {
+      axios.get('http://localhost:8000/result/', {
         params: {
           id : -1
         }
@@ -148,7 +148,7 @@ export const store = new Vuex.Store({
 
    storeResult(context, id) {
     this.state.data.id = id;
-    axios.get('http://13.209.47.123:8000/result/', {
+    axios.get('http://localhost:8000/result/', {
         params: {
           id : id
         }
