@@ -32,6 +32,7 @@
 
 <script>
 //import Discussiondetail from "./DiscussionDetail";
+import { mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -44,7 +45,8 @@ export default {
       posts:[],
       toggle: 0,
       post_fields: ['번호', '제목', '작성자', '날짜'],
-      post_sub_fields: ['제목', '작성자', '날짜'],      
+      post_sub_fields: ['제목', '작성자', '날짜'],
+      temp : [],  
       post_items: [
           { 번호: 1, 제목: 'Dickerson', 작성자: 'Macdonald', 날짜: '2020.01.04'},
           { 번호: 2, 제목: 'Larsen', 작성자: 'Shaw', 날짜: '2019.12.23'},
@@ -53,7 +55,7 @@ export default {
         ],
       new_items: [          
           { 번호: 1, 제목: 'Geneva', 작성자: 'Wilson', 날짜: '2020.01.06' },
-          { 번호: 2, 제목: 'Jami', 작성자: 'Carney', 날짜: '2018.02.02' }
+          { 번호: 2, 제목: 'Jami', 작성자: 'Carney', 날짜: 'k 2018.02.02' }
         ],
       hot_items: [
           { 번호: 1, 제목: 'Dickerson', 작성자: 'Macdonald', 날짜: '2020.01.04' , status: 'awesome'},
@@ -62,13 +64,19 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["getPosts"]),
     rowClass(item, type) {
         if (!item || type !== 'row') return
         if (item.status === 'awesome') return 'table-success'
     }    
   },
   created() {
-    
+    console.log('plz');
+    this.$store.dispatch('getPosts');
+    console.log('is it?');
+  },
+  mounted() {
+
   },
   computed: {},
 };
