@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
         philoObj : [],
         userData: [],
         result: [],
+        post_items:[],
         posts: [
           { postID: '1', userID: 'u', title: 't1', content: '', date: '' },
           { postID: '2', userID: 'u', title: 't2', content: '두번째 게시글의 내용 부분입니다.', date: '' },
@@ -23,57 +24,6 @@ export const store = new Vuex.Store({
           { postID: '7', userID: 'u', title: 't7', content: '', date: '' },
           { postID: '8', userID: 'u', title: 't8', content: '', date: '' },
           { postID: '9', userID: 'u', title: 't9', content: '', date: '' },
-          { postID: '10', userID: 'u', title: 't10', content: '', date: '' },
-          { postID: '11', userID: 'u', title: 't11', content: '', date: '' },
-          { postID: '12', userID: 'u', title: 't12', content: '', date: '' },
-          { postID: '13', userID: 'u', title: 't13', content: '', date: '' },
-          { postID: '14', userID: 'u', title: 't14', content: '', date: '' },
-          { postID: '15', userID: 'u', title: 't15', content: '', date: '' },
-          { postID: '16', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '17', userID: 'u', title: 't17', content: '', date: '' },
-          { postID: '18', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '19', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '20', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '21', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '22', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '23', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '24', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '25', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '26', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '27', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '28', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '29', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '30', userID: 'u', title: 't16', content: '', date: '' },
-          { postID: '31', userID: 'u', title: 't11111', content: '', date: '' },
-          { postID: '32', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '33', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '34', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '35', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '36', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '37', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '38', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '39', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '40', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '41', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '42', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '43', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '44', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '45', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '46', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '47', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '48', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '49', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '50', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '51', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '52', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '53', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '54', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '55', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '56', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '57', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '58', userID: 'u', title: 't3', content: '', date: '' },
-          { postID: '59', userID: 'u', title: 't3', content: '', date: '' },
-
         ],
         hotpost:[
           { postID: '30', userID: 'u', title: 't16', content: '', date: '' },
@@ -100,6 +50,11 @@ export const store = new Vuex.Store({
         //총 참여자 수
         this.state.data.totalUser += state.data.userData[i].result;
       }
+
+    },
+    getPosts(state, payload){
+      console.log('payload: ', payload)
+      state.data.post_items = payload;      
 
     },
     storeResult(state, payload){
@@ -158,6 +113,18 @@ export const store = new Vuex.Store({
         console.log('storeData 안됨: ', res);
         console.log(res);
       });
+   },
+   
+   getPosts(context) {
+    // this.state.data.id = id;
+    axios.get('http://localhost:8000/post/', {
+        
+      }).then((res) => {
+          context.commit('getPosts', res.data)
+      }).catch((res) => {
+        console.log('getPosts 안됨: ', res);
+        console.log(res);
+      });
    }
-  },
+  },  
 })

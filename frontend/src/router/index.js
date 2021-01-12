@@ -5,6 +5,7 @@ import Test from "@/components/Test";
 import Discussion from "@/components/Discussion";
 import DiscussionDetail from "@/components/DiscussionDetail";
 import Result from "@/components/Result";
+import Login from "@/components/Login";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ export default new VueRouter({
       path: "/result",
       name: "Result",
       component: Result
+    },
+    {      
+      path: "/login",
+      name: "Login",
+      component: Login
     }
   ],
 });
