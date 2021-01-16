@@ -1,81 +1,82 @@
 <template>
-  <div class="discussion">
-    <div class="container">
+    <div class="discussion">          
       <div class="discuss_top">
-        나는 생각한다, 고로 존재한다.
+        <h2 class="phrase">"나는 생각한다, 고로 존재한다."</h2>
       </div>
       <div class="discuss_body">
-        <div class="post_list" v-if="toggle == 0">
-          <table class="post_table">
-            <th class="id column">번호</th>
-            <th class="title column">제목</th>
-            <th class="user column">작성자</th>
-            <th class="date column">날짜</th>
-            <tr class="post" v-for="post in posts" :key="post.postID" @click="toggle = post.postID">
-              <td>{{ post.postID }}</td>
-              <td>{{ post.title }}</td>
-              <td>{{ post.userID }}</td>
-              <td>{{ post.date }}</td>
-            </tr>
-          </table>
+        <div class="post_list">
+          <b-table bordered striped hover :items="post_items"></b-table>  
+        </div>
 
-          <!-- 더 이상 가져올 포스트가 없을 때 버튼 v-show="false" 해야함 -->
-          <button @click="appendMorePosts">더보기</button>
-        </div>
-        <Discussiondetail v-bind:toggle="toggle" v-on:backToList="backToList" v-else/>
         <div class="post_sub">
-          <div class="hot_list">
-            <div class="hot_top">인기토론글</div>
-            <div class="hot_body">
-              <ul>
-                <li v-for="hot in $store.state.data.hotpost" :key="hot.postID">
-                  {{ hot.title }}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="new_list">
-            <div class="new_top">최신토론글</div>
-            <div class="new_body">
-              <ul>
-                <li v-for="New in $store.state.data.newpost" :key="New.postID">
-                  {{ New.title }}
-                </li>
-              </ul>
-            </div>
-          </div>
+          <h5 class="title">이달의 인기 토론글</h5>
+          <b-table :items="hot_items" :fields="post_sub_fields" :tbody-tr-class="rowClass"></b-table>
+          <h5 class="title">최신 토론글</h5>
+          <b-table :items="new_items" :fields="post_sub_fields" :tbody-tr-class="rowClass"></b-table>
         </div>
+        
       </div>
+
+      <div class="button">
+          <b-button class="btn prev" variant="light">이전</b-button>
+          <b-button class="btn next" variant="dark">다음</b-button>
+          <a v-bind:href="discussionDetail" class="btn writeRouter">                        
+            <b-button class="write" variant="success">글쓰기</b-button>      
+          </a>
+          <router-link class="btn writeRouter" to="/discussionDetail" tag="button">                        
+            <b-button class="write" variant="success">글쓰기</b-button>      
+          </router-link>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import Discussiondetail from "./DiscussionDetail";
+//import Discussiondetail from "./DiscussionDetail";
+import { mapMutations } from 'vuex';
+
 export default {
   components: {
-    Discussiondetail,
+    //Discussiondetail,
   },
   data() {
     return {
+      discussionDetail: 'http://localhost:8080/discussionDetail',
       initPage: 0,
       posts:[],
       toggle: 0,
+      post_fields: ['번호', '제목', '작성자', '날짜'],
+      post_sub_fields: ['제목', '작성자', '날짜'],
+      temp : [],  
+      post_items: [
+          { 번호: 1, 제목: 'Dickerson', 작성자: 'Macdonald', 날짜: '2020.01.04'},
+          { 번호: 2, 제목: 'Larsen', 작성자: 'Shaw', 날짜: '2019.12.23'},
+          { 번호: 3, 제목: 'Geneva', 작성자: 'Wilson', 날짜: '2020.01.06' },
+          { 번호: 4, 제목: 'Jami', 작성자: 'Carney', 날짜: '2018.02.02' }
+        ],
+      new_items: [          
+          { 번호: 1, 제목: 'Geneva', 작성자: 'Wilson', 날짜: '2020.01.06' },
+          { 번호: 2, 제목: 'Jami', 작성자: 'Carney', 날짜: 'k 2018.02.02' }
+        ],
+      hot_items: [
+          { 번호: 1, 제목: 'Dickerson', 작성자: 'Macdonald', 날짜: '2020.01.04' , status: 'awesome'},
+          { 번호: 2, 제목: 'Larsen', 작성자: 'Shaw', 날짜: '2019.12.23'},         
+        ]
     };
   },
   methods: {
-    appendMorePosts() {
-      // this.posts = this.$store.state.data.posts.filter(post => post.title.includes('16')) // store에 있는 postslist를 0부터 다시가져옴 고쳐야할듯..
-      this.posts = this.posts.concat(this.$store.state.data.posts.slice(this.initPage, this.initPage + 10))// store에 있는 postslist를 0부터 다시가져옴 고쳐야할듯..
-      this.initPage += 10;
-      
-    },
-    backToList(){
-      this.toggle = 0
-    }
+    ...mapMutations(["getPosts"]),
+    rowClass(item, type) {
+        if (!item || type !== 'row') return
+        if (item.status === 'awesome') return 'table-success'
+    }    
   },
   created() {
-    this.appendMorePosts();
+    console.log('plz');
+    this.$store.dispatch('getPosts');
+    console.log('is it?');
+  },
+  mounted() {
+
   },
   computed: {},
 };
@@ -87,31 +88,21 @@ export default {
   padding: 0;
   margin: 0;
 }
-.discussion {
-  width: 100%;
-}
-.discuss_top {
-  padding: 30px;
-  font-size: 30px;
-}
-.discuss_body {
-  margin: 45px 0px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
-.post_list {
-  width: 70%;
-}
-.post_sub {
-  border: 1px solid black;
-  position: absolute;
-  right: 0;
-  width: 25%;
-}
-.post_table {
-  width: 100%;
-}
+.discussion {  width: 100%;  margin-top: 5vh;}
+.discuss_top { padding: 30px; font-size: 30px; }
+.discuss_top > .phrase { padding: 30px 0;}
+
+
+.discuss_body { margin: 45px 0px; position: relative; display: flex; flex-direction: row; }
+.post_list { width: 70%; padding: 20px;}
+.post_sub { border: 1px solid black; width: 25%; }
+.post_sub > .title { font-weight: bold; }
+
+.button > .btn {margin: 5% 20px;}
+.button > .prev{border: 2px solid gray;}
+.writeRouter{ border: none; }
+
+.post_table { width: 100%; }
 .post {
   border-bottom: 1px solid gray;
 }

@@ -255,8 +255,8 @@ export default {
   data() {
     return {
       testColor: "red",
-      totalUser: 1,
-      typeUser: 1,
+      totalUser: 0,
+      typeUser: 0,
       lists: [],
       path: "",
       index: -1,
@@ -427,29 +427,35 @@ export default {
               this.philoArr.find(
                 (i) => i.id == "아리스토텔레스"
               ).value = this.$store.state.data.philoObj[i].value;
+              console.log('아리: ', this.$store.state.data.philoObj[i].value);
               break;
             case "에피쿠로스":
               this.philoArr.find(
                 (i) => i.id == "에피쿠로스"
               ).value = this.$store.state.data.philoObj[i].value;
+              console.log('에피: ', this.$store.state.data.philoObj[i].value);
               break;
             case "스토아학파":
               this.philoArr.find(
                 (i) => i.id == "스토아학파"
               ).value = this.$store.state.data.philoObj[i].value;
+              console.log('스토: ', this.$store.state.data.philoObj[i].value);
               break;
             case "회의주의":
               this.philoArr.find(
                 (i) => i.id == "회의주의"
               ).value = this.$store.state.data.philoObj[i].value;
+              console.log('회의: ', this.$store.state.data.philoObj[i].value);
               break;
             case "견유학파":
               this.philoArr.find(
                 (i) => i.id == "견유학파"
               ).value = this.$store.state.data.philoObj[i].value;
+              console.log('견유: ', this.$store.state.data.philoObj[i].value);
               break;
-          }
+          }          
           this.totalUser += this.$store.state.data.philoObj[i].value;
+          console.log('total User: ', this.totalUser);
         }
 
         //this.typeUser = this.$store.state.data.typeUser;
