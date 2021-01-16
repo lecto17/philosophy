@@ -115,9 +115,7 @@
                     class="person-img"
                     :src="require('../assets/' + philoArr[index].picture)"
                   /><br /><br />
-                  <b-card-text>
-                    {{ philoArr[index].personInfo }}
-                  </b-card-text>
+                  
                   <template v-slot:footer>
                     <!-- <small class="text-muted">{{philoArr[index].id}}</small> -->
                     <span
@@ -635,6 +633,9 @@ export default {
   font-weight: bold;
   background: #fff;
 }
+.philoCard{
+  overflow: hidden;
+}
 .person {
   width: 40%;
 }
@@ -742,6 +743,7 @@ export default {
   .person {
     width: 100%;
   }
+  .person-img{}
   .userInfo {
     width: 100%;
     height: 150px;

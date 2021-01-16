@@ -23,70 +23,46 @@
             </div>
           </div>
         </div>
-        <b-carousel
-          id="carousel-1"
-          v-model="slide"
-          :interval="4500"
-          indicators
-          background="#ababab"
-          @sliding-start="onSlideStart"
-          @sliding-end="onSlideEnd"
-        >
-          <!-- Text slides with image -->
-          <b-carousel-slide class="carousel-slide">
-            <template v-slot:img>
-              <img
-                class="slide-img"
-                src="..\assets\slide1.jpg"
-                alt="image slot"
-              />
+        <Carousel class="carousel" autoplay="true" autoplayTimeout="4500" loop="true" adjustableHeight="false" perPage="1" paginationPosition="bottom-overlay" paginationActiveColor="white" paginationColor="#777">
+          <Slide>
+            <template>
+            <img
+              class="slide-img"
+              src="..\assets\slide1.jpg"
+              alt="image slot"
+            />
             </template>
-          </b-carousel-slide>
-
-          <!-- Slides with custom text -->
-
-          <!-- Slides with image only -->
-          <b-carousel-slide class="carousel-slide">
-            <template v-slot:img>
-              <img
-                class="slide-img"
-                src="..\assets\slide2.jpg"
-                alt="image slot"
-              /> </template
-          ></b-carousel-slide>
-
-          <!-- Slides with img slot -->
-          <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-          <b-carousel-slide class="carousel-slide">
-            <template v-slot:img>
-              <img
-                class="slide-img"
-                src="..\assets\slide3.jpg"
-                alt="image slot"
-              />
-            </template>
-          </b-carousel-slide>
-
-          <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-          <b-carousel-slide class="carousel-slide">
-            <template v-slot:img>
-              <img
-                class="slide-img"
-                src="..\assets\slide4.jpg"
-                alt="image slot"
-              />
-            </template>
-          </b-carousel-slide>
-          <b-carousel-slide class="carousel-slide">
-            <template v-slot:img>
-              <img
-                class="slide-img"
-                src="..\assets\slide5.jpg"
-                alt="image slot"
-              />
-            </template>
-          </b-carousel-slide>
-        </b-carousel>
+          </Slide>
+          <Slide>
+            <img
+              class="slide-img"
+              src="..\assets\slide2.jpg"
+              alt="image slot"
+            />
+          </Slide>
+          <Slide>
+            <img
+              class="slide-img"
+              src="..\assets\slide3.jpg"
+              alt="image slot"
+            />
+          </Slide>
+          <Slide>
+            <img
+              class="slide-img"
+              src="..\assets\slide4.jpg"
+              alt="image slot"
+            />
+          </Slide>
+          <Slide>
+            <img
+              class="slide-img"
+              src="..\assets\slide5.jpg"
+              alt="image slot"
+            />
+          </Slide>
+        </Carousel>
+        
 
         <!-- <p class="mt-4">
           Slide #: {{ slide }}<br>
@@ -103,11 +79,11 @@
           <div class="graphInfo">
             <div class="notice">
               <div>
-                총 참여자 수: <strong>{{totalUser}}명</strong>
+                총 참여자 수: <strong>{{ totalUser }}명</strong>
               </div>
             </div>
             <div class="graph">
-              <span class="user aris">아리스토<br/>텔레스</span>
+              <span class="user aris">아리스토<br />텔레스</span>
               <span class="user stoic">스토아학파</span>
               <span class="user epic">에피쿠로스</span>
               <span class="user skep">회의주의</span>
@@ -182,14 +158,19 @@
           </div>
         </div>
       </div>
-    </div>    
+    </div>
   </div>
 </template>
 
 <script>
 import $ from "jquery";
-import { mapMutations } from 'vuex';
+import { Carousel, Slide } from "vue-carousel";
+import { mapMutations } from "vuex";
 export default {
+  components: {
+    Carousel,
+    Slide,
+  },
   data() {
     return {
       types: {
@@ -213,10 +194,10 @@ export default {
   props: {
     msg: String,
   },
-  created: function(){
-    console.log('crete')
-    this.$store.dispatch('getUserData');
-    console.log('finsih');
+  created: function() {
+    console.log("crete");
+    this.$store.dispatch("getUserData");
+    console.log("finsih");
   },
   mounted: function() {
     var win_h = $(window).height();
@@ -239,7 +220,7 @@ export default {
           .animate({ scrollTop: sectionPos + win_h });
         return false;
       }
-    });    
+    });
     this.setData();
     this.changeWidth();
   },
@@ -267,27 +248,47 @@ export default {
         console.log(aris[0].style.height);
       }, 1000);
     },
-    setData: function(){
+    setData: function() {
       setTimeout(() => {
         this.userArr = this.$store.state.data.userData;
-        this.totalUser = this.$store.state.data.totalUser ;
-    
-        for(let i=0; i < this.userArr.length; i++){
-          switch(this.userArr[i].types){
-            case 'aris':
-              this.types.aris = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
-            case 'skep':
-              this.types.skep = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
-            case 'epic':
-              this.types.epic = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
-            case 'cyr':
-              this.types.cyr = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
-            case 'stoic':
-              this.types.stoic = (this.userArr[i].result / this.totalUser * 100).toFixed(0); break;
+        this.totalUser = this.$store.state.data.totalUser;
+
+        for (let i = 0; i < this.userArr.length; i++) {
+          switch (this.userArr[i].types) {
+            case "aris":
+              this.types.aris = (
+                (this.userArr[i].result / this.totalUser) *
+                100
+              ).toFixed(0);
+              break;
+            case "skep":
+              this.types.skep = (
+                (this.userArr[i].result / this.totalUser) *
+                100
+              ).toFixed(0);
+              break;
+            case "epic":
+              this.types.epic = (
+                (this.userArr[i].result / this.totalUser) *
+                100
+              ).toFixed(0);
+              break;
+            case "cyr":
+              this.types.cyr = (
+                (this.userArr[i].result / this.totalUser) *
+                100
+              ).toFixed(0);
+              break;
+            case "stoic":
+              this.types.stoic = (
+                (this.userArr[i].result / this.totalUser) *
+                100
+              ).toFixed(0);
+              break;
           }
         }
       }, 1000);
-    }
+    },
   },
 };
 </script>
@@ -319,15 +320,13 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
 }
-
-#carousel-1 {
-}
-.carousel-slide {
+.carousel{
+  width: 100%;
   height: 100vh;
 }
 .slide-img {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 .floating {
   margin-top: 15vh;
@@ -427,7 +426,7 @@ export default {
   word-break: keep-all;
   font-size: 23px;
   text-align: justify;
-  font-family:'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .graphInfo {
@@ -436,7 +435,7 @@ export default {
   position: relative;
 }
 
-.notice{
+.notice {
   position: absolute;
   top: 10%;
   left: 50%;
@@ -450,7 +449,7 @@ export default {
   border: 1px solid black;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
   z-index: 10;
-  font-family:'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .graph {
@@ -489,7 +488,7 @@ export default {
   bottom: 0;
   background: skyblue;
   min-height: 7%;
-  height: 5%;  
+  height: 5%;
   border-radius: 13px 13px 0px 0px;
   font-weight: bold;
   font-family: "Do Hyeon", sans-serif;
@@ -505,7 +504,7 @@ export default {
   background-color: rgb(255, 120, 38);
 }
 .epic {
-  left: 45%;  
+  left: 45%;
   /* transform: translate(-50%);딱 정중앙에 맞추기 위해 */
   background-color: rgb(255, 195, 44);
 }
@@ -587,27 +586,26 @@ export default {
     text-align: justify;
     width: 80%;
   }
-  .notice{
-  font-size: 12px;
-  transform: translate(-50%);
-  width: 120px;
-  height: 60px;
-  border: 1px solid black;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-  z-index: 10;
-  font-family:'Do Hyeon', sans-serif;
-}
-.user{
-  font-size: 10px;
-}
-.graphInfo {
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-  padding-top: 2px;
-  position: relative;
-}
-.price_button{
-  font-size: 15px;
-}
-
+  .notice {
+    font-size: 12px;
+    transform: translate(-50%);
+    width: 120px;
+    height: 60px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    font-family: "Do Hyeon", sans-serif;
+  }
+  .user {
+    font-size: 10px;
+  }
+  .graphInfo {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    padding-top: 2px;
+    position: relative;
+  }
+  .price_button {
+    font-size: 15px;
+  }
 }
 </style>

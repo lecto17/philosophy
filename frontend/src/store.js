@@ -133,20 +133,22 @@ export const store = new Vuex.Store({
   },  
   actions: {
     getUserData(context){            
-      axios.get('http://localhost:8000/result/', {
+      //axios.get('http://localhost:8000/result/', {
+      axios.get('http://52.78.6.87:8000/result/', {
         params: {
           id : -1
         }
       }).then((res) => {
+          console.log('getUserData')
           context.commit('getUserData', res.data)
       }).catch((res) => {
-          console.log(res);
+          console.log('getUserdata 못함 ', res);
       });
     },
     
    storeResult(context, id) {
     this.state.data.id = id;    
-    axios.get('http://localhost:8000/result/', {
+    axios.get('http://52.78.6.87/result/', {
         params: {
           id : id
         }
