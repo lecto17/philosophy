@@ -16,12 +16,7 @@
     "cors": "^2.8.5",
     "hchs-vue-charts": "^1.2.8",
     "jquery": "^3.5.1",
-<<<<<<< HEAD
-    "vue": "^2.6.11",
-    "vue-carousel": "^0.18.0",
-=======
     "vue": "^2.6.12",
->>>>>>> fdb1fd58fb4e32ee11c1abb797be8f4228ce7329
     "vue-chartjs": "^3.5.0",
     "vue-router": "^3.3.4",
     "vue-social-sharing": "^3.0.0-beta.11",

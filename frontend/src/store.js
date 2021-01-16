@@ -87,15 +87,9 @@ export const store = new Vuex.Store({
 
   },
   actions: {
-<<<<<<< HEAD
-    getUserData(context){            
-      //axios.get('http://localhost:8000/result/', {
-      axios.get('http://52.78.6.87:8000/result/', {
-=======
     getUserData(context){
       console.log('getStart')
       axios.get('http://localhost:8000/result/', {
->>>>>>> fdb1fd58fb4e32ee11c1abb797be8f4228ce7329
         params: {
           id : -1
         }
@@ -103,23 +97,14 @@ export const store = new Vuex.Store({
           console.log('getUserData')
           context.commit('getUserData', res.data)
       }).catch((res) => {
-<<<<<<< HEAD
-          console.log('getUserdata 못함 ', res);
-=======
         console.log('getUserData err: ',res);
->>>>>>> fdb1fd58fb4e32ee11c1abb797be8f4228ce7329
       });
       console.log('getEnd')
     },
 
    storeResult(context, id) {
-<<<<<<< HEAD
-    this.state.data.id = id;    
-    axios.get('http://52.78.6.87/result/', {
-=======
     this.state.data.id = id;
     axios.get('http://localhost:8000/result/', {
->>>>>>> fdb1fd58fb4e32ee11c1abb797be8f4228ce7329
         params: {
           id : id
         }
