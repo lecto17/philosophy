@@ -6,7 +6,7 @@
     <div class="input-info">
       <div>
         <div id="google-signin-btn"></div>
-      </div>
+      </div>    
     </div>
   </div>
 </template>

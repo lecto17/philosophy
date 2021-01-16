@@ -524,6 +524,12 @@ export default {
 }
 
 @media all and (max-width: 650px) {
+  .section1 {
+  height: 50%;
+}
+.section2 {
+  height: 50%;
+}
   .floating {
     margin-top: 12vh;
   }
