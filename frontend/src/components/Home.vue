@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <Carousel class="carousel" autoplay="true" autoplayTimeout="4500" loop="true" adjustableHeight="false" perPage="1" paginationPosition="bottom-overlay" paginationActiveColor="white" paginationColor="#777">
+        <!-- <Carousel class="carousel" autoplay="true" autoplayTimeout="4500" loop="true" adjustableHeight="false" perPage="1" paginationPosition="bottom-overlay" paginationActiveColor="white" paginationColor="#777">
           <Slide>
             <template>
             <img
@@ -61,8 +61,16 @@
               alt="image slot"
             />
           </Slide>
-        </Carousel>
-        
+        </Carousel> -->
+        <div class="slide-container">
+          <div class="slide-box">
+            <img class="slide-img" src="..\assets\slide1.jpg" alt="image slot"/>
+            <img class="slide-img" src="..\assets\slide2.jpg" alt="image slot"/>
+            <img class="slide-img" src="..\assets\slide3.jpg" alt="image slot"/>
+            <img class="slide-img" src="..\assets\slide4.jpg" alt="image slot"/>
+            <img class="slide-img" src="..\assets\slide5.jpg" alt="image slot"/>
+          </div>
+        </div>
 
         <!-- <p class="mt-4">
           Slide #: {{ slide }}<br>
@@ -163,23 +171,17 @@
 </template>
 
 <script>
-import $ from "jquery";
-import { Carousel, Slide } from "vue-carousel";
+// import $ from "jquery";
+// import { Carousel, Slide } from "vue-carousel";
 import { mapMutations } from "vuex";
 export default {
   components: {
-    Carousel,
-    Slide,
+    // Carousel,
+    // Slide,
   },
   data() {
     return {
-      types: {
-        aris: 0,
-        stoic: 0,
-        epic: 0,
-        skep: 0,
-        cyr: 0,
-      },
+      types: { aris: 0, stoic: 0, epic: 0, skep: 0, cyr: 0},
       totalUser: 0,
       userArr: [],
       slide: 0,
@@ -200,29 +202,30 @@ export default {
     console.log("finsih");
   },
   mounted: function() {
-    var win_h = $(window).height();
+    // var win_h = $(window).height();
     // this.getUserData();
 
-    $(".section").each(function(index) {
-      $(this).attr("data-index", win_h * index);
-    });
+    // $(".section").each(function(index) {
+    //   $(this).attr("data-index", win_h * index);
+    // });
 
-    $(".section").on("mousewheel", function(e) {
-      var sectionPos = parseInt($(this).attr("data-index"));
-      if (e.originalEvent.wheelDelta >= 0) {
-        $("html,body")
-          .stop()
-          .animate({ scrollTop: sectionPos - win_h });
-        return false;
-      } else if (e.originalEvent.wheelDelta < 0) {
-        $("html,body")
-          .stop()
-          .animate({ scrollTop: sectionPos + win_h });
-        return false;
-      }
-    });
-    this.setData();
-    this.changeWidth();
+    // $(".section").on("mousewheel", function(e) {
+    //   var sectionPos = parseInt($(this).attr("data-index"));
+    //   if (e.originalEvent.wheelDelta >= 0) {
+    //     $("html,body")
+    //       .stop()
+    //       .animate({ scrollTop: sectionPos - win_h });
+    //     return false;
+    //   } else if (e.originalEvent.wheelDelta < 0) {
+    //     $("html,body")
+    //       .stop()
+    //       .animate({ scrollTop: sectionPos + win_h });
+    //     return false;
+    //   }
+    // });
+    // this.setData();
+    // this.changeWidth();
+    this.slideEffect();
   },
   methods: {
     ...mapMutations(["getUserData"]),
@@ -289,6 +292,15 @@ export default {
         }
       }, 1000);
     },
+    slideEffect: function() {
+      const slideBox = document.getElementsByClassName('slide-box');
+      const slideLength = slideBox[0].childElementCount
+      let count = 1
+      setInterval(() => {
+        if(count===slideLength){count=0} 
+        slideBox[0].style.setProperty('left', `${count*(-100)}%`); console.log(count++) 
+      },3500);
+    }
   },
 };
 </script>
@@ -308,6 +320,7 @@ export default {
   position: relative;
   width: 100%;
   /* width: 850px; */
+  /* height: 600px; */
 }
 .text-field1 {
   margin: 0;
@@ -320,14 +333,22 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
 }
-.carousel{
+.slide-container{overflow: hidden; width: 100%;}
+.slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s }
+.slide-img{width: 100%;}
+/* .carousel{
   width: 100%;
-  height: 100vh;
+  height: 600px;
+  min-height: 600px;
+  max-height: 600px;
+}
+.VueCarousel-slide{
+  height: 100%;
 }
 .slide-img {
   width: 100%;
-  height: 100vh;
-}
+  height: 100%
+} */
 .floating {
   margin-top: 15vh;
   position: absolute;
@@ -523,9 +544,11 @@ export default {
   background: #333;
 }
 
-@media all and (max-width: 650px) {
+@media all and (max-width: 550px) {
   .section1 {
-  height: 50%;
+  /* height: 400px;
+  max-height: 400px;
+  min-height: 400px; */
 }
 .section2 {
   height: 50%;
