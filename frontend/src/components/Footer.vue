@@ -11,7 +11,7 @@
               <ShareNetwork
                 class="sns"
                 network="facebook"
-                url="http://happiness-every-where.coi.kr"
+                url="https://happiness-every-where.site"
                 title="Find your happiness besides on you, with philosophy"
                 description="Recognize oneself by five types of philosophy, just within 5 muinutes"
                 quote='"마음의 병에 대해서는 철학이 치료약을 제공한다. 이점에서 철학은 마음의 치료제라고 할 수 있다. "- 에피쿠로스-'
@@ -33,7 +33,7 @@
               <ShareNetwork
                 class="sns"
                 network="Twitter"
-                url="http://happiness-every-where.coi.kr"
+                url="https://happiness-every-where.site"
                 title="Find your happiness besides on you, with philosophy"
                 description="Recognize oneself by five types of philosophy, just within 5 muinutes"
                 quote="마음의 병에 대해서는 철학이 치료약을 제공한다. 이점에서 철학은 마음의 치료제라고 할 수 있다. - 에피쿠로스"
@@ -75,6 +75,14 @@
               />
               <div>Share on Kakao</div>
             </div>
+            <div class="snsSection kakaobox" @click="instaShare">
+              <img
+                class="sns-image"
+                src="../assets/instagram.jpg"
+                width="41"
+              />
+              <div>Share on Insta</div>
+            </div>
           </div>
           <div class="contact">
             {{ contact }}<br />
@@ -92,12 +100,30 @@ export default {
     return {
       contact: "Contact here : hjyun0913@gmail.com",
       notice: "ⓒ 2020 All rights resvered by Grace Community Church",
-      title: "행복 성향 테스트",
-      description: "“철학자가 제시하는 나에게 맞는 행복은?”",
-      url: "http://happiness-every-where.coi.kr/",
+      title: "신앙 유형 테스트",
+      //title: "행복 성향 테스트",
+      //description: "“철학자가 제시하는 나에게 맞는 행복은?”",
+      description: "“내 안에 있던 나의 신앙 유형은?”",
+      username: "mlmtorMan@gmail.com",
+      password: "crewcrew1!",
+      url: "https://happiness-every-where.site",
     };
   },
   methods: {
+    instaShare(){
+      const Instagram = require('instagram-web-api')
+      
+      
+      const client = new Instagram( 'mlmtorMan@gmail.com', 'crewcrew1!' )
+      
+      client
+        .login()
+        .then(() => {
+          client
+            .getProfile()
+            .then(console.log)
+        })
+    },
     kakaoShare() {
       window.Kakao.init("ff2cbd3658087abbabb535b7e2f33344");
       window.Kakao.Link.sendDefault({

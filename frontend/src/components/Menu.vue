@@ -4,8 +4,8 @@
     <template>
       <b-navbar class="navbar1" toggleable type="light" >
       <!-- <b-navbar class="navbar1" toggleable type="light" variant="light"> -->
-        <b-navbar-brand href="/"><img class="nav-img" src="../assets/logo.png" /></b-navbar-brand>
-        <b-nav-item href="/login">Login</b-nav-item>
+        <b-navbar-brand href="/"><img class="nav-img" src="../assets/soo.png" />Say Love</b-navbar-brand>
+      <!--  <b-nav-item href="/login">Login</b-nav-item> -->
         <b-navbar-toggle target="navbar-toggle-collapse">
           <template v-slot:default="{ expanded }">
             <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
