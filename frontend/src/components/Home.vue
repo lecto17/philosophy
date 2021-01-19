@@ -92,15 +92,11 @@
 </template>
 
 <script>
-// import $ from "jquery";
-// import { Carousel, Slide } from "vue-carousel";
 import { mapMutations } from "vuex";
 import Graph from './graph.vue';
 export default {
   components: {
-    Graph,
-    // Carousel,
-    // Slide,
+    Graph,    
   },
   data() {
     return {
@@ -122,30 +118,7 @@ export default {
     this.$store.dispatch("getUserData");
     console.log("finsih");
   },
-  mounted: function() {
-    // var win_h = $(window).height();
-    // this.getUserData();
-
-    // $(".section").each(function(index) {
-    //   $(this).attr("data-index", win_h * index);
-    // });
-
-    // $(".section").on("mousewheel", function(e) {
-    //   var sectionPos = parseInt($(this).attr("data-index"));
-    //   if (e.originalEvent.wheelDelta >= 0) {
-    //     $("html,body")
-    //       .stop()
-    //       .animate({ scrollTop: sectionPos - win_h });
-    //     return false;
-    //   } else if (e.originalEvent.wheelDelta < 0) {
-    //     $("html,body")
-    //       .stop()
-    //       .animate({ scrollTop: sectionPos + win_h });
-    //     return false;
-    //   }
-    // });
-    // this.setData();
-    // this.changeWidth();
+  mounted: function() {    
     this.slideEffect();
   },
   methods: {
@@ -162,8 +135,9 @@ export default {
       const slideLength = slideBox[0].childElementCount
       let count = 1
       setInterval(() => {
-        if(count===slideLength){count=0} 
+        if(count===slideLength){count=0}              
         slideBox[0].style.setProperty('left', `${count*(-100)}%`);
+        count += 1;
       },3500);
     }
   },
@@ -198,7 +172,7 @@ export default {
 }
 .slide-container{overflow: hidden; width: 100%;}
 .slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s }
-.slide-img{width: 100%;}
+.slide-img{width: 100%; height: 95vh;}
 .floating {
   margin-top: 15vh;
   position: absolute;
