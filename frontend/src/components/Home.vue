@@ -28,7 +28,7 @@
             <template>
             <img
               class="slide-img"
-              src="..\assets\slide1.jpg"
+              src="../assets/slide1.jpg"
               alt="image slot"
             />
             </template>
@@ -36,39 +36,39 @@
           <Slide>
             <img
               class="slide-img"
-              src="..\assets\slide2.jpg"
+              src="../assets/slide2.jpg"
               alt="image slot"
             />
           </Slide>
           <Slide>
             <img
               class="slide-img"
-              src="..\assets\slide3.jpg"
+              src="../assets/slide3.jpg"
               alt="image slot"
             />
           </Slide>
           <Slide>
             <img
               class="slide-img"
-              src="..\assets\slide4.jpg"
+              src="../assets/slide4.jpg"
               alt="image slot"
             />
           </Slide>
           <Slide>
             <img
               class="slide-img"
-              src="..\assets\slide5.jpg"
+              src="../assets/slide5.jpg"
               alt="image slot"
             />
           </Slide>
         </Carousel> -->
         <div class="slide-container">
           <div class="slide-box">
-            <img class="slide-img" src="..\assets\slide1.jpg" alt="image slot"/>
-            <img class="slide-img" src="..\assets\slide2.jpg" alt="image slot"/>
-            <img class="slide-img" src="..\assets\slide3.jpg" alt="image slot"/>
-            <img class="slide-img" src="..\assets\slide4.jpg" alt="image slot"/>
-            <img class="slide-img" src="..\assets\slide5.jpg" alt="image slot"/>
+            <img class="slide-img" src="../assets/slide1.jpg" alt="image slot"/>
+            <img class="slide-img" src="../assets/slide2.jpg" alt="image slot"/>
+            <img class="slide-img" src="../assets/slide3.jpg" alt="image slot"/>
+            <img class="slide-img" src="../assets/slide4.jpg" alt="image slot"/>
+            <img class="slide-img" src="../assets/slide5.jpg" alt="image slot"/>
           </div>
         </div>
 
