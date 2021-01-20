@@ -5,16 +5,15 @@
         <div class="text-field1">
           <div class="floating">
             <div class="title">
-              행복 성향 테스트!
-              <div>“철학자가 제시하는 나에게 맞는 행복은?”<br /></div>
+              신앙 유향 테스트!
+              <div>“내 안에 있던 나의 신앙 유형은?”<br /></div>
             </div>
             <div class="subtitle">
-              “행복이란 무엇인가?” <br />
-              누구나 행복하려고 살아가지만,<br />
-              정작 행복이 무엇인지 모를 때가 많습니다. <br />
+              “나는 하나님 앞에 어떠한 사람일까요?” <br /><br />
+              누구나 하나님 앞에 바른 모습으로 나아가려 하지만,<br />
+              정작 어떠한 모습으로 나아가고 있는지 모를 때가 많습니다. <br /><br />
               몇 가지 간단한 테스트를 통해 <br />
-              나도 몰랐던 나에게 맞는 행복을 찾아보아요!<br />
-              Philosophical Happiness Type Test
+              내 안에 있던 신앙유형을 확인해보세요!<br />              
             </div>
             <div class="price">
               <router-link class="price_button" to="/test" tag="button">
@@ -92,7 +91,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+//import { mapMutations } from "vuex";
 import Graph from './graph.vue';
 export default {
   components: {
@@ -104,7 +103,7 @@ export default {
       slide: 0,
       sliding: null,
       textInfo:
-        "다섯 유형의 철학자들은 제 각각 다른 행복을 알려줍니다. <br><br>이 사람들은 외부의 환경으로부터 자기 마음을 지키기 위해 행복을 탐구한 사람들입니다. <br><br>오늘날 세계화 시대를 살아가는 우리는 팬데믹, 경제대공황 같이 우리가 감당하기 힘든 외부의 영향력 속에서 살아갑니다. <br><br>이에 따라 불안, 우울, 외로움, 두려움과 같은 정신적 어려움을 현대인들은 호소합니다.<br><br>그러나 이런 환경 속에서도 우리는 우리의 <span style='color:red; font-weight: bold'>마음</span>을 지킬 수 있습니다. <br><br>이들의 통찰력을 바탕으로 어떤 상황 속에서도 우리의 마음을 지켜 나가봅시다.",
+        "다섯 유형의 신앙 선배들은 각각 다른 모습으로 하나님 앞에 나아갑니다. <br><br>이 분들은 외부의 위협들 속에서도 자신의 신앙을 지키기 위해 자신의 정체성, 사명을 기억하며 살아갔습니다. <br><br>오늘날 세계화 시대를 살아가는 우리 또한 팬데믹, 경제대공황 같이 우리가 감당하기 힘든 외부의 영향 속에서 살아갑니다. <br><br>그러나 이러한 환경 속에서도 우리는 우리의 마음을 지킬 수 있습니다.<br><br>내 안에 어떤 신앙 유형의 모습이 잠재되어 있는지 테스트를 통해 살펴보세요!",
       scrollEvent: false,
       count: 0,
     };
@@ -114,15 +113,13 @@ export default {
     msg: String,
   },
   created: function() {
-    console.log("crete");
-    this.$store.dispatch("getUserData");
-    console.log("finsih");
+    //this.$store.dispatch("getUserData");
   },
   mounted: function() {    
     this.slideEffect();
   },
   methods: {
-    ...mapMutations(["getUserData"]),
+    //...mapMutations(["getUserData"]),
     onSlideStart() {
       this.sliding = true;
     },

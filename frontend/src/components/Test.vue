@@ -11,9 +11,9 @@
         </div>
       </div>
       <div class="bar_box">
-        <b-progress class="bar" max="20">
+        <b-progress class="bar" max="15">
           <b-progress-bar :value="checkedBtnCount" show-progress animated>
-            <strong>{{ checkedBtnCount * 5 }}%</strong>
+            <strong>{{ checkedBtnCount * 6.5 + 2.5}}%</strong>
           </b-progress-bar>
         </b-progress>
       </div>
@@ -120,7 +120,7 @@
         <b-button
           variant="secondary"
           class="btn next_btn"
-          v-if="paging < 16"
+          v-if="paging < 11"
           @click="clickNextBtn"
           >다음</b-button
         >
@@ -164,26 +164,21 @@ export default {
       },
       paging: 1,
       questions: [
-        "적절한 감각과 감정이 나의 행동을 이끈다", //aris
-        "나를 행동하도록 동기를 부여하는 것은 통찰력과 소질 내지는 개성이다", //stoic
-        "만족스러운 인생은 속세로부터 떠나 마음이 맞는 몇몇 친구들과 작은 그룹을 이뤄야 가능하다", //epic
-        "삶의 심오한 질문에 대한 성찰은 모든 의견에 있는 모순을 이해하는데 필요하고, 그에 따라 평온을 가져다 준다", //skep
-        "불행의 원인은 육체적 한계에 있다", //cyr
-        "공동체에 소속되어야 행복할 수 있다", //aris
-        "만족스러운 인생은 무엇보다 주어진 상황 속에서 현명하게 행동할 자유가 있는 것이고, 외부의 환경으로부터 독립하는 것이다", //stoic
-        "조화롭고 즐거운 환경 속에 동화되는 삶이 만족스러운 인생이다", //epic
-        "비판적 사고와 논증은 중요하다. 왜냐하면 비판적 사고와 논증은 어떤 의견이든지 항상 양면성이 있다는 것을 보여주기 때문이다", //skep
-        "행복은 초월적 존재와의 신비적인 합일이다.", //cyr
-        "인생의 근원적인 질문에 대해 진지하고 철저하게 생각하는 것은 그 자체로 중요한 목적이고 진취적인 관점을 창조한다", //aris
-        "비판적 사고와 논증은 중요하다. 왜냐하면 나는 건전한 이성에 기반하여 행동해야만 하기 때문이다", //stoic
-        "행복의 척도는 이성적 사고보다는 감각을 만족시키는 쾌락이다", //epic
-        "근본적인 질문에서는 다양한 관점들을 고려하고 각각의 의견의 장단점을 이해하는 것이 좋다", //skep
-        "악은 하나의 실체가 아니라 선의 부재이다", //cyr
-        "내 인생의 가장 중요한 목적은 전체적으로 보았을 때, 기본적인 욕구가 충족된 뒤, 자아를 실현하는 것이다", //aris
-        "다른 사람들과의 관계, 우정, 공정함은 인생의 근본적인 가치이고 좋은 삶의 본질적인 요소이다", //stoic
-        "행복은 그 자체로 흥분이 없는 고요한 상태로서 나타난다", //epic
-        "자신의 상태에 대한 지속적이고 엄격한 사고는 사물에 관한 균형이 잡힌 관점을 만들어 낸다", //skep
-        "축복된 삶은 속세로부터 해탈한 삶이다", //cyr
+        "하루에 규칙적으로 시간을 정해 기도한다.", //다니엘
+        "힘든 사람을 보면 위로해주고 싶은 마음이 잘 생기는 편이다.", //바나바
+        "찬양 인도자가 일어나서 찬양하라고 했을 때, 나의 반응은?", //다윗
+        "오랫동안 바래왔던 목표가 눈 앞에 있을 때, 하나님이 그만이라고 하시면 어떻게 행동할 것인가?", //모세
+        "월요일 큐티에서 결단 내린 것들이 금요일에도 기억나 그 결단을 지켜가려고 하는 편이다.", //베&바
+        "마음과 뜻을 같이해 어떤 어려움(ex, 풀무불)도 함께할 수 있는 동역자가 세명 이상 있다.", //다니엘
+        "많은 사람을 괴롭힌 사람이 용서를 구하면, 다른 사람들은 용서를 받아주지 않아도 나는 받아 줄 것이다.", //바나바
+        "간혹 함께하는 리더의 모습 속에서 연약함을 보더라도 순종하려 하는 편이다", //다윗
+        "하나님께 민족의 죄악된 행동에 대해 회개의 기도를 드리곤 한다", //모세
+        "올 한 해 하나님께 나아가는 결단을 작성하였으며 그것들을 기억하고 있다.", //베&바
+        "신앙 때문에 어려움을 겪은 적이 있지만 그 어려움에 굴복하지 않는 편이다.", //다니엘
+        "직장에서 회식문화로 어려워하는 친구가 있다면, 어떻게 행동할 것 같나요?", //바나바
+        "친구가 나의 잘못을 꼭 집어 이야기 해줬을 때 보통 잘 받아들이는 편이다.", //다윗
+        "만약 내가 한 집단의 리더라면, 다른 사람들의 장점을 잘 파악하고 사람들을 세워 함께 일할 것이다.", //모세
+        "자신이 생각했을 때 옳다고 생각되는 부분들은 다른 부분과 타협하지 않고 주장하는 편이다." //베&바        
       ],
     };
   },
@@ -215,8 +210,8 @@ export default {
     clickEndBtn() {
       var index;
       //var totalscore = this.philosophy.aris + this.philosophy.epic + this.philosophy.stoic + this.philosophy.cyr + this.philosophy.skep;
-      if (this.checkedBtnCount == 20) {
-        for (index = 0; index < 20; index++) {
+      if (this.checkedBtnCount == 15) {
+        for (index = 0; index < 15; index++) {
           switch (index % 5) {
             case 0:
               this.philosophy.aris += Number(this.values[index]);
@@ -282,16 +277,16 @@ export default {
 
         console.log("rankArr 구조: ", this.rankArr);
 
-        let i;
-        for (i = 0; i <= 5; i++) {
-          console.log(
-            i +
-              "번쨰, id: " +
-              this.rankArr[i].id +
-              ", value: " +
-              this.rankArr[i].value
-          );
-        }
+        //let i;
+        //for (i = 0; i <= 5; i++) {
+        //  console.log(
+        //    i +
+        //      "번쨰, id: " +
+        //      this.rankArr[i].id +
+        //      ", value: " +
+        //      this.rankArr[i].value
+        //  );
+        //}
 
         //console.log('마지막 id: '+this.rankArr[4].id+', value: '+ this.rankArr[4].value)
 
@@ -316,7 +311,7 @@ export default {
           // ]
         });
       } else {
-        alert("채워");
+        alert("선택하지 않은 항목이 있습니다.");
       }
     },
   },
