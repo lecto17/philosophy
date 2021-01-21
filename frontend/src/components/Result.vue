@@ -160,7 +160,7 @@ export default {
         {
           id: "다윗",
           sentence:
-            "\"다윗의 명언\".”<br/> -다윗-",
+            "\"다윗의 명언\"<br/> -다윗-",
           happiness:
             "에피쿠로스 학파에 속하는 당신은 행복의 척도로 이성이 아닌 <strong>감각</strong>을 중요시 여깁니다. 당신은 육체적 고통을 불행의 원인으로 여기어 적절하게 육체를 만족시켜야 정신적으로 행복하다고 생각합니다. <br/><br/>다만, 당신이 추구하는 쾌락은 흥분되고 극단적인 쾌락이 아닌, 고요한 마음의 <strong>평온</strong>입니다. <br/><br/> 이를 위해 속세로부터 떠나 여유있는 삶을 추구합니다. 이러한 당신은 바쁜 삶 속에서도 한가함을 즐길 줄 알며 차분한 성품을 유지합니다. <br/><br/> 기술의 발전으로 점점 빨라지는 현대 사회 속에서 요가나 명상을 통해 자신의 감정을 잘 돌보시길 바랍니다. 긍정 과잉과 자기계발서의 홍수로 지나치게 자신을 단련시켜 몸과 마음이 지쳐버린 현대인에게 필요한 사상입니다. 최근 ‘Sleeponomix’나 워라벨 열풍도 에피쿠로스의 영향력으로 볼 수 있습니다.",
           picture: "david.png",
@@ -311,7 +311,7 @@ export default {
   z-index: 1;
 }
 
-.type-img{ margin: 0 auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px; height: 30vh;}
+.type-img{ margin: 0 auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px;}
 .person-img{width: 100%; height: 100%;}
 
 .bottom {
@@ -346,9 +346,7 @@ export default {
 .philoCard{
   overflow: hidden;
 }
-.person {
-  width: 40%;
-}
+
 .userInfo {
   width: 20%;
   border: 1px solid #ddd;
@@ -411,7 +409,8 @@ export default {
     height: 70vh;
   }
 
-  .type-img{ margin: 30px auto; overflow: hidden; border: 1px solid #ddd; border-radius: 5px; padding: 10px; height: 30vh;}
+  .type-img{ margin: 30px auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px; height: 100%;}
+  .person-img{width: 100%; height: 100%;}
   .graphInfo {
     width: 100%;
     height: 50%;
@@ -425,18 +424,7 @@ export default {
   }
   .graph-more {
     font-size: 10px;
-  }
-  .textInfo {
-    position: relative;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-  }
-  .content {
-    padding: 0;
-  }
-  .content-html {
-  }
+  }  
   .bottom {
     position: relative;
     display: flex;
@@ -446,8 +434,15 @@ export default {
   }
   .bottom-box1 {
     width: 100%;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
+  }
+  .textInfo {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
   }
   .temp {
     width: 100%;
@@ -456,9 +451,7 @@ export default {
   .person {
     width: 100%;
   }
-  .person-img{
-    width: 300px;
-  }
+
   .userInfo {
     width: 100%;
     height: 150px;
