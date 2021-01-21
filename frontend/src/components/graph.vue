@@ -63,7 +63,6 @@ export default {
         epic[0].style.setProperty("height", this.types.epic + "%");
         skep[0].style.setProperty("height", this.types.skep + "%");
         cyr[0].style.setProperty("height", this.types.cyr + "%");
-        console.log(aris[0].style.height);
       }, 1000);
     },
     setData: function() {

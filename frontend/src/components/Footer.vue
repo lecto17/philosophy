@@ -23,7 +23,6 @@
                   alt="페이스북 아이콘"
                 />
 
-                Share on Facebook
               </ShareNetwork>
             </div>
             <br />
@@ -44,7 +43,6 @@
                   src="../assets/twitter.png"
                   alt="트위터 아이콘"
                 />
-                Share on Twitter
               </ShareNetwork>
             </div>
             <br />
@@ -64,7 +62,6 @@
                   src="../assets/line.png"
                   alt="라인 아이콘"
                 />
-                Share on Line
               </ShareNetwork>
             </div>
             <div class="snsSection kakaobox" @click="kakaoShare">
@@ -73,16 +70,14 @@
                 src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"
                 width="41"
               />
-              <div>Share on Kakao</div>
             </div>
             <div class="snsSection kakaobox" @click="instaShare">
               <img
                 class="sns-image"
-                src="../assets/instagram.jpg"
+                src="../assets/instagram.png"
                 width="41"
               />
-              <div>Share on Insta</div>
-            </div>
+            </div>                        
           </div>
           <div class="contact">
             {{ contact }}<br />
@@ -95,7 +90,12 @@
 </template>
 
 <script>
+
+
 export default {
+  components: {
+    
+  },
   data() {
     return {
       contact: "Contact here : hjyun0913@gmail.com",

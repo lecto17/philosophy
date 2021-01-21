@@ -137,9 +137,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import $ from 'jquery'
-import { mapMutations } from "vuex";
 export default {
   name: "Test",
   data() {
@@ -166,33 +164,29 @@ export default {
       questions: [
         "하루에 규칙적으로 시간을 정해 기도한다.", //다니엘
         "힘든 사람을 보면 위로해주고 싶은 마음이 잘 생기는 편이다.", //바나바
-        "찬양 인도자가 일어나서 찬양하라고 했을 때, 나의 반응은?", //다윗
-        "오랫동안 바래왔던 목표가 눈 앞에 있을 때, 하나님이 그만이라고 하시면 어떻게 행동할 것인가?", //모세
+        "찬양 인도자가 일어나서 찬양하라고 했을 때, 다른 사람이 일어났는지 눈치 보지 않고 바로 일어나는 편이다.", //다윗
+        "오랫동안 바래왔던 목표가 눈 앞에 있는데, 하나님이 그만하라고 하시면 멈춰설 수 있다.", //모세
         "월요일 큐티에서 결단 내린 것들이 금요일에도 기억나 그 결단을 지켜가려고 하는 편이다.", //베&바
         "마음과 뜻을 같이해 어떤 어려움(ex, 풀무불)도 함께할 수 있는 동역자가 세명 이상 있다.", //다니엘
         "많은 사람을 괴롭힌 사람이 용서를 구하면, 다른 사람들은 용서를 받아주지 않아도 나는 받아 줄 것이다.", //바나바
-        "간혹 함께하는 리더의 모습 속에서 연약함을 보더라도 순종하려 하는 편이다", //다윗
+        "간혹 함께하는 리더의 모습 속에서 연약함을 보더라도 순종하려고 하는 편이다", //다윗
         "하나님께 민족의 죄악된 행동에 대해 회개의 기도를 드리곤 한다", //모세
         "올 한 해 하나님께 나아가는 결단을 작성하였으며 그것들을 기억하고 있다.", //베&바
         "신앙 때문에 어려움을 겪은 적이 있지만 그 어려움에 굴복하지 않는 편이다.", //다니엘
-        "직장에서 회식문화로 어려워하는 친구가 있다면, 어떻게 행동할 것 같나요?", //바나바
+        "직장에서 회식문화로 어려워하는 친구가 있다면 주로, <개행하고픔/>들어주며 공감해줄 것인지(그렇다), 혹은 조언과 권면을 할 것인지(아니다)", //바나바
         "친구가 나의 잘못을 꼭 집어 이야기 해줬을 때 보통 잘 받아들이는 편이다.", //다윗
         "만약 내가 한 집단의 리더라면, 다른 사람들의 장점을 잘 파악하고 사람들을 세워 함께 일할 것이다.", //모세
         "자신이 생각했을 때 옳다고 생각되는 부분들은 다른 부분과 타협하지 않고 주장하는 편이다." //베&바        
       ],
     };
   },
-  created: function() {
-    // this.$store.dispatch('storeResult', );    
-  },
   methods: {
-    ...mapMutations(["storeResult"]),
     getMaxNum(philo) {
-      this.cmpNum("aris", philo.aris);
-      this.cmpNum("stoic", philo.stoic);
-      this.cmpNum("skep", philo.skep);
-      this.cmpNum("epic", philo.epic);
-      this.cmpNum("cyr", philo.cyr);
+      this.cmpNum("다니엘", philo.aris);
+      this.cmpNum("바나바", philo.stoic);
+      this.cmpNum("모세", philo.skep);
+      this.cmpNum("다윗", philo.epic);
+      this.cmpNum("베드로바울", philo.cyr);
     },
     cmpNum(id, num) {
       if (this.obj.value <= num) {
@@ -209,7 +203,6 @@ export default {
     },
     clickEndBtn() {
       var index;
-      //var totalscore = this.philosophy.aris + this.philosophy.epic + this.philosophy.stoic + this.philosophy.cyr + this.philosophy.skep;
       if (this.checkedBtnCount == 15) {
         for (index = 0; index < 15; index++) {
           switch (index % 5) {
@@ -232,43 +225,28 @@ export default {
           this.totalscore += Number(this.values[index]);
         }
         this.getMaxNum(this.philosophy);
-        this.$store.dispatch("storeResult", this.obj.id);
+        
         this.rankArr.push({ id: "", value: 999 });
         this.rankArr.push({
-          id: "아리스토텔레스",
+          id: "다니엘",
           value: ((100 / this.totalscore) * this.philosophy.aris).toFixed(1),
         });
         this.rankArr.push({
-          id: "회의주의",
+          id: "모세",
           value: ((100 / this.totalscore) * this.philosophy.skep).toFixed(1),
         });
         this.rankArr.push({
-          id: "견유학파",
+          id: "베드로바울",
           value: ((100 / this.totalscore) * this.philosophy.cyr).toFixed(1),
         });
         this.rankArr.push({
-          id: "에피쿠로스",
+          id: "다윗",
           value: ((100 / this.totalscore) * this.philosophy.epic).toFixed(1),
         });
         this.rankArr.push({
-          id: "스토아학파",
+          id: "바나바",
           value: ((100 / this.totalscore) * this.philosophy.stoic).toFixed(1),
         });
-
-        // this.rankArr[0].id = 'aris'
-        // this.rankArr[0].value = (100 / this.totalscore * this.philosophy.aris).toFixed(1)
-
-        // this.rankArr[1].id = 'skep'
-        // this.rankArr[1].value = (100 / this.totalscore * this.philosophy.skep).toFixed(1)
-
-        // this.rankArr[2].id = 'cyr'
-        // this.rankArr[2].value = (100 / this.totalscore * this.philosophy.cyr).toFixed(1)
-
-        // this.rankArr[3].id = 'epic'
-        // this.rankArr[3].value = (100 / this.totalscore * this.philosophy.epic).toFixed(1)
-
-        // this.rankArr[4].id = 'stoic'
-        // this.rankArr[4].value = (100 / this.totalscore * this.philosophy.stoic).toFixed(1)
 
         //고득점 순으로 저장
         this.rankArr.sort(function(a, b) {
@@ -277,38 +255,9 @@ export default {
 
         console.log("rankArr 구조: ", this.rankArr);
 
-        //let i;
-        //for (i = 0; i <= 5; i++) {
-        //  console.log(
-        //    i +
-        //      "번쨰, id: " +
-        //      this.rankArr[i].id +
-        //      ", value: " +
-        //      this.rankArr[i].value
-        //  );
-        //}
-
-        //console.log('마지막 id: '+this.rankArr[4].id+', value: '+ this.rankArr[4].value)
-
         this.$router.push({
           name: "Result",
-          // params : {
-          //   id : this.obj.id,
-          //   aris : (100 / this.totalscore * this.philosophy.aris).toFixed(1),
-          //   skep : (100 / this.totalscore * this.philosophy.skep).toFixed(1),
-          //   cyr : (100 / this.totalscore * this.philosophy.cyr).toFixed(1),
-          //   epic : (100 / this.totalscore * this.philosophy.epic).toFixed(1),
-          //   stoic : (100 / this.totalscore * this.philosophy.stoic).toFixed(1)
-          // }
           params: this.rankArr,
-
-          // params : [
-          //   {id: aris, value: (100 / this.totalscore * this.philosophy.aris).toFixed(1) },
-          //   {id: skep, value: (100 / this.totalscore * this.philosophy.skep).toFixed(1) },
-          //   {id: cyr, value: (100 / this.totalscore * this.philosophy.cyr).toFixed(1) },
-          //   {id: epic, value: (100 / this.totalscore * this.philosophy.epic).toFixed(1) },
-          //   {id: stoic, value: (100 / this.totalscore * this.philosophy.stoic).toFixed(1) },
-          // ]
         });
       } else {
         alert("선택하지 않은 항목이 있습니다.");
@@ -317,11 +266,6 @@ export default {
   },
   computed: {
     checkedBtnCount() {
-      // const progress = document.querySelector('.bar_container');
-      // setTimeout(()=>{
-      //   progress.style.opacity =1;
-      //   progress.style.width = progress.getAttribute('data-done') + '%';
-      // }, 500)
       return this.values.filter((nullCount) => nullCount != null).length;
     },
   },

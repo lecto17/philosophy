@@ -84,6 +84,17 @@
             <p v-html="textInfo"></p>
           </div>
           <Graph/>
+          <vue-instagram token="accessTokenHere" :count="5" :tags="['hashtag1', 'hashtag2']" mediaType="image">
+              <template slot="feeds" slot-scope="props">
+                <li class="fancy-list"> {{ props.feed.link }} </li>
+                <div>
+                  Below
+                </div>
+              </template>
+              <template slot="error" slot-scope="props">
+                <div class="fancy-alert"> {{ props.error.error_message }} </div>
+              </template>
+            </vue-instagram>
         </div>
       </div>
     </div>
@@ -93,9 +104,12 @@
 <script>
 //import { mapMutations } from "vuex";
 import Graph from './graph.vue';
+import VueInstagram from 'vue-instagram';
+
 export default {
   components: {
     Graph,    
+    VueInstagram
   },
   data() {
     return {
@@ -112,14 +126,10 @@ export default {
   props: {
     msg: String,
   },
-  created: function() {
-    //this.$store.dispatch("getUserData");
-  },
   mounted: function() {    
     this.slideEffect();
   },
   methods: {
-    //...mapMutations(["getUserData"]),
     onSlideStart() {
       this.sliding = true;
     },
