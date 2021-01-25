@@ -17,8 +17,7 @@
           </b-progress-bar>
         </b-progress>
       </div>
-      <div class="test_title"></div>
-      <!-- <progress class="bar" :value="checkedBtnCount" max="20"></progress> -->
+      <div class="test_title"></div>      
       <div class="test_content_wrap">
         <ul class="content_list">
           <li
@@ -32,24 +31,7 @@
             <div class="question">
               <span>{{ QuestionNum }} </span>
             </div>
-            <div class="selection_wrap">
-              <!-- <b-form-group>
-
-                <b-form-radio-group
-                  class="radio_group"
-                  id="radio-slots"
-                  v-model="values[index + paging - 1]"
-                  :name="'selection' + index"
-                >
-                  그렇다
-                  <b-form-radio class="radio radio5" value="5"> </b-form-radio>
-                  <b-form-radio class="radio radio4" value="4"> </b-form-radio>
-                  <b-form-radio class="radio radio3" value="3"> </b-form-radio>
-                  <b-form-radio class="radio radio2" value="2"> </b-form-radio>
-                  <b-form-radio class="radio radio1" value="1"> </b-form-radio>
-                  아니다
-                </b-form-radio-group>
-              </b-form-group> -->
+            <div class="selection_wrap">             
               <div class="radio_group">
                 <span>그렇다</span>
                 <label class="labels">
@@ -173,7 +155,7 @@ export default {
         "하나님께 민족의 죄악된 행동에 대해 회개의 기도를 드리곤 한다", //모세
         "올 한 해 하나님께 나아가는 결단을 작성하였으며 그것들을 기억하고 있다.", //베&바
         "신앙 때문에 어려움을 겪은 적이 있지만 그 어려움에 굴복하지 않는 편이다.", //다니엘
-        "직장에서 회식문화로 어려워하는 친구가 있다면 주로, <개행하고픔/>들어주며 공감해줄 것인지(그렇다), 혹은 조언과 권면을 할 것인지(아니다)", //바나바
+        "직장에서 회식문화로 어려워하는 친구가 있다면 주로, 들어주며 공감해줄 것인지(그렇다), 혹은 조언과 권면을 할 것인지(아니다)", //바나바
         "친구가 나의 잘못을 꼭 집어 이야기 해줬을 때 보통 잘 받아들이는 편이다.", //다윗
         "만약 내가 한 집단의 리더라면, 다른 사람들의 장점을 잘 파악하고 사람들을 세워 함께 일할 것이다.", //모세
         "자신이 생각했을 때 옳다고 생각되는 부분들은 다른 부분과 타협하지 않고 주장하는 편이다." //베&바        

@@ -66,10 +66,10 @@
           />
         </div>
       </div>
-      <div class="bottom inwrapper">
+      <div class="bottom inwrapper">        
         <div class="bottom-box1">          
           <img class="middle-logo"
-           :src="require('../assets/' + philoArr[index].picture)"
+           :src="require('../assets/middle0.jpg')"
           />
         </div>
         <div class="textInfo">
@@ -243,7 +243,6 @@ export default {
 .top {
   display: flex;
   flex-direction: row;
-  height: 50vh;
 }
 .graphInfo {
   width: 50%;
@@ -311,7 +310,7 @@ export default {
   z-index: 1;
 }
 
-.type-img{ margin: 0 auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px;}
+.type-img{ margin: 0 auto; margin-block: auto; margin-left: 25px; border: 1px solid #ddd; border-radius: 5px;}
 .person-img{width: 100%; height: 100%;}
 
 .bottom {
@@ -319,16 +318,22 @@ export default {
   flex-direction: row;
   width: 100%;
 }
-.bottom-box1 { width: 35%; padding: 10px; display: flex; justify-content: center;}
+.bottom-box1 { width: 35%; margin-right: 20px;}
 .bottom-box1 > .middle-logo { width: 100%;}
 
 .textInfo {
   position: relative;
-  width: 60%;
-  height: 40vh;
-  display: flex;
-  justify-content: center;
+  width: 50%;    
+  margin-left: 20px;
 }
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50% -50%);
+  padding-top: 5%;
+}
+
 .content-html {
   padding-left: 25px;
   border-left: 2px solid rgb(0, 159, 37);
@@ -385,31 +390,19 @@ export default {
   height: 10%;
 }
 
-@media (max-width: 650px) {
+/*패드 환경 테스트 해볼 것*/
+@media (max-width: 850px) {
   .wrapper {
     margin-top: 12vh;
     width: 95%;
   }
-  .more-info {
-    font-size: 15px;
-  }
-  .inwrapper {
-    margin: 5px 0;
-    padding: 15px 0;
-  }
-  .phrase {
-    margin: 15px;
-    border-bottom: 1px solid black;
-  }
-  .phrase-title {
-    font-size: 20px;
-  }
   .top {
     flex-direction: column;
-    height: 70vh;
+    height: 100%;
   }
+  .inwrapper{margin: 30px 0px;  }
 
-  .type-img{ margin: 30px auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px; height: 100%;}
+  .type-img{ margin: 0 auto; margin-top: 30px; border: 1px solid #ddd; border-radius: 5px; padding: 10px; height: 100%;}
   .person-img{width: 100%; height: 100%;}
   .graphInfo {
     width: 100%;
@@ -430,19 +423,15 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 70vh;
+    margin-top: 15px;
   }
-  .bottom-box1 {
-    width: 100%;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
+  .bottom-box1 {    
+    margin: 0 auto;
+    margin-bottom: 40px;    
   }
   .textInfo {
     width: 100%;
-    height: 40vh;
-    display: flex;
-    justify-content: center;
   }
   .temp {
     width: 100%;
