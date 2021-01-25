@@ -69,7 +69,7 @@
       <div class="bottom inwrapper">        
         <div class="bottom-box1">          
           <img class="middle-logo"
-           :src="require('../assets/middle0.jpg')"
+           :src="require('../assets/middle.jpg')"
           />
         </div>
         <div class="textInfo">
