@@ -423,7 +423,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 70vh;
+    height: 120vh;
     margin-top: 15px;
   }
   .bottom-box1 {    
