@@ -243,6 +243,7 @@ export default {
 .top {
   display: flex;
   flex-direction: row;
+  margin: 5%;
 }
 .graphInfo {
   width: 50%;
@@ -319,7 +320,7 @@ export default {
   width: 100%;
 }
 .bottom-box1 { width: 35%; margin-right: 20px;}
-.bottom-box1 > .middle-logo { width: 100%;}
+.bottom-box1 > .middle-logo { width: 350px;}
 
 .textInfo {
   position: relative;
@@ -350,12 +351,6 @@ export default {
 }
 .philoCard{
   overflow: hidden;
-}
-
-.userInfo {
-  width: 20%;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 .graph {
   position: relative;
@@ -391,7 +386,7 @@ export default {
 }
 
 /*패드 환경 테스트 해볼 것*/
-@media (max-width: 850px) {
+@media (max-width: 900px) {
   .wrapper {
     margin-top: 12vh;
     width: 95%;
@@ -402,7 +397,7 @@ export default {
   }
   .inwrapper{margin: 30px 0px;  }
 
-  .type-img{ margin: 0 auto; margin-top: 30px; border: 1px solid #ddd; border-radius: 5px; padding: 10px; height: 100%;}
+  .type-img{ margin: 0 auto; margin-top: 30px; border: 1px solid #ddd; border-radius: 5px; padding: 10px;}
   .person-img{width: 100%; height: 100%;}
   .graphInfo {
     width: 100%;
@@ -423,24 +418,16 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 120vh;
+    height: 150vh;
     margin-top: 15px;
   }
   .bottom-box1 {    
     margin: 0 auto;
     margin-bottom: 40px;    
   }
-  .textInfo {
-    width: 100%;
-  }
-  .temp {
-    width: 100%;
-    border: none;
-  }
-  .person {
-    width: 100%;
-  }
-
+  .bottom-box1 > .middle-logo { width: 150px;}
+  .textInfo { width: 100%; margin: 0 auto;}
+  
   .userInfo {
     width: 100%;
     height: 150px;

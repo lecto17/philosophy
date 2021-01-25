@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="section section1">
       <div class="main">
         <div class="text-field1">
           <div class="floating">
             <div class="title">
-              신앙 유향 테스트!
+              신앙 유형 테스트!
               <div>“내 안에 있던 나의 신앙 유형은?”<br /></div>
             </div>
             <div class="subtitle">
@@ -83,7 +83,6 @@
           <div class="textInfo">
             <p v-html="textInfo"></p>
           </div>
-          <Graph/>
           <vue-instagram token="accessTokenHere" :count="5" :tags="['hashtag1', 'hashtag2']" mediaType="image">
               <template slot="feeds" slot-scope="props">
                 <li class="fancy-list"> {{ props.feed.link }} </li>
@@ -103,17 +102,15 @@
 
 <script>
 //import { mapMutations } from "vuex";
-import Graph from './graph.vue';
 import VueInstagram from 'vue-instagram';
 
 export default {
-  components: {
-    Graph,    
+  components: {    
     VueInstagram
   },
   data() {
     return {
-      
+      width: 0,
       slide: 0,
       sliding: null,
       textInfo:
@@ -127,7 +124,8 @@ export default {
     msg: String,
   },
   mounted: function() {    
-    this.slideEffect();
+    //this.slideEffect();
+    window.addEventListener('resize', this.slideEffect);
   },
   methods: {
     onSlideStart() {
@@ -138,12 +136,13 @@ export default {
     },
     
     slideEffect: function() {
+      this.width = window.innerWidth;
       const slideBox = document.getElementsByClassName('slide-box');
       const slideLength = slideBox[0].childElementCount
       let count = 1
       setInterval(() => {
         if(count===slideLength){count=0}              
-        slideBox[0].style.setProperty('left', `${count*(-100)}%`);
+        slideBox[0].style.setProperty('left', `${count*(-this.width)}px`);
         count += 1;
       },3500);
     }
@@ -286,23 +285,25 @@ export default {
   background: #333;
 }
 
-@media all and (max-width: 550px) {
+@media all and (max-width: 700px) {  
   .section1 {
   /* height: 400px;
   max-height: 400px;
   min-height: 400px; */
 }
-.section2 {
-  height: 50%;
-}
+  .section2 {
+    height: 50%;
+  }  
   .floating {
     margin-top: 12vh;
   }
   .carousel-slide {
     height: 50vh;
   }
+  .slide-img{width: 100%; min-width:360px; min-height: 300px;height: auto;}
+
   .title {
-    font-size: 30px;
+    font-size: 0.75em;
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -311,14 +312,14 @@ export default {
   }
   .title div {
     color: #fff;
-    font-size: 13px;
+    font-size: 0.5em;
   }
 
   .subtitle {
     margin: 2vh 0;
     color: #fff;
     text-align: center;
-    font-size: 9px;
+    font-size: 0.5em;
   }
   .mainBottom {
     position: relative;
@@ -335,6 +336,7 @@ export default {
     justify-content: space-around;
     align-content: center;
     align-items: center;
+    height: 40vh;
   }
   .graphInfo,
   .textInfo {
@@ -367,7 +369,9 @@ export default {
     position: relative;
   }
   .price_button {
-    font-size: 15px;
+    font-size: 0.75em;
+    width: 0.75em;
+    height: 0.75em;
   }
 }
 </style>

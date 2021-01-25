@@ -67,7 +67,7 @@
             <div class="snsSection kakaobox" @click="kakaoShare">
               <img
                 class="sns-image"
-                src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"
+                src="../assets/kakao.png"
                 width="41"
               />
             </div>
