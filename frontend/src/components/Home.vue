@@ -317,6 +317,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 40vh;
   }
   .bottom {
     position: relative;
