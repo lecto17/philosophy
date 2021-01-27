@@ -154,12 +154,7 @@ export default {
   margin: 0;
   padding: 0;
 }
-.section1 {
-  height: 100%;
-}
-.section2 {
-  height: 100%;
-}
+
 .main {
   position: relative;
   width: 100%;
@@ -284,12 +279,11 @@ export default {
   background: #333;
 }
 
-@media all and (max-width: 1000px) {  
+@media all and (max-width: 500px) {  
   .section1 { margin: 15px auto;}
 
   .section2 {
     margin: 15px auto;
-    height: 50%;    
   }  
   .floating {
     margin-top: 10vh;
@@ -333,7 +327,7 @@ export default {
     justify-content: space-around;
     align-content: center;
     align-items: center;
-    hegiht: 50vh;
+    hegiht: 40vh;
   }
   .graphInfo,
   .textInfo {
@@ -343,23 +337,14 @@ export default {
   .graphInfo {
     height: 50vh;
     width: 80%;
-  }
-  .gridgauge {
-    position: absolute;
-    left: 0%;
-    height: 100%;
-    font-size: 10px;
-  }
+  }  
   .textInfo {
     display: flex;
     font-size: 13px;
     text-align: justify;
     width: 80%;
   }
- 
-  .user {
-    font-size: 10px;
-  }
+   
   .graphInfo {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
     padding-top: 2px;
