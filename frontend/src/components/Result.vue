@@ -393,7 +393,6 @@ export default {
   }
   .top {
     flex-direction: column;
-    height: 100%;
   }
   .inwrapper{margin: 10px 0px;  }
 
@@ -418,7 +417,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 150vh;
+    height: 90vh;
     margin-top: 15px;
   }
   .bottom-box1 {    

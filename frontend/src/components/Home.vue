@@ -252,7 +252,6 @@ export default {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
   justify-content: center;
 }
 
@@ -279,7 +278,7 @@ export default {
   background: #333;
 }
 
-@media all and (max-width: 500px) {  
+@media all and (max-width: 900px) {  
   .section1 { margin: 15px auto;}
 
   .section2 {
@@ -327,7 +326,6 @@ export default {
     justify-content: space-around;
     align-content: center;
     align-items: center;
-    hegiht: 40vh;
   }
   .graphInfo,
   .textInfo {
