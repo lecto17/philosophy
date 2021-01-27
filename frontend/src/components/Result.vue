@@ -417,6 +417,69 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 70vh;
+    margin-top: 15px;
+  }
+  .bottom-box1 {    
+    margin: 0 auto;
+    margin-bottom: 40px;    
+  }
+  .bottom-box1 > .middle-logo { width: 150px;}
+  .textInfo { width: 100%; margin: 0 auto;}
+  
+  .userInfo {
+    width: 100%;
+    height: 150px;
+  }
+  .graph > div {
+    width: 15%;
+  }
+
+  .total,
+  .type {
+    font-size: 13px;
+  }
+  .type-graph {
+    background: green;
+    left: 17.5%;
+  }
+  .total-graph {
+    background: red;
+    right: 17.5%;
+  }
+}
+
+@media (max-width: 500px) {
+  .wrapper {
+    margin-top: 12vh;
+    width: 95%;
+  }
+  .top {
+    flex-direction: column;
+  }
+  .inwrapper{margin: 10px 0px;  }
+
+  .type-img{ margin: 0 auto; margin-top: 30px; border: 1px solid #ddd; border-radius: 5px; padding: 10px;}
+  .person-img{width: 100%; height: 100%;}
+  .graphInfo {
+    width: 100%;
+    height: 50%;
+    padding: 0;
+  }
+  .graph-title {
+    font-size: 18px;
+  }
+  .typeBtn {
+    font-size: 13px;
+  }
+  .graph-more {
+    font-size: 10px;
+  }  
+  .bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: 90vh;
     margin-top: 15px;
   }
