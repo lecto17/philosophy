@@ -8,9 +8,8 @@
               신앙 유형 테스트!
               <div>“내 안에 있던 나의 신앙 유형은?”<br /></div>
             </div>
-            <div class="subtitle">
-              “나는 하나님 앞에 어떠한 사람일까요?” <br /><br />
-              누구나 하나님 앞에 바른 모습으로 나아가려 하지만,<br />
+            <div class="subtitle">              
+              누구나 하나님 앞에 <br/>바른 모습으로 나아가려 하지만,<br />
               정작 어떠한 모습으로 나아가고 있는지 모를 때가 많습니다. <br /><br />
               몇 가지 간단한 테스트를 통해 <br />
               내 안에 있던 신앙유형을 확인해보세요!<br />              
@@ -124,8 +123,8 @@ export default {
     msg: String,
   },
   mounted: function() {    
-    //this.slideEffect();
-    window.addEventListener('resize', this.slideEffect);
+    this.slideEffect();
+    //window.addEventListener('resize', this.slideEffect);
   },
   methods: {
     onSlideStart() {
@@ -136,13 +135,13 @@ export default {
     },
     
     slideEffect: function() {
-      this.width = window.innerWidth;
+      //this.width = window.innerWidth;
       const slideBox = document.getElementsByClassName('slide-box');
       const slideLength = slideBox[0].childElementCount
       let count = 1
       setInterval(() => {
         if(count===slideLength){count=0}              
-        slideBox[0].style.setProperty('left', `${count*(-this.width)}px`);
+        slideBox[0].style.setProperty('left', `${count*(-100)}%`);
         count += 1;
       },3500);
     }
@@ -171,7 +170,7 @@ export default {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  width: 50vw;
+  width: 60vw;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
@@ -285,25 +284,23 @@ export default {
   background: #333;
 }
 
-@media all and (max-width: 700px) {  
-  .section1 {
-  /* height: 400px;
-  max-height: 400px;
-  min-height: 400px; */
-}
+@media all and (max-width: 1000px) {  
+  .section1 { margin: 15px auto;}
+
   .section2 {
-    height: 50%;
+    margin: 15px auto;
+    height: 50%;    
   }  
   .floating {
-    margin-top: 12vh;
+    margin-top: 10vh;
   }
   .carousel-slide {
     height: 50vh;
   }
-  .slide-img{width: 100%; min-width:360px; min-height: 300px;height: auto;}
+  .slide-img{width: 100%; height: 50vh;}
 
   .title {
-    font-size: 0.75em;
+    font-size: 1.25em;
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -312,14 +309,14 @@ export default {
   }
   .title div {
     color: #fff;
-    font-size: 0.5em;
+    font-size: 0.7em;
   }
 
   .subtitle {
     margin: 2vh 0;
     color: #fff;
     text-align: center;
-    font-size: 0.5em;
+    font-size: 0.7em;
   }
   .mainBottom {
     position: relative;
@@ -336,7 +333,7 @@ export default {
     justify-content: space-around;
     align-content: center;
     align-items: center;
-    height: 40vh;
+    hegiht: 50vh;
   }
   .graphInfo,
   .textInfo {
@@ -369,7 +366,7 @@ export default {
     position: relative;
   }
   .price_button {
-    font-size: 0.75em;
+    font-size: 0.7em;
     width: 0.75em;
     height: 0.75em;
   }

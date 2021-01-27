@@ -184,6 +184,7 @@ p {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 10px auto;
   /* left: 30% */
   /* justify-content: space-around; */
 }
