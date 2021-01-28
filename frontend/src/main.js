@@ -8,7 +8,6 @@ import VueCarousel from 'vue-carousel';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueSocialSharing from 'vue-social-sharing'
-import VueInstagram from 'vue-instagram'
 
 Vue.config.productionTip = false
 
@@ -16,7 +15,6 @@ Vue.use(VueCarousel);
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(VueSocialSharing)
-Vue.use(VueInstagram)
 // Vue.use(vsPopup)
 
 
