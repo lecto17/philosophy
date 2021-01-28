@@ -81,18 +81,7 @@
         <div class="bottom">
           <div class="textInfo">
             <p v-html="textInfo"></p>
-          </div>
-          <vue-instagram token="accessTokenHere" :count="5" :tags="['hashtag1', 'hashtag2']" mediaType="image">
-              <template slot="feeds" slot-scope="props">
-                <li class="fancy-list"> {{ props.feed.link }} </li>
-                <div>
-                  Below
-                </div>
-              </template>
-              <template slot="error" slot-scope="props">
-                <div class="fancy-alert"> {{ props.error.error_message }} </div>
-              </template>
-            </vue-instagram>
+          </div>          
         </div>
       </div>
     </div>
@@ -101,11 +90,9 @@
 
 <script>
 //import { mapMutations } from "vuex";
-import VueInstagram from 'vue-instagram';
 
 export default {
   components: {    
-    VueInstagram
   },
   data() {
     return {
@@ -170,9 +157,9 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
 }
-.slide-container{overflow: hidden; width: 100%;}
-.slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s }
-.slide-img{width: 100%; height: 95vh;}
+.slide-container{overflow: hidden; width: 100%; height: auto;}
+.slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s; height: 95vh;}
+.slide-img{width: 100%; }
 .floating {
   margin-top: 15vh;
   position: absolute;
@@ -256,14 +243,13 @@ export default {
 }
 
 .textInfo {
-  margin: 50px;
-  width: 50%;
+  margin: 50px;  
   text-align: center;
 }
 
 .textInfo {
   /* 자동개행(단어 단위) */
-  margin-top: 8vw;
+  margin: 8vw 0;
   display: flex;
   justify-content: center;
   word-break: keep-all;
@@ -290,7 +276,9 @@ export default {
   .carousel-slide {
     height: 50vh;
   }
-  .slide-img{width: 100%; height: 50vh;}
+  .slide-container{overflow: hidden; width: 100%; height: auto;}
+  .slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s; height: auto;}
+  .slide-img{width: 100%; }
 
   .title {
     font-size: 1.25em;
@@ -317,7 +305,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 40vh;
+    height: 50vh;
   }
   .bottom {
     position: relative;
@@ -338,6 +326,87 @@ export default {
     width: 80%;
   }  
   .textInfo {
+    margin: 8vw 0;
+    display: flex;
+    font-size: 13px;
+    text-align: justify;
+    width: 80%;
+  }
+   
+  .graphInfo {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    padding-top: 2px;
+    position: relative;
+  }
+  .price_button {
+    font-size: 0.7em;
+    width: 0.75em;
+    height: 0.75em;
+  }
+}
+
+@media all and (max-width: 500px) {  
+  .section1 { margin: 15px auto;}
+
+  .section2 {
+    margin: 15px auto;
+  }  
+  .floating {
+    margin-top: 10vh;
+  }
+  .carousel-slide {
+    height: 50vh;
+  }
+  .slide-img{width: 100%; height: 50vh;}
+  .slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s; height: auto;}
+
+  .title {
+    font-size: 1.25em;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Do Hyeon", sans-serif;
+    /* z-index: 100; */
+  }
+  .title div {
+    color: #fff;
+    font-size: 0.7em;
+  }
+
+  .subtitle {
+    margin: 2vh 0;
+    color: #fff;
+    text-align: center;
+    font-size: 0.7em;
+  }
+  .mainBottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
+  .bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+  .graphInfo,
+  .textInfo {
+    margin: 0 15px;
+    width: 100%;
+  }
+  .graphInfo {
+    height: 50vh;
+    width: 80%;
+  }  
+  .textInfo {
+    margin:8vw 0;
     display: flex;
     font-size: 13px;
     text-align: justify;
