@@ -277,11 +277,11 @@ export default {
     height: 50vh;
   }
   .slide-container{overflow: hidden; width: 100%; height: auto;}
-  .slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s; height: auto;}
+  .slide-box{position: relative; left: 0%; display: flex; width: 100%; transition: .8s; height: 70vh;}
   .slide-img{width: 100%; }
 
   .title {
-    font-size: 1.25em;
+    font-size: 2em;
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -290,14 +290,14 @@ export default {
   }
   .title div {
     color: #fff;
-    font-size: 0.7em;
+    font-size: 1.5em;
   }
 
   .subtitle {
     margin: 2vh 0;
     color: #fff;
     text-align: center;
-    font-size: 0.7em;
+    font-size: 1.5em;
   }
   .mainBottom {
     position: relative;
@@ -339,7 +339,7 @@ export default {
     position: relative;
   }
   .price_button {
-    font-size: 0.7em;
+    font-size: 1em;
     width: 0.75em;
     height: 0.75em;
   }
